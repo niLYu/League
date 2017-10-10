@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class NotFound extends Component {
   render() {
     return (
-      <div>Welcome to my app</div>
+      <div>not found</div>
     )
   }
 }
