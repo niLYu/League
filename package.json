@@ -8,7 +8,7 @@
     "build": "webpack -w",
     "build-production": "cross-env NODE_ENV=production npm run build",
     "start": "node server",
-    "start-dev": "webpack -w &amp; nodemon server/index.js"
+    "start-dev": "webpack -w & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "request": "^2.83.0"
   }
 }
