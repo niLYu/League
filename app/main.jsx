@@ -5,14 +5,16 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import Home from './components/Home'
+import Summoner from './components/Summoner'
 import NotFound from './components/NotFound'
 
 render(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route path="/abc" component={NotFound} />
-        <Route path="/" component={Home} />
+        <Route exact path='/' component={Home} />
+        <Route path ='/summoner' component={Summoner} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   </Provider>,

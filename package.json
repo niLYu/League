@@ -8,7 +8,7 @@
     "build": "webpack -w",
     "build-production": "cross-env NODE_ENV=production npm run build",
     "start": "node server",
-    "start-dev": "webpack -w & nodemon server/index.js"
+    "start-dev": "cross-env NODE_ENV=development webpack -w & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,7 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-react": "^6.24.1",
+    "babel-preset-react-app": "^3.0.3",
     "cross-env": "^5.0.5",
     "webpack": "^3.6.0",
     "webpack-livereload-plugin": "^0.11.0"
