@@ -4,10 +4,7 @@ const { FLOAT, INTEGER, STRING, BOOLEAN, TEXT, DataTypes } = require('sequelize'
 var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/league')
 
 const Player = db.define('player', {
-  summonerId: {
-    type: INTEGER,
-    unique: true
-  },
+
   accountId: {
     type: INTEGER,
     unique: true
@@ -74,6 +71,6 @@ const Champion = db.define('champion', {
 })
 
 Champion.belongsTo(Player)
-Match.hasMany(Player)
+Player.hasMany(Match)
 
 module.exports = db

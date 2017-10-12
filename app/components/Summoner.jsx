@@ -10,6 +10,7 @@ class Summoner extends Component {
     const params = new URLSearchParams(search)
     const username = params.get('username')
     this.props.fetchUser(username)
+    // .then(()=> console.log('hello'))
   }
   render() {
     return (
@@ -18,7 +19,7 @@ class Summoner extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ user })
+const mapStateToProps = ({ user, recentGames, champMastery, runePages, masteries }) => ({ user, recentGames, champMastery, runePages, masteries })
 
 const mapDispatchToProps = { fetchUser }
 
