@@ -29,6 +29,7 @@
     "webpack-livereload-plugin": "^0.11.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
     "path": "^0.12.7",
