@@ -7,7 +7,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin: auto;
-  height: 100%;
+  height: 80%;
   width: 100%;
   position: absolute;
 `;
@@ -24,7 +24,40 @@ const Form = styled.form`
   height: 30em;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 700px) {
+    width: 20em;
+    height: 20em;
+  }
 `;
+
+const Label = styled.label`
+  width: 90%;
+  padding-left: 10%
+`;
+
+const Input = styled.input`
+  text-align: center;
+  border-style: none;
+  font-size: 2em;
+  &:focus ${Input} {
+    outline: none;
+  }
+
+  @media (max-width: 700px) {
+    font-size: 1em;
+  }
+`
+const ButtonWrap = styled.button`
+  background-color: teal;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 20px;
+  &:hover ${ButtonWrap} {
+    background-color: white;
+  }
+`
 
 class Home extends Component {
   constructor() {
@@ -43,19 +76,19 @@ class Home extends Component {
     return (
       <Container>
         <Form>
-          <label>
-            Player Name:
-            <input
+          <Label>
+            <Input
               type='text'
+              placeholder="Summoner's name"
               value={this.state.playerName}
               onChange={this.handleChange}
             />
-          </label>
+          </Label>
           <Link to={{
             pathname: '/summoner',
             search: `username=${this.state.playerName}`
           }}>
-            <input type="submit" value="Submit" />
+            <ButtonWrap>GO</ButtonWrap>
           </Link>
         </Form>
       </Container>
