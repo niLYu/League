@@ -53,7 +53,8 @@ const ButtonWrap = styled.button`
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  font-size: 20px;
+  font-size: 13px;
+  text-align: center;
   &:hover ${ButtonWrap} {
     background-color: white;
   }
