@@ -1,5 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+`;
+
+const Form = styled.form`
+  display: flex;
+  text-align: center;
+  color: black;
+  border-radius: 50%;
+  border-style: outset;
+  border-width: 1em;
+  border-color: teal;
+  width: 30em;
+  height: 30em;
+  align-items: center;
+  justify-content: center;
+`;
 
 class Home extends Component {
   constructor() {
@@ -16,8 +41,8 @@ class Home extends Component {
 
   render() {
     return (
-      <div>League of Legends
-        <form>
+      <Container>
+        <Form>
           <label>
             Player Name:
             <input
@@ -32,8 +57,8 @@ class Home extends Component {
           }}>
             <input type="submit" value="Submit" />
           </Link>
-        </form>
-      </div>
+        </Form>
+      </Container>
     )
   }
 }
