@@ -11,48 +11,39 @@ const Container = styled.div`
 
 const Form = styled.form`
   display: flex;
-  text-align: center;
+  flex: 0.65;
   color: black;
-  border-radius: 50%;
+  border-radius: 10%;
   border-style: outset;
   border-width: 1em;
   border-color: teal;
-  width: 30em;
-  height: 30em;
   align-items: center;
-  justify-content: center;
-
-  @media (max-width: 700px) {
-    width: 20em;
-    height: 20em;
-  }
-`;
-
-const Label = styled.label`
-  width: 90%;
-  padding-left: 10%
+  justify-content: space-between;
 `;
 
 const Input = styled.input`
-  text-align: center;
+  font-size: 1em;
   border-style: none;
-  font-size: 2em;
+  margin-left 10px;
+  width: 100%;
   &:focus ${Input} {
     outline: none;
   }
-
-  @media (max-width: 700px) {
-    font-size: 1em;
-  }
 `
-const ButtonWrap = styled.button`
+const ButtonWrap = styled.div`
+  background-color: teal;
+  border-radius: 50%;
+  text-align: center;
+`
+
+const StyledButton = styled.button`
   background-color: teal;
   border-radius: 50%;
   height: 50px;
   width: 50px;
   font-size: 13px;
   text-align: center;
-  &:hover ${ButtonWrap} {
+  &:hover ${StyledButton} {
     background-color: white;
   }
 `
@@ -74,20 +65,22 @@ class Home extends Component {
     return (
       <Container>
         <Form>
-          <Label>
+          <label>
             <Input
               type='text'
               placeholder="Summoner's name"
               value={this.state.playerName}
               onChange={this.handleChange}
             />
-          </Label>
+          </label>
+          <ButtonWrap>
           <Link to={{
             pathname: '/summoner',
             search: `username=${this.state.playerName}`
           }}>
-            <ButtonWrap>GO</ButtonWrap>
+            <StyledButton>GO</StyledButton>
           </Link>
+          </ButtonWrap>
         </Form>
       </Container>
     )
