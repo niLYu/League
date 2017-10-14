@@ -13,7 +13,9 @@ module.exports = app
     res.sendFile(path.join(__dirname, '../public/index.html'))
   });
 
-db.sync({ logging: false })
+db.sync({ logging: false,
+  // force: true
+ })
 if (module === require.main) {
   app.listen(3000, function () {
     console.log('App is listening on port 3000!')
