@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import RecentGames from './RecentGames'
+import Filter from './Filter'
 import axios from 'axios'
 
 
@@ -14,7 +14,6 @@ class Summoner extends Component {
     this.props.fetchUser(username)
   }
   render() {
-    console.log(this.props.user.accountId)
     return (
       <div>
         Summoner
@@ -22,7 +21,7 @@ class Summoner extends Component {
           !this.props.user.accountId ?
           <div>Loading... </div>
           :
-          <RecentGames accountId ={this.props.user.accountId}/>
+          <Filter accountId ={this.props.user.accountId}/>
         }
         </div>
     )

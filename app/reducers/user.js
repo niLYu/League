@@ -73,24 +73,24 @@ export const fetchRecent = accountId => dispatch => {
 
 
 export default function userReducer(user = {}, action) {
-  let obj = Object.assign(userReducer)
+  let obj = Object.assign(user)
   switch (action.type) {
     case GET_USER:
-      return action.user;
+      return action.user
     case SAVE_USER:
       return action.userInfo
     case GET_GAMES:
       obj.recentGames = action.games
       return obj
-    case GET_CHAMPION_MASTERY:
-      obj.champMastery = action.champMastery
-      return obj
-    case GET_RUNE_PAGES:
-      obj.runePages = action.runePages
-      return obj
-    case GET_MASTERIES:
-      obj.masteries = action.masteries
-      return obj
+    // case GET_CHAMPION_MASTERY:
+    //   obj.champMastery = action.champMastery
+    //   return obj
+    // case GET_RUNE_PAGES:
+    //   obj.runePages = action.runePages
+    //   return obj
+    // case GET_MASTERIES:
+    //   obj.masteries = action.masteries
+    //   return obj
     default:
       return user;
   }
