@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Filter from './Filter'
 import axios from 'axios'
-
-
-import { fetchUser } from '../reducers/user'
+import PropTypes from 'prop-types';
+import { fetchUser } from '../reducers/user';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -28,8 +27,21 @@ class Summoner extends Component {
   }
 }
 
-const mapStateToProps = ({ user, recentGames, champMastery, runePages, masteries }) => ({ user, recentGames, champMastery, runePages, masteries })
+Summoner.propTypes = {
+  location: PropTypes.shape({ search: PropTypes.string.isRequired }),
+  fetchUser: PropTypes.func.isRequired,
+};
 
-const mapDispatchToProps = { fetchUser }
+Summoner.defaultProps = {
+  location: { search: '' },
+};
+
+const mapStateToProps = ({
+  user, recentGames, champMastery, runePages, masteries,
+}) => ({
+  user, recentGames, champMastery, runePages, masteries,
+});
+
+const mapDispatchToProps = { fetchUser };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Summoner);

@@ -11,7 +11,7 @@ const Container = styled.div`
 
 const Form = styled.form`
   display: flex;
-  flex: 0.65;
+  flex: 0.33;
   color: black;
   border-radius: 10%;
   border-style: outset;
@@ -19,6 +19,10 @@ const Form = styled.form`
   border-color: teal;
   align-items: center;
   justify-content: space-between;
+`;
+
+const Label = styled.label`
+  flex: 1;
 `;
 
 const Input = styled.input`
@@ -29,12 +33,12 @@ const Input = styled.input`
   &:focus ${Input} {
     outline: none;
   }
-`
+`;
 const ButtonWrap = styled.div`
   background-color: teal;
   border-radius: 50%;
   text-align: center;
-`
+`;
 
 const StyledButton = styled.button`
   background-color: teal;
@@ -46,14 +50,14 @@ const StyledButton = styled.button`
   &:hover ${StyledButton} {
     background-color: white;
   }
-`
+`;
 
 class Home extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      playerName: ''
-    }
+      playerName: '',
+    };
   }
 
   handleChange = (e) => {
@@ -65,25 +69,26 @@ class Home extends Component {
     return (
       <Container>
         <Form>
-          <label>
+          <Label>
             <Input
-              type='text'
+              type="text"
               placeholder="Summoner's name"
               value={this.state.playerName}
               onChange={this.handleChange}
             />
-          </label>
+          </Label>
           <ButtonWrap>
-          <Link to={{
+            <Link to={{
             pathname: '/summoner',
-            search: `username=${this.state.playerName}`
-          }}>
-            <StyledButton>GO</StyledButton>
-          </Link>
+            search: `username=${this.state.playerName}`,
+          }}
+            >
+              <StyledButton>GO</StyledButton>
+            </Link>
           </ButtonWrap>
         </Form>
       </Container>
-    )
+    );
   }
 }
 
