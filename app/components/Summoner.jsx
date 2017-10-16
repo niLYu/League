@@ -1,20 +1,29 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import Filter from './Filter'
+import axios from 'axios'
 import PropTypes from 'prop-types';
-
 import { fetchUser } from '../reducers/user';
 
 class Summoner extends Component {
   componentDidMount() {
-    const { search } = this.props.location;
-    const params = new URLSearchParams(search);
-    const username = params.get('username');
-    this.props.fetchUser(username);
+    const search = this.props.location.search
+    const params = new URLSearchParams(search)
+    const username = params.get('username')
+    this.props.fetchUser(username)
   }
   render() {
     return (
-      <div>Summoner</div>
-    );
+      <div>
+        Summoner
+        {
+          !this.props.user.accountId ?
+          <div>Loading... </div>
+          :
+          <Filter accountId ={this.props.user.accountId}/>
+        }
+        </div>
+    )
   }
 }
 
