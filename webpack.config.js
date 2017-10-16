@@ -7,11 +7,11 @@ module.exports = {
   entry: './app/main.jsx',
   output: {
     path: __dirname,
-    filename: './public/bundle.js'
+    filename: './public/bundle.js',
   },
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx', '.json', '*']
+    extensions: ['.js', '.jsx', '.json', '*'],
   },
   module: {
     rules: [
@@ -20,19 +20,21 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          presets: ['react-app']
-        }
-      }
-    ]
+          presets: ['react-app'],
+        },
+      },
+    ],
   },
   plugins: productionMode
     ? [
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify('production')
-          }
-        }),
-        new webpack.optimize.UglifyJsPlugin()
-      ]
-    : [new LiveReloadPlugin({appendScriptTag: true})]
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production'),
+        },
+      }),
+      new webpack.optimize.UglifyJsPlugin({
+        sourceMap: true,
+      }),
+    ]
+    : [new LiveReloadPlugin({ appendScriptTag: true })],
 };

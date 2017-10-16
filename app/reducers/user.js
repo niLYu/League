@@ -21,10 +21,12 @@ const getRunePages = runePages => ({ type: GET_RUNE_PAGES, runePages })
 const getMasteries = masteries => ({ type: GET_MASTERIES, masteries })
 
 
+
 /* -------------    THUNK CREATORS     ---------------- */
 
 //gets player info by username then finds or create in db
-export const fetchUser = (username) => dispatch => {
+export const fetchUser = username => dispatch => {
+
   axios.get(`/api/playerInfo/player/${username}`)
     .then(res => res.data)
     .then(user => dispatch(getUser(user)))

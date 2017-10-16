@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import RecentGames from './RecentGames'
 import axios from 'axios'
 
+
 import { fetchUser } from '../reducers/user'
 
 class Summoner extends Component {
