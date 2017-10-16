@@ -28,39 +28,44 @@ export const fetchUser = (username) => dispatch => {
   axios.get(`/api/playerInfo/player/${username}`)
     .then(res => res.data)
     .then(user => dispatch(getUser(user)))
-    .then(res => {
-      axios.post(`api/playerInfo/player/${res.user.name}`, res.user)
-        .then(res => res.data)
-        .then(userInfo => dispatch(saveUser(userInfo)))
-      return res.user
-    })
-    .then(user => {
-      axios.get(`api/playerInfo/recent/${user.accountId}`)
-        .then(games => games.data)
-        .then(games => dispatch(getRecent(games)))
-      return user
-    })
-    .then(user => {
-      axios.get(`api/playerInfo/championMastery/${user.id}`)
-        .then(res => res.data)
-        .then(data => dispatch(getChampMastery(data)))
-      return user
-    })
-    .then(user => {
-      axios.get(`api/playerInfo/accountRunes/${user.id}`)
-        .then(res => res.data)
-        .then(data => dispatch(getRunePages(data)))
-      return user
-    })
-    .then(user => {
-      axios.get(`api/playerInfo/accountMasteries/${user.id}`)
-        .then(res => res.data)
-        .then(data => dispatch(getMasteries(data)))
-      return user
-    })
+    // .then(res => {
+    //   axios.post(`api/playerInfo/player/${res.user.name}`, res.user)
+    //     .then(res => res.data)
+    //     .then(userInfo => dispatch(saveUser(userInfo)))
+    //   return res.user
+    // })
+    // .then(user => {
+    //   axios.get(`api/playerInfo/recent/${user.accountId}`)
+    //     .then(games => games.data)
+    //     .then(games => dispatch(getRecent(games)))
+    //   return user
+    // })
+    // .then(user => {
+    //   axios.get(`api/playerInfo/championMastery/${user.id}`)
+    //     .then(res => res.data)
+    //     .then(data => dispatch(getChampMastery(data)))
+    //   return user
+    // })
+    // .then(user => {
+    //   axios.get(`api/playerInfo/accountRunes/${user.id}`)
+    //     .then(res => res.data)
+    //     .then(data => dispatch(getRunePages(data)))
+    //   return user
+    // })
+    // .then(user => {
+    //   axios.get(`api/playerInfo/accountMasteries/${user.id}`)
+    //     .then(res => res.data)
+    //     .then(data => dispatch(getMasteries(data)))
+    //   return user
+    // })
     .catch(err => console.error(err))
 }
-
+export const fetchRecent = accountId => dispatch => {
+  axios.get(`api/playerInfo/recent/${accountId}`)
+    .then(games => games.data)
+    .then(games => dispatch(getRecent(games)))
+    .catch(err => console.error(err))
+}
 
 /* -----------------    REDUCER    -------------------- */
 
