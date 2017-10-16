@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { fetchUser } from '../reducers/user';
 
@@ -18,8 +19,8 @@ class Summoner extends Component {
 }
 
 Summoner.propTypes = {
-  location: React.propType.shape({ search: React.propType.string.isRequired }),
-  fetchUser: React.propType.func.isRequired,
+  location: PropTypes.shape({ search: PropTypes.string.isRequired }),
+  fetchUser: PropTypes.func.isRequired,
 };
 
 Summoner.defaultProps = {
