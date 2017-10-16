@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const GET_USER = 'GET_USER';
 const SAVE_USER = 'SAVE_USER'
-const GET_GAMES = 'GET_GAMES'
 const GET_CHAMPION_MASTERY = 'GET_CHAMPION_MASTERY'
 const GET_RUNE_PAGES = 'GET_RUNE_PAGES'
 const GET_MASTERIES = 'GET_MASTERIES'
@@ -15,7 +14,6 @@ const GET_MASTERIES = 'GET_MASTERIES'
 
 const getUser = user => ({ type: GET_USER, user })
 const saveUser = userInfo => ({ type: SAVE_USER, userInfo })
-const getRecent = games => ({ type: GET_GAMES, games })
 const getChampMastery = champMastery => ({ type: GET_CHAMPION_MASTERY, champMastery })
 const getRunePages = runePages => ({ type: GET_RUNE_PAGES, runePages })
 const getMasteries = masteries => ({ type: GET_MASTERIES, masteries })
@@ -27,7 +25,7 @@ const getMasteries = masteries => ({ type: GET_MASTERIES, masteries })
 //gets player info by username then finds or create in db
 export const fetchUser = username => dispatch => {
 
-  axios.get(`/api/playerInfo/player/${username}`)
+  return axios.get(`/api/playerInfo/player/${username}`)
     .then(res => res.data)
     .then(user => dispatch(getUser(user)))
     // .then(res => {
@@ -73,15 +71,11 @@ export const fetchRecent = accountId => dispatch => {
 
 
 export default function userReducer(user = {}, action) {
-  let obj = Object.assign(user)
   switch (action.type) {
     case GET_USER:
       return action.user
-    case SAVE_USER:
-      return action.userInfo
-    case GET_GAMES:
-      obj.recentGames = action.games
-      return obj
+    // case SAVE_USER:
+    //   return action.userInfo
     // case GET_CHAMPION_MASTERY:
     //   obj.champMastery = action.champMastery
     //   return obj
