@@ -19,6 +19,13 @@ const Form = styled.form`
   border-color: teal;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 600px) {
+    flex: 0.65
+  }
+  @media (max-width: 400px) {
+    flex: 0.85
+  }
 `;
 
 const Label = styled.label`
