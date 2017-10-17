@@ -9,7 +9,7 @@ module.exports = {
     path: __dirname,
     filename: './public/bundle.js',
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.json', '*'],
   },
