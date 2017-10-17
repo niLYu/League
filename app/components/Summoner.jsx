@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Filter from './Filter'
 import axios from 'axios'
-
-import { fetchUser } from '../reducers/user'
+import PropTypes from 'prop-types';
+import { fetchUser } from '../reducers/user';
+import { fetchRecent } from '../reducers/gamesReducer';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -10,17 +12,39 @@ class Summoner extends Component {
     const params = new URLSearchParams(search)
     const username = params.get('username')
     this.props.fetchUser(username)
-    // .then(()=> console.log('hello'))
+      .then(() => {
+        this.props.fetchRecent(this.props.user.accountId)
+      })
   }
   render() {
+    console.log(this.props.games,'games')
     return (
-      <div>Summoner</div>
+      <div>
+        Summoner
+        {
+          !this.props.user ?
+            <div>Loading... </div>
+            :
+            <Filter recentGames={this.props.games} />
+        }
+      </div>
     )
   }
 }
 
-const mapStateToProps = ({ user, recentGames, champMastery, runePages, masteries }) => ({ user, recentGames, champMastery, runePages, masteries })
+Summoner.propTypes = {
+  location: PropTypes.shape({ search: PropTypes.string.isRequired }),
+  fetchUser: PropTypes.func.isRequired,
+};
 
-const mapDispatchToProps = { fetchUser }
+Summoner.defaultProps = {
+  location: { search: '' },
+};
+
+const mapStateToProps = ({ user, games }) => ({
+  user, games
+})
+
+const mapDispatchToProps = { fetchUser, fetchRecent };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Summoner);
