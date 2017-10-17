@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
+import Footer from './components/Footer';
 import store from './store';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
@@ -19,6 +19,7 @@ render(
           <Route path="/summoner" component={Summoner} />
           <Route component={NotFound} />
         </Switch>
+        <Footer />
       </div>
     </Router>
   </Provider>,
