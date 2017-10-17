@@ -1,6 +1,8 @@
 # League
 
-One Paragraph of project description goes here
+What goes here? I don't know.
+
+I realize someone else should have written the description.
 
 ## Getting Started
 
@@ -64,3 +66,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Virtual cookie for everyone who's code was used
 * Inspiration
 * LoL API
+* Jack for checking to make sure everyone is alive
+* Yu for his savage comments
