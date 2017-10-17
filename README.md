@@ -68,3 +68,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * LoL API
 * Jack for checking to make sure everyone is alive
 * Yu for his savage comments
+* Actually they're both pretty savage T-T
+
