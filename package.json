@@ -21,9 +21,15 @@
   "homepage": "https://github.com/niLYu/simple-react-boilerplate#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-preset-react-app": "^3.0.3",
     "cross-env": "^5.0.5",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
     "nodemon": "^1.12.1",
     "webpack": "^3.6.0",
     "webpack-livereload-plugin": "^0.11.0"
