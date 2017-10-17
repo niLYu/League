@@ -25,11 +25,6 @@ export const fetchUser = username => dispatch => axios.get(`/api/playerInfo/play
   // })
   .catch(err => console.error(err));
 
-export const postUser = (user) => {
-  console.log(user);
-  axios.post(`api/playerInfo/player/${user.name}`, user);
-};
-
 /* -----------------    REDUCER    -------------------- */
 
 
