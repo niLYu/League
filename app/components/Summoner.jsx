@@ -33,7 +33,6 @@ class Summoner extends Component {
       .catch(err => console.error(err));
   }
   render() {
-    // console.log(this.props, 'props');
     return (
       <div>
         Summoner
@@ -48,15 +47,28 @@ class Summoner extends Component {
   }
 }
 
-
-Summoner.propTypes = {
-  location: PropTypes.shape({ search: PropTypes.string.isRequired }),
-  fetchUser: PropTypes.func.isRequired,
-};
-
 Summoner.defaultProps = {
   location: { search: '' },
+  user: { accountId: 0, id: 0 },
+  games: {},
 };
+
+Summoner.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string.isRequired,
+  }),
+  user: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    accountId: PropTypes.number.isRequired,
+  }),
+  games: PropTypes.shape({}),
+  fetchUser: PropTypes.func.isRequired,
+  fetchChampMastery: PropTypes.func.isRequired,
+  fetchRecent: PropTypes.func.isRequired,
+  fetchRunePages: PropTypes.func.isRequired,
+  fetchMasteryPages: PropTypes.func.isRequired,
+};
+
 
 const mapStateToProps = ({
   user, games, championMastery, masteryPages, runePages,
