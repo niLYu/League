@@ -1,10 +1,10 @@
-const router = module.exports = require('express').Router()
+const router = require('express').Router();
 
 
 router
   .use('/matchInfo', require('./match'))
-  .use('/playerInfo', require('./playerInfo'))
+  .use('/playerInfo', require('./playerInfo'));
 
-router.use((req, res) => res.status(404).end())
+router.use((req, res) => res.status(404).end());
 
-module.exports = router
+module.exports = router;
