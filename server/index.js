@@ -14,8 +14,9 @@ module.exports = app
   });
 
 db.sync({ logging: false,
-  // force: true
- })
+  force: true,
+ });
+
 if (module === require.main) {
   app.listen(3000, function () {
     console.log('App is listening on port 3000!')
