@@ -74,6 +74,12 @@ router.get('/games/:name', (req, res, next) => {
     });
   });
 });
-
+router.get('/soloChallengers', (req, res, next) => {
+  request(`https://na1.api.riotgames.com/lol/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
+    if (error)console.log('error', error);
+    const matchInfo = JSON.parse(body);
+    res.json(matchInfo);
+  });
+});
 
 module.exports = router;
