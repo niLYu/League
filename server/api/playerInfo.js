@@ -6,6 +6,7 @@ const Player = require('../../db').models.player;
 
 // gets basic profile by player name
 router.get('/player/:name', (req, res, next) => {
+  console.log('got here', secrets.LEAGUE_API_KEY)
   request(`https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/${req.params.name}?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
     if (error)console.log('error', error);
     const info = JSON.parse(body);

@@ -5,6 +5,7 @@ const secrets = require('../../secrets');
 
 // gets live game by summoner name
 router.get('/match/:name', (req, res, next) => {
+  console.log(secrets.LEAGUE_API_KEY);
   request(`https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/${req.params.name}?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
     const playerInfo = JSON.parse(body);
     console.log('error', error);
