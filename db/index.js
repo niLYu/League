@@ -1,76 +1,78 @@
-const Sequelize = require('sequelize')
-const { FLOAT, INTEGER, STRING, BOOLEAN, TEXT, DataTypes } = require('sequelize')
+const Sequelize = require('sequelize');
+const {
+  FLOAT, INTEGER, STRING, BOOLEAN, TEXT, DataTypes,
+} = require('sequelize');
 
-var db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/league')
+const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/league', { logging: false });
 
 const Player = db.define('player', {
 
   accountId: {
     type: INTEGER,
-    unique: true
+    unique: true,
   },
   name: {
     type: STRING,
-    unique: true
+    unique: true,
   },
   profileIconId: {
-    type: INTEGER
+    type: INTEGER,
   },
   summonerLevel: {
-    type: INTEGER
-  }
-})
+    type: INTEGER,
+  },
+});
 
 const Match = db.define('match', {
   gameId: {
     type: INTEGER,
-    unique: true
+    unique: true,
   },
   mapId: {
-    type: INTEGER
+    type: INTEGER,
   },
   gameMode: {
-    type: STRING
+    type: STRING,
   },
   gameDuration: {
-    type: INTEGER
+    type: INTEGER,
   },
   queueId: {
-    type: STRING
+    type: STRING,
   },
   serverId: {
-    type: STRING
-  }
-})
+    type: STRING,
+  },
+});
 
 const Champion = db.define('champion', {
   championId: {
-    type: INTEGER
+    type: INTEGER,
   },
   numberOfGames: {
-    type: INTEGER
+    type: INTEGER,
   },
   numberOfWins: {
-    type: INTEGER
+    type: INTEGER,
   },
   numberOfLosses: {
-    type: INTEGER
+    type: INTEGER,
   },
   totalKills: {
-    type: INTEGER
+    type: INTEGER,
   },
   totalDeaths: {
-    type: INTEGER
+    type: INTEGER,
   },
   totalAssist: {
-    type: INTEGER
+    type: INTEGER,
   },
-  creepScore:{
-    type: INTEGER
-  }
-})
+  creepScore: {
+    type: INTEGER,
+  },
+});
 
-Champion.belongsTo(Player)
-Player.hasMany(Match)
+Champion.belongsTo(Player);
+Player.hasMany(Match);
 
-module.exports = db
+module.exports = db;
