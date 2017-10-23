@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Summoner from './components/Summoner';
 import NotFound from './components/NotFound';
+import Leaderboards from './components/Leaderboards';
 
 render(
   <Provider store={store}>
@@ -17,6 +18,7 @@ render(
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/summoner" component={Summoner} />
+          <Route path="/challengers" component={Leaderboards} />
           <Route component={NotFound} />
         </Switch>
         <Footer />
