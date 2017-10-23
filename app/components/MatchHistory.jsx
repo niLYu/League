@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 const MatchHistory = (props) => {
   return (
     <div>
       MatchHistory
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default MatchHistory
+export default MatchHistory;
