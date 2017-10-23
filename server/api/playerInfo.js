@@ -23,7 +23,7 @@ router.post('/player/:name', (req, res, next) => {
     .spread((user, created) => {
       res.json(created);
     })
-    .catch(next);
+    .catch(error => console.log(error));
 });
 
 // gets mastery pages by id

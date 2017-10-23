@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Filter from './Filter';
+import BasicProfile from './BasicProfile';
 import { fetchUser } from '../reducers/user';
 import postUser from '../util/api';
 import { fetchRecent } from '../reducers/games';
@@ -35,6 +36,7 @@ class Summoner extends Component {
   render() {
     return (
       <div>
+        <BasicProfile user={this.props.user} />
         Summoner
         {
           !this.props.user ?
@@ -58,8 +60,8 @@ Summoner.propTypes = {
     search: PropTypes.string.isRequired,
   }),
   user: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    accountId: PropTypes.number.isRequired,
+    id: PropTypes.number,
+    accountId: PropTypes.number,
   }),
   games: PropTypes.shape({}),
   fetchUser: PropTypes.func.isRequired,
