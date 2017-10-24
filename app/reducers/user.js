@@ -24,7 +24,11 @@ const InitialState = {
   accountId: 0
 };
 
+<<<<<<< HEAD
 export default function userReducer(user = InitialState, action) {
+=======
+export default function userReducer(user = { id: 0, accountId: 0 }, action) {
+>>>>>>> master
   switch (action.type) {
     case GET_USER:
       return action.user;
