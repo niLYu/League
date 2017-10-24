@@ -18,7 +18,7 @@ export const fetchRecent = accountId => (dispatch) => {
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function gamesReducer(games = {}, action) {
+export default function gamesReducer(games = { matches: [] }, action) {
   switch (action.type) {
     case GET_GAMES:
       return action.games;

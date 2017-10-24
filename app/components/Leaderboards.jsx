@@ -11,6 +11,7 @@ class Leaderboards extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {
@@ -22,17 +23,18 @@ class Leaderboards extends Component {
             {el.playerOrTeamName}
           </NavLink>
               LP: {el.leaguePoints}
+              Wins: {el.wins}
             </div>))
         }
       </div>
     );
   }
 }
-Leaderboards.propTypes = {
-  fetchSoloChallengers: PropTypes.func.isRequired,
-};
 Leaderboards.defaultProps = {
   soloChallengers: { entries: [] },
+};
+Leaderboards.propTypes = {
+  fetchSoloChallengers: PropTypes.func.isRequired,
 };
 Leaderboards.propTypes = {
   soloChallengers: PropTypes.shape({
