@@ -16,6 +16,7 @@ const Navbar = () => (
     <NavLink to="/" className="homeNavIcon">
       <img id="homeIcon" src="/images/HomeIcon.png" alt="Could not load" />
     </NavLink>
+    <NavLink to="/challengers">Challenger</NavLink>
   </NavContainer >
 );
 

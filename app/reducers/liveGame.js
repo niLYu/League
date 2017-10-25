@@ -18,7 +18,20 @@ export const fetchLiveGame = id => (dispatch) => {
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function gamesReducer(liveGame = {}, action) {
+export default function gamesReducer(
+  liveGame = {
+    bannedChampions: [],
+    gameId: 0,
+    gameLength: 0,
+    gameMode: '',
+    gameQueueConfigId: 0,
+    gameType: '',
+    mapId: 0,
+    observers: {},
+    participants: [],
+  },
+  action,
+) {
   switch (action.type) {
     case GET_LIVE_GAMES:
       return action.liveGames;

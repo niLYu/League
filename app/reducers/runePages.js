@@ -16,7 +16,7 @@ export const fetchRunePages = userId => dispatch => axios.get(`api/playerInfo/ac
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function runePageReducer(runePages = {}, action) {
+export default function runePageReducer(runePages = { runePages: [], summonerId: 0 }, action) {
   switch (action.type) {
     case GET_RUNE_PAGES:
       return action.runePages;

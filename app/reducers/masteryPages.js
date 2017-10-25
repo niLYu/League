@@ -16,7 +16,7 @@ export const fetchMasteryPages = userId => dispatch => axios.get(`api/playerInfo
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function userReducer(masteryPages = {}, action) {
+export default function userReducer(masteryPages = { pages: [], summonerId: 0 }, action) {
   switch (action.type) {
     case GET_MASTERIES:
       return action.masteries;

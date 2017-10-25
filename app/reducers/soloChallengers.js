@@ -18,7 +18,7 @@ export const fetchSoloChallengers = () => (dispatch) => {
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function challengerReducer(challengers = {}, action) {
+export default function challengerReducer(challengers = { entries: [] }, action) {
   switch (action.type) {
     case GET_SOLO_CHALLENGER:
       return action.challengers;
