@@ -8,15 +8,22 @@
 .title {
   margin: auto;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .container {
-  width: 50%;
-  margin: 10vh auto;
   padding: 5vh 0;
-  border-radius: 10%;
-  border-style: outset;
-  border-width: 1em;
-  border-color: teal;
+}
+
+@media (max-width: 1200px) {
+  .title {
+    font-size: 1em;
+  }
+}
+@media (max-width: 700px) {
+  .title {
+    font-size: .8em;
+  }
 }

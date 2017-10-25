@@ -20,16 +20,17 @@ class Carousel extends Component {
       centerMode: true,
       dots: true,
       infinite: true,
-      slidesToShow: 1,
+      slidesToShow: 3,
       slidesToScroll: 1,
       speed: 1000,
+      responsive: [{ breakpoint: 700, settings: { slidesToShow: 1 } }, { breakpoint: 1200, settings: { slidesToShow: 2 } }],
     };
 
     return (
       <div className={styles.container}>
         <Slider {...settings}>
           {this.state.news.map(article => (
-            <div>
+            <div key={article.title}>
               <a href={article.url}>
                 <h3 className={styles.title}>{article.title}</h3>
                 <img src={article.imageUrl} alt="Not loaded" className={styles.image} />
