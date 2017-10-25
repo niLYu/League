@@ -16,7 +16,7 @@ export const fetchChampMastery = userId => dispatch => axios.get(`api/playerInfo
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function championMasteryReducer(champMastery = {}, action) {
+export default function championMasteryReducer(champMastery = { championMastery: [] }, action) {
   switch (action.type) {
     case GET_CHAMPION_MASTERY:
       return action.champMastery;
