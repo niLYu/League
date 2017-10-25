@@ -23,7 +23,10 @@ class Carousel extends Component {
       slidesToShow: 3,
       slidesToScroll: 1,
       speed: 1000,
-      responsive: [{ breakpoint: 700, settings: { slidesToShow: 1 } }, { breakpoint: 1200, settings: { slidesToShow: 2 } }],
+      responsive: [
+        { breakpoint: 700, settings: { slidesToShow: 1 } },
+        { breakpoint: 1200, settings: { slidesToShow: 2 } },
+      ],
     };
 
     return (
