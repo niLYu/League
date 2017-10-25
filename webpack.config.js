@@ -2,6 +2,7 @@ const LiveReloadPlugin = require('webpack-livereload-plugin');
 const productionMode = require('./index.js').isProduction;
 
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: './app/main.jsx',
@@ -23,6 +24,17 @@ module.exports = {
           presets: ['react-app'],
         },
       },
+      {
+        test: /\.css$/,
+        loader: 'style-loader',
+      }, {
+        test: /\.css$/,
+        loader: 'css-loader',
+        query: {
+          modules: true,
+          localIdentName: '[name]__[local]___[hash:base64:5]',
+        },
+      },
     ],
   },
   plugins: productionMode
@@ -35,6 +47,7 @@ module.exports = {
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
       }),
+      new ExtractTextPlugin('styles.css'),
     ]
     : [new LiveReloadPlugin({ appendScriptTag: true })],
 };

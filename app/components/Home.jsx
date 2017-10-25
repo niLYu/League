@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import Carousel from './Carousel';
+import styles from './Home.css';
+
 const Container = styled.div`
   display: flex;
   height: 100%;
@@ -74,27 +77,30 @@ class Home extends Component {
 
   render() {
     return (
-      <Container>
-        <Form>
-          <Label>
-            <Input
-              type="text"
-              placeholder="Summoner's name"
-              value={this.state.playerName}
-              onChange={this.handleChange}
-            />
-          </Label>
-          <ButtonWrap>
-            <Link to={{
+      <div>
+        <Container>
+          <Form>
+            <Label>
+              <Input
+                type="text"
+                placeholder="Summoner's name"
+                value={this.state.playerName}
+                onChange={this.handleChange}
+              />
+            </Label>
+            <ButtonWrap>
+              <Link to={{
             pathname: '/summoner',
             search: `username=${this.state.playerName}`,
           }}
-            >
-              <StyledButton>GO</StyledButton>
-            </Link>
-          </ButtonWrap>
-        </Form>
-      </Container>
+              >
+                <StyledButton>GO</StyledButton>
+              </Link>
+            </ButtonWrap>
+          </Form>
+        </Container>
+        <Carousel />
+      </div>
     );
   }
 }

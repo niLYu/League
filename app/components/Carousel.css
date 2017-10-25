@@ -1,0 +1,29 @@
+.image {
+  margin: auto;
+  width: 80%;
+  padding: 10px 0;
+  height: 100%;
+}
+
+.title {
+  margin: auto;
+  text-align: center;
+  font-size: 1.5em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.container {
+  padding: 5vh 0;
+}
+
+@media (max-width: 1200px) {
+  .title {
+    font-size: 1em;
+  }
+}
+@media (max-width: 700px) {
+  .title {
+    font-size: .8em;
+  }
+}
