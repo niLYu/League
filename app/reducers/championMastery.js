@@ -22,6 +22,7 @@ export const fetchChampMastery = (userId, limit = 10) => dispatch => axios.get(`
 
 /* -----------------    REDUCER    -------------------- */
 
+
 const initialState = [];
 
 export default function championMasteryReducer(champMastery = initialState, action) {

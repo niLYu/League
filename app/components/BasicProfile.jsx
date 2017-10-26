@@ -4,13 +4,22 @@ const BasicProfile = props => {
   const { user } = props;
   return (
   <div>
-    <div>
-        <img src={`http://ddragon.leagueoflegends.com/cdn/7.20.3/img/profileicon/${user.profileIconId}.png`} alt="profileIcon" height="100px" width="100px" />
-      </div>
+    {
+      props.user.profileIconId ?
       <div>
-        Summoner: {user.name}<br/>
-        There isn't much more to show for this....
+        <img
+          src={`http://ddragon.leagueoflegends.com/cdn/7.20.3/img/profileicon/${props.user.profileIconId}.png`}
+          alt="profileIcon"
+          height="100px"
+          width="100px"
+        />
+      Basic Profile
       </div>
+  :
+      <div>
+    Basic Profile
+      </div>
+      }
   </div>
 )};
 
