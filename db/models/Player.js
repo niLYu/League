@@ -15,7 +15,7 @@ const Player = db.define('player', {
   },
   summonerLevel: {
     type: INTEGER,
-  }
+  },
 });
 
 module.exports = Player;

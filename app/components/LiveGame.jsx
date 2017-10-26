@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Table, Column, Cell } from 'fixed-data-table';
 import { fetchLiveGame } from '../reducers/liveGame';
 
 
@@ -10,10 +11,9 @@ class LiveGame extends Component {
   }
 
   render() {
+    console.log(this.props.liveGame);
     return (
-      <div>
-        LIVE GAME
-      </div>
+      <div />
     );
   }
 }
