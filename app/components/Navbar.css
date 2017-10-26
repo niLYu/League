@@ -1,0 +1,8 @@
+.nav_container {
+  display: flex;
+  background-color: teal;
+  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
