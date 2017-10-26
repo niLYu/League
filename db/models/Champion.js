@@ -1,5 +1,5 @@
 const db = require('../db');
-const { INTEGER } = require('sequelize');
+const { INTEGER, STRING } = require('sequelize');
 
 const Champion = db.define('champion', {
   championId: {
@@ -26,6 +26,9 @@ const Champion = db.define('champion', {
   creepScore: {
     type: INTEGER,
   },
+  name: {
+    type: STRING,
+  }
 });
 
 module.exports = Champion;

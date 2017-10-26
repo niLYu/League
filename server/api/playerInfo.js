@@ -93,4 +93,12 @@ router.get('/liveGame/:summonerId', (req, res, next) => {
     res.json(matchInfo);
   });
 });
+
+router.get('/liveGame/:summonerId', (req, res, next) => {
+  request(`https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/${req.params.summonerId}?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
+    if (error)console.log('error', error);
+    const matchInfo = JSON.parse(body);
+    res.json(matchInfo);
+  });
+});
 module.exports = router;

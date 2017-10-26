@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchLiveGame } from '../reducers/liveGame';
+import { fetchLiveGame } from '../reducers';
 
 
 class LiveGame extends Component {

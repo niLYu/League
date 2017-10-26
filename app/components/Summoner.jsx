@@ -4,40 +4,46 @@ import { connect } from 'react-redux';
 import Filter from './Filter';
 import BasicProfile from './BasicProfile';
 import LiveGame from './LiveGame';
-import { fetchUser } from '../reducers/user';
 import postUser from '../util/api';
-import { fetchRecent } from '../reducers/games';
-import { fetchChampMastery } from '../reducers/championMastery';
-import { fetchMasteryPages } from '../reducers/masteryPages';
-import { fetchRunePages } from '../reducers/runePages';
+// import { fetchUser } from '../reducers/user';
+// import { fetchRecent } from '../reducers/games';
+// import { fetchChampMastery } from '../reducers/championMastery';
+// import { fetchMasteryPages } from '../reducers/masteryPages';
+// import { fetchRunePages } from '../reducers/runePages';
+
+//possible because we're exporting from one file
+import { ChampionMasteries } from './index';
+import { fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages } from '../reducers';
 
 class Summoner extends Component {
   componentDidMount() {
     const { search } = this.props.location;
     const params = new URLSearchParams(search);
     const username = params.get('username');
-    this.props.fetchUser(username)
-      .then(() => {
-        this.props.fetchRecent(this.props.user.accountId);
-      })
-      .then(() => {
-        this.props.fetchChampMastery(this.props.user.id);
-      })
-      .then(() => {
-        this.props.fetchMasteryPages(this.props.user.id);
-      })
-      .then(() => {
-        this.props.fetchRunePages(this.props.user.id);
-      })
-      .then(() => {
-        postUser(this.props.user);
-      })
-      .catch(err => console.error(err));
+    this.props.getAllUserInfo(username);
+    // this.props.fetchUser(username)
+    //   .then(() => {
+    //     this.props.fetchRecent(this.props.user.accountId);
+    //   })
+    //   .then(() => {
+    //     this.props.fetchChampMastery(this.props.user.id);
+    //   })
+    //   .then(() => {
+    //     this.props.fetchMasteryPages(this.props.user.id);
+    //   })
+    //   .then(() => {
+    //     this.props.fetchRunePages(this.props.user.id);
+    //   })
+    //   .then(() => {
+    //     postUser(this.props.user);
+    //   })
+    //   .catch(err => console.error(err));
   }
   render() {
     return (
       <div>
         <BasicProfile user={this.props.user} />
+        <ChampionMasteries />
         {
         !this.props.user.id ?
           <div>Loading...</div>
@@ -74,11 +80,12 @@ Summoner.propTypes = {
     accountId: PropTypes.number,
   }),
   games: PropTypes.shape({}),
-  fetchUser: PropTypes.func.isRequired,
-  fetchChampMastery: PropTypes.func.isRequired,
-  fetchRecent: PropTypes.func.isRequired,
-  fetchRunePages: PropTypes.func.isRequired,
-  fetchMasteryPages: PropTypes.func.isRequired,
+  getAllUserInfo: PropTypes.func.isRequired,
+  // fetchUser: PropTypes.func.isRequired,
+  // fetchChampMastery: PropTypes.func.isRequired,
+  // fetchRecent: PropTypes.func.isRequired,
+  // fetchRunePages: PropTypes.func.isRequired,
+  // fetchMasteryPages: PropTypes.func.isRequired,
 };
 
 
@@ -88,8 +95,26 @@ const mapStateToProps = ({
   user, games, championMastery, masteryPages, runePages,
 });
 
-const mapDispatchToProps = {
-  fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages,
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getAllUserInfo: (username) => {
+      let user;
+      dispatch(fetchUser(username))
+      .then( action  => {
+        user = action.user;
+        dispatch(fetchRecent(+user.accountId));
+      })
+      .then(() => dispatch(fetchChampMastery(+user.id)))
+      .then(() => dispatch(fetchMasteryPages(+user.id)))
+      .then(() => dispatch(fetchRunePages(+user.id)))
+      .then(() => postUser(user))
+      .catch(err => console.error(err));
+    },
+  };
 };
+
+// const mapDispatchToProps = {
+//  fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Summoner);
