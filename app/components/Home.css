@@ -1,3 +1,63 @@
-.mainContainer {
-  /* display: flex; */
+.container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex: 0.33;
+  color: black;
+  border-radius: 10%;
+  border-style: outset;
+  border-width: 1em;
+  border-color: teal;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  width: 100%;
+}
+
+.input {
+  font-size: 1em;
+  border-style: none;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.button_wrapper {
+  background-color: teal;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.go_button {
+  background-color: teal;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.go_button:hover {
+  background-color: white;
+}
+
+@media (max-width: 600px) {
+  .form {
+    flex: 0.65;
+  }
+}
+@media (max-width: 400px) {
+  .form {
+    flex: 0.85;
+  }
 }
