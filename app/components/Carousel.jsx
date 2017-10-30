@@ -22,7 +22,7 @@ class Carousel extends Component {
       infinite: true,
       slidesToShow: 4,
       slidesToScroll: 1,
-      speed: 2000,
+      speed: 500,
       responsive: [
         { breakpoint: 700, settings: { slidesToShow: 1 } },
         { breakpoint: 1200, settings: { slidesToShow: 2 } },
