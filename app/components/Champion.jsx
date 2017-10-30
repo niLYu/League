@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 const Champion = (props) => {
   const { championId, name, key, title, championLevel, championPointsSinceLastLevel, championPointsUntilNextLevel } = props.champ;
-  // console.log(props.champ);
   return (
   <div>
     <div>
