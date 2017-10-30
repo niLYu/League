@@ -1,23 +1,14 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-const NavContainer = styled.div`
-  display: flex;
-  background-color: teal;
-  margin-bottom: 50px;
-  justify-content: center;
-  align-items: center;
-  height: 10vh;
-`;
+import styles from './Navbar.css';
 
 const Navbar = () => (
-  <NavContainer >
+  <div className={styles.nav_container} >
     <NavLink to="/" className="homeNavIcon">
       <img id="homeIcon" src="/images/HomeIcon.png" alt="Could not load" />
     </NavLink>
     <NavLink to="/challengers">Challenger</NavLink>
-  </NavContainer >
+  </div>
 );
 
 export default Navbar;

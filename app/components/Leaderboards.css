@@ -1,0 +1,25 @@
+.table
+{
+table-layout: fixed;
+width: 50%;
+}
+
+.rank
+{
+  width: 7%;
+  border: 1px solid black;
+}
+.td
+{
+  border: 1px solid black;
+  width : 23%;
+  overflow: hidden;
+}
+
+
+.center
+{
+  margin: auto;
+  width: 50%;
+
+}

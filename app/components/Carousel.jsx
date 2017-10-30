@@ -17,27 +17,40 @@ class Carousel extends Component {
   render() {
     const settings = {
       autoplay: true,
-      centerMode: true,
+      autoplaySpeed: 5000,
       dots: true,
       infinite: true,
-      slidesToShow: 3,
+      slidesToShow: 4,
       slidesToScroll: 1,
-      speed: 1000,
+      speed: 500,
       responsive: [
         { breakpoint: 700, settings: { slidesToShow: 1 } },
         { breakpoint: 1200, settings: { slidesToShow: 2 } },
+        { breakpoint: 1500, settings: { slidesToShow: 3 } },
       ],
     };
 
     return (
       <div className={styles.container}>
-        <Slider {...settings}>
+        <Slider {...settings} className={styles.slider}>
           {this.state.news.map(article => (
             <div key={article.title}>
-              <a href={article.url}>
-                <h3 className={styles.title}>{article.title}</h3>
-                <img src={article.imageUrl} alt="Not loaded" className={styles.image} />
-              </a>
+              <div className={styles.content}>
+                <a href={article.url}>
+                  <div className={styles.image_container}>
+                    <img src={article.imageUrl} alt="Not loaded" className={styles.image} />
+                  </div>
+                </a>
+                <div className={styles.text_container}>
+                  <div className={styles.news}>
+                    <h4 className={styles.title}><a href={article.url}> {article.title} </a></h4>
+                    {article.content.length > 100
+                      ? `${article.content.slice(0, 100)}...`
+                      : article.content
+                    }
+                  </div>
+                </div>
+              </div>
             </div>
             ))}
         </Slider>

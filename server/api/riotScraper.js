@@ -13,7 +13,7 @@ router.get('/news', (req, res) => {
     $('.gs-container').filter(function () {
       const news = {};
       const data = $(this);
-      if (counter < 5) {
+      if (counter < 8) {
         news.title = $('.lol-core-file-formatter', data)[0].attribs.title;
         news.content = $('.teaser-content', data).children().text();
         news.url = `${url}${$('.lol-core-file-formatter', data)[0].attribs.href}`;

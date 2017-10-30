@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLiveGame } from '../reducers';
+import { Table, Column, Cell } from 'fixed-data-table';
 
 
 class LiveGame extends Component {
@@ -10,10 +11,9 @@ class LiveGame extends Component {
   }
 
   render() {
+    // console.log(this.props.liveGame);
     return (
-      <div>
-        LIVE GAME
-      </div>
+      <div />
     );
   }
 }

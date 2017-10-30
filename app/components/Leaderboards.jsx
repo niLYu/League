@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchSoloChallengers } from '../reducers/soloChallengers';
+import styles from './Leaderboards.css';
 
 
 class Leaderboards extends Component {
@@ -11,25 +12,49 @@ class Leaderboards extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div>
+      <div className={styles.center}>
         {
-          this.props.soloChallengers.entries &&
-          this.props.soloChallengers.entries.map(el => (
-            <div key={Number(el.playerOrTeamId)}>
-              Name:
-          <NavLink to={`/summoner?username=${el.playerOrTeamName}`}>
-            {el.playerOrTeamName}
-          </NavLink>
-              LP: {el.leaguePoints}
-              Wins: {el.wins}
-            </div>))
+          <div>
+            <h2>Challengers</h2>
+            <table className={styles.table}>
+              <tr>
+                <th className={styles.rank}>Rank</th>
+                <th className={styles.td}>Player</th>
+                <th className={styles.td}>LP</th>
+                <th className={styles.td}>Wins</th>
+              </tr>
+            </table>
+            <table className={styles.table}>
+              {this.props.soloChallengers.entries &&
+                this.props.soloChallengers.entries.map((el, index) => (
+                  <tr>
+                    <th className={styles.rank}>
+                      {`${index + 1}. `}
+                    </th>
+                    <td className={styles.td}>
+                      <NavLink to={`/summoner?username=${el.playerOrTeamName}`}>
+                        {el.playerOrTeamName}
+                      </NavLink>
+                    </td>
+                    <td className={styles.td}>
+                      {el.leaguePoints}
+                    </td>
+                    <td className={styles.td}>
+                      {el.wins}
+                    </td>
+                  </tr>
+                ))
+              }
+            </table>
+          </div>
         }
+
       </div>
     );
   }
 }
+
 Leaderboards.defaultProps = {
   soloChallengers: { entries: [] },
 };
