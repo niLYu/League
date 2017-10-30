@@ -13,6 +13,8 @@ class LiveGame extends Component {
   render() {
     // console.log(this.props.liveGame);
     return (
+            <div>
+            HELLO HI
       <div />
     );
   }
