@@ -50,7 +50,6 @@ class Summoner extends Component {
             <div>Loading... </div>
           :
             <div>
-              ABOVE IS LIVEGAME
               <Filter recentGames={this.props.games} />
             </div>
         }
