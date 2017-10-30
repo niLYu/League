@@ -1,0 +1,43 @@
+.container {
+  display:flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  flex: .80
+}
+
+.label {
+  width: 100%;
+  margin: 0;
+}
+
+.input {
+  font-size: 1em;
+  border-style: none;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.go_button {
+  background-color: white;
+  border-radius: 50%;
+  height: 33px;
+  width: 33px;
+  font-size: 9px;
+  text-align: center;
+  margin: auto;
+  color: teal;
+}
+
+.go_button:hover {
+  background-color: teal;
+  color: white;
+}

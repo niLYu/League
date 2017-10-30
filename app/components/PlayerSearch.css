@@ -18,7 +18,7 @@
 }
 
 .label {
-  width: 100%;
+  display:flex;
 }
 
 .input {
@@ -45,15 +45,18 @@
   width: 50px;
   font-size: 13px;
   text-align: center;
+  color: white;
+  margin: auto;
 }
 
 .go_button:hover {
   background-color: white;
+  color: teal;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .form {
-    flex: 0.65;
+    flex: 0.55;
   }
 }
 @media (max-width: 400px) {

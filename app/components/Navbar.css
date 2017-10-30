@@ -2,7 +2,37 @@
   display: flex;
   background-color: teal;
   margin-bottom: 50px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 10vh;
+}
+
+.container {
+  display:flex;
+  width: 30vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_icons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  width: 30vw;
+}
+
+.button_container_left {
+  width: 25%;
+  text-align: right;
+}
+
+.button_container_right {
+  width: 25%;
+  text-align: left;
+}
+
+.button {
+  color: white;
 }
