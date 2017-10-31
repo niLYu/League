@@ -24,7 +24,7 @@
   justify-content: space-evenly;
   align-items: center;
   height: 100%;
-  width: 40vw;
+  width: 40%;
 }
 
 .search_container {
@@ -70,24 +70,22 @@
 @media (max-width: 700px) {
   .nav_container {
     flex-wrap: wrap;
-    background-color: white;
     padding: 0;
-    margin-bottom: 0;
+    margin-bottom: 8%;
   }
   .nav_icons {
     order: -2;
     width: 100%;
     padding: 10px;
-    background-color: teal;
   }
   .search_container {
     order: -1;
     width: 80%;
-    margin-top: 5vh;
+    padding-bottom: 10px;
   }
-  .homeNavIcon {
-    max-height: 40px;
-    max-width: 40px;
+  .home_icon_container {
+    max-height: 45px;
+    max-width: 45px;
   }
   .nav_button {
     font-size: 1em;
