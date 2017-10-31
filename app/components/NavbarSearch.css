@@ -8,7 +8,9 @@
   display: flex;
   align-items: center;
   background-color: white;
-  flex: .80
+  border-radius: 2%;
+  flex: 1;
+  max-width: 400px;
 }
 
 .label {
@@ -20,6 +22,7 @@
   font-size: 1em;
   border-style: none;
   width: 100%;
+  padding-left: 15px;
 }
 
 .input:focus {
@@ -40,4 +43,23 @@
 .go_button:hover {
   background-color: teal;
   color: white;
+}
+
+@media (max-width: 700px) {
+  .form {
+    flex: 1;
+    border-width: .5em;
+    color: black;
+    border-radius: 5%;
+    border-style: outset;
+    border-color: teal;
+  }
+  .go_button {
+    background-color: teal;
+    color: white;
+  }
+  .go_button:hover {
+    background-color: white;
+    color: teal;
+  }
 }

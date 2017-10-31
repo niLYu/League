@@ -9,21 +9,23 @@ import PlayerSearch from './PlayerSearch';
 const Navbar = (props) => {
   const { location } = props;
   return (
-    <div className={styles.nav_container} >
-      <div className={styles.container} />
-      <div className={styles.nav_icons}>
-        <div className={styles.button_container_left}>
-          <NavLink to="/" className={styles.button}>Home</NavLink>
+    <div className={styles.nav_background}>
+      <div className={styles.nav_container} >
+        {location.pathname === '/' && <div className={styles.dummy_container} />}
+        <div className={styles.nav_icons}>
+          <div className={styles.button_container_left}>
+            <NavLink to="/" className={styles.nav_button}>Home</NavLink>
+          </div>
+          <NavLink to="/" className={styles.home_icon_container}>
+            <img id={styles.home_icon} src="/images/HomeIcon.png" alt="Could not load" />
+          </NavLink>
+          <div className={styles.button_container_right}>
+            <NavLink to="/challengers" className={styles.nav_button}>Challenger</NavLink>
+          </div>
         </div>
-        <NavLink to="/" className="homeNavIcon">
-          <img id="homeIcon" src="/images/HomeIcon.png" alt="Could not load" />
-        </NavLink>
-        <div className={styles.button_container_right}>
-          <NavLink to="/challengers" className={styles.button}>Challenger</NavLink>
+        <div className={styles.search_container}>
+          {location.pathname !== '/' && <PlayerSearch styles={NavbarSearch} />}
         </div>
-      </div>
-      <div className={styles.container}>
-        {location.pathname !== '/' && <PlayerSearch styles={NavbarSearch} />}
       </div>
     </div>
   );
