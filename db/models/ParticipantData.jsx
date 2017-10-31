@@ -1,7 +1,7 @@
 const db = require('../db');
 const { INTEGER, STRING } = require('sequelize');
 
-const Champion = db.define('champion', {
+const ParticipantData = db.define('participantdata', {
   championId: {
     type: INTEGER,
   },
@@ -31,4 +31,4 @@ const Champion = db.define('champion', {
   }
 });
 
-module.exports = Champion;
+module.exports = ParticipantData;

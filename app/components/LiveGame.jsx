@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { fetchLiveGame } from '../reducers';
 import { Table, Column, Cell } from 'fixed-data-table';
-import { fetchLiveGame } from '../reducers/liveGame';
 
 
 class LiveGame extends Component {
