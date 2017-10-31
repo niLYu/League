@@ -6,8 +6,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -w",
     "start": "node server",
-    "start-prod": "npm run build &amp; npm start",
-    "start-dev": "cross-env NODE_ENV=development webpack -w &amp; nodemon server/index.js"
+    "start-prod": "npm run build & npm start",
+    "start-dev": "cross-env NODE_ENV=development webpack -w & nodemon server/index.js"
   },
   "repository": {
     "type": "git",
