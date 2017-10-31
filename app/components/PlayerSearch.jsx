@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-import styles from './PlayerSearch.css';
+import PropTypes from 'prop-types';
 
 class PlayerSearch extends Component {
   constructor() {
@@ -18,32 +17,52 @@ class PlayerSearch extends Component {
 
   render() {
     return (
-      <div>
-        <div className={styles.container}>
-          <form className={styles.form}>
-            <label className={styles.label} htmlFor="Summoner's name">
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Summoner's name"
-                value={this.state.playerName}
-                onChange={this.handleChange}
-              />
-            </label>
-            <div className={styles.button_wrapper}>
-              <Link to={{
+      <div className={this.props.styles.container}>
+        <form className={this.props.styles.form}>
+          <label className={this.props.styles.label} htmlFor="Summoner's name">
+            <input
+              className={this.props.styles.input}
+              type="text"
+              placeholder="Summoner's name"
+              value={this.state.playerName}
+              onChange={this.handleChange}
+            />
+          </label>
+          <div className={this.props.styles.button_wrapper}>
+            <Link to={{
                 pathname: '/summoner',
                 search: `username=${this.state.playerName}`,
                 }}
-              >
-                <button className={styles.go_button}>GO</button>
-              </Link>
-            </div>
-          </form>
-        </div>
+            >
+              <button className={this.props.styles.go_button}>GO</button>
+            </Link>
+          </div>
+        </form>
       </div>
     );
   }
 }
+
+PlayerSearch.propTypes = {
+  styles: PropTypes.shape({
+    container: PropTypes.string.isRequired,
+    form: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    input: PropTypes.string.isRequired,
+    button_wrapper: PropTypes.string.isRequired,
+    go_button: PropTypes.string.isRequired,
+  }),
+};
+
+PlayerSearch.defaultProps = {
+  styles: {
+    container: '',
+    form: '',
+    label: '',
+    input: '',
+    button_wrapper: '',
+    go_button: '',
+  },
+};
 
 export default PlayerSearch;
