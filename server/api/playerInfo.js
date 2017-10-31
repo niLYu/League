@@ -9,19 +9,10 @@ const apiVerification = `?api_key=${secrets.LEAGUE_API_KEY}`;
 
 // gets basic profile by player name
 router.get('/player/:name', (req, res, next) => {
-<<<<<<< Updated upstream
-  console.log('got here', secrets.LEAGUE_API_KEY)
-  request(`https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/${req.params.name}?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
-    if (error)console.log('error', error);
-    const info = JSON.parse(body);
-    res.json(info);
-  });
-=======
   axios.get(`${apiBase}/summoner/v3/summoners/by-name/${req.params.name}${apiVerification}`)
     .then(response => response.data)
     .then(playerInfo => res.json(playerInfo))
     .catch(next);
->>>>>>> Stashed changes
 });
 
 // router.get(`/player/:name`, (req, res, next) => {

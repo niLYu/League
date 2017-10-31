@@ -2,14 +2,12 @@ const router = require('express').Router();
 
 const axios = require('axios');
 const secrets = require('../../secrets');
-const axios = require('axios');
 const Promise = require('bluebird');
 
 const apiSummonerBase = `https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name/`;
 const apiLiveGameBase = 'https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/$';
 const apiAuthentication = `?api_key=${secrets.LEAGUE_API_KEY}`;
 
-<<<<<<< Updated upstream
 const apiRoute = 'https://na1.api.riotgames.com/lol/match/v3';
 const apiValidation = `?api_key=${secrets.LEAGUE_API_KEY}`;
 //gets games by summonerName
@@ -84,16 +82,4 @@ router.get('/summoner/:summonerId', (req, res, next) => {
   // axios.get(`https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/${playerInfo.id}?api_key=${secrets.LEAGUE_API_KEY})
 });
 
-=======
-// gets live game by summoner name
-
-router.get('/match/:name', (req, res, next) => {
-  axios.get(`${apiSummonerBase}${req.params.name}${apiAuthentication}`)
-    .then(({data}) => axios.get(`${apiLiveGameBase}${data.id}${apiAuthentication}`))
-    .then(response => response.data)
-    .then(liveMatch => res.json(liveMatch))
-    .catch(next);
-});
-
->>>>>>> Stashed changes
 module.exports = router;

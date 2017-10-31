@@ -6,7 +6,7 @@ export { default as Footer } from './Footer';
 export { default as Home } from './Home';
 export { default as Leaderboards } from './Leaderboards';
 export { default as LiveGame } from './LiveGame';
-export { default as LiveMatch } from './LiveMatch';
+// export { default as LiveMatch } from './LiveMatch';
 export { default as MatchHistory } from './MatchHistory';
 export { default as Navbar } from './Navbar';
 export { default as NotFound } from './NotFound';
