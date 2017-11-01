@@ -10,6 +10,11 @@ class PlayerSearch extends Component {
     };
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.setState({ playerName: '' });
+  }
+
   handleChange = (e) => {
     e.preventDefault();
     this.setState({ playerName: e.target.value });
@@ -28,8 +33,15 @@ class PlayerSearch extends Component {
               onChange={this.handleChange}
             />
           </label>
-          <div className={this.props.styles.button_wrapper}>
-            <Link to={{
+          <div
+            className={this.props.styles.button_wrapper}
+            onClick={this.handleSubmit}
+            onKeyPress={this.handleSubmit}
+            role="button"
+            tabIndex="0"
+          >
+            <Link
+              to={{
                 pathname: '/summoner',
                 search: `username=${this.state.playerName}`,
                 }}
