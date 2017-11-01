@@ -4,7 +4,7 @@ const secrets = require('../../secrets');
 const { Player } = require('../../db');
 const axios = require('axios');
 
-const apiBase = `https://na1.api.riotgames.com/lol`;
+const apiBase = 'https://na1.api.riotgames.com/lol';
 const apiVerification = `?api_key=${secrets.LEAGUE_API_KEY}`;
 
 // gets basic profile by player name
@@ -68,9 +68,7 @@ router.get('/recent/:accountId', (req, res, next) => {
 router.get('/games/:name', (req, res, next) => {
   axios.get(`${apiBase}/summoner/v3/summoners/by-name/${req.params.name}${apiVerification}`)
     .then(response => response.data)
-    .then((playerInfo) => {
-      return axios.get(`${apiBase}/match/v3/matchlists/by-account/${playerInfo.accountId}?champion=jarvan${apiVerification}`);
-    })
+    .then(playerInfo => axios.get(`${apiBase}/match/v3/matchlists/by-account/${playerInfo.accountId}?champion=jarvan${apiVerification}`))
     .then(response => response.data)
     .then(matchInfo => res.json(matchInfo))
     .catch(next);
@@ -78,9 +76,9 @@ router.get('/games/:name', (req, res, next) => {
 
 // gets challenger solo queue players
 router.get('/soloChallengers', (req, res, next) => {
-  axios.get(`${apiBase}/league/v3/challenger/challengerleagues/by-queue/RANKED_SOLO_5x5${apiVerification}`)
+  axios.get(`${apiBase}/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5${apiVerification}`)
     .then(response => response.data)
-    .then(matchInfo => {
+    .then((matchInfo) => {
       matchInfo.entries.sort((a, b) => b.leaguePoints - a.leaguePoints);
       res.json(matchInfo);
     })
@@ -89,7 +87,7 @@ router.get('/soloChallengers', (req, res, next) => {
 
 // gets live game by summonerId
 router.get('/liveGame/:summonerId', (req, res, next) => {
-  axios.get(`${apiBase}/spectator/v3/active-games/by-summoner/${req.params.summonerId}/recent${apiVerification}`)
+  axios.get(`${apiBase}/spectator/v3/active-games/by-summoner/${req.params.summonerId}${apiVerification}`)
     .then(response => response.data)
     .then(matchInfo => res.json(matchInfo))
     .catch(next);
