@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchLiveGame } from '../reducers/liveGame';
-import styles from './Leaderboards.css';
+import { fetchLiveGame } from '../reducers';
+import { Table, Column, Cell } from 'fixed-data-table';
+
 
 class LiveGame extends Component {
   componentDidMount() {

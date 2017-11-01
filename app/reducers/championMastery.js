@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Heroes } from '../../seed';
 
 /* -----------------    ACTIONS    -------------------- */
 
@@ -10,13 +11,21 @@ const getChampMastery = champMastery => ({ type: GET_CHAMPION_MASTERY, champMast
 
 /* -------------    THUNK CREATORS     ---------------- */
 
-export const fetchChampMastery = userId => dispatch => axios.get(`api/playerInfo/championMastery/${userId}`)
-  .then(games => games.data)
-  .then(games => dispatch(getChampMastery(games)));
+export const fetchChampMastery = (userId, limit = 10) => dispatch => axios.get(`api/playerInfo/championMastery/${userId}`)
+  .then((response) => {
+    const champions = response.data.map((champion) => {
+      const extraInfo = Heroes[champion.championId];
+      return { ...champion, ...extraInfo };
+    });
+    dispatch(getChampMastery(champions));
+  });
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function championMasteryReducer(champMastery = { championMastery: [] }, action) {
+
+const initialState = [];
+
+export default function championMasteryReducer(champMastery = initialState, action) {
   switch (action.type) {
     case GET_CHAMPION_MASTERY:
       return action.champMastery;

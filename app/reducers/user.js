@@ -19,8 +19,12 @@ export const fetchUser = username => dispatch => axios.get(`/api/playerInfo/play
 
 /* -----------------    REDUCER    -------------------- */
 
+const initialState = {
+  id: 0,
+  accountId: 0,
+};
 
-export default function userReducer(user = { id: 0, accountId: 0 }, action) {
+export default function userReducer(user = initialState, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
