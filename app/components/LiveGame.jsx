@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLiveGame } from '../reducers';
-import { Table, Column, Cell } from 'fixed-data-table';
+import styles from './LiveGame.css';
 
 
 class LiveGame extends Component {
@@ -11,7 +11,7 @@ class LiveGame extends Component {
   }
 
   render() {
-    // console.log(this.props.liveGame);
+    console.log(this.props.liveGame, 'live game props');
     return (
       <div>
         <h2>Live Game</h2>
