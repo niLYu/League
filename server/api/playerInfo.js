@@ -76,7 +76,7 @@ router.get('/games/:name', (req, res, next) => {
 
 // gets challenger solo queue players
 router.get('/soloChallengers', (req, res, next) => {
-  axios.get(`${apiBase}/league/v3/challenger/challengerleagues/by-queue/RANKED_SOLO_5x5${apiVerification}`)
+  axios.get(`${apiBase}/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5${apiVerification}`)
     .then(response => response.data)
     .then((matchInfo) => {
       matchInfo.entries.sort((a, b) => b.leaguePoints - a.leaguePoints);
