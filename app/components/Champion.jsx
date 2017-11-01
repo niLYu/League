@@ -4,17 +4,19 @@ import { connect } from 'react-redux';
 
 
 const Champion = (props) => {
-  const { championId, name, key, title, championLevel, championPointsSinceLastLevel, championPointsUntilNextLevel } = props.champ;
+  const {
+    championId, name, key, title, championLevel, championPointsSinceLastLevel, championPointsUntilNextLevel,
+  } = props.champ;
   return (
-  <div>
     <div>
+      <div>
         <img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${key}.png`} alt="championIcon" height="100px" width="100px" />
       </div>
       <div>
-        {name}<br/>
+        {name}<br />
         {title}
       </div>
-  </div>
+    </div>
   );
 };
 
