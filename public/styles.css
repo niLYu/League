@@ -7,11 +7,4 @@ html, body {
   height: 100%;
 }
 
-#homeIcon {
-  height: 100%;
-  /* background-image: url("/images/HomeIcon.png"); */
-}
 
-.homeNavIcon {
-  height: 80%;
-}
