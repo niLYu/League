@@ -20,12 +20,11 @@ const ChampionMasteries = (props) => {
 
 ChampionMasteries.propTypes = {
   champions : PropTypes.array.isRequired,
-  // fetchLiveGame: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = state => ({
-  champions: state.championMastery,
+  champions: state.championMastery.slice(0,10)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
