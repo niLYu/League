@@ -24,7 +24,7 @@ class SummonerTabs extends Component {
   )
 
   handleClick = (component) => {
-    const newState = Object.assign({}, this.state);
+    const newState = Object.assign({}, this.initialState);
     newState[component] = true;
     this.setState(newState);
   }
