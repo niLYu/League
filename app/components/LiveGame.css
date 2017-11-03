@@ -1,21 +1,33 @@
-.table
-{
-table-layout: fixed;
-width: 50%;
+.table {
+  margin:auto;
+  background-color: white;
+  width: 80%;
 }
 
-.rank
-{
-  width: 7%;
-  border: 1px solid black;
+.center {
+  text-align: center;
 }
+.blueTeam{
+  background-color:rgb(77, 77, 250);
+
+}
+
+.redTeam{
+  background-color: rgb(243, 81, 81);
+}
+
 .td
 {
   border: 1px solid black;
-  width : 23%;
-  overflow: hidden;
+  width : 33%;
+  text-align: center;
 }
 
+.banSize{
+  width: 5%;
+  height: 10%;
+  /* padding: .25%; */
+}
 .center
 {
   margin: auto;
