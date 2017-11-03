@@ -16,9 +16,9 @@ const ChampionMasteries = (props) => {
   );
 };
 
-ChampionMasteries.propTypes = {
-  champions: PropTypes.arrayOf.isRequired,
-};
+// ChampionMasteries.propTypes = {
+//   champions: PropTypes.arrayOf.isRequired,
+// };
 
 
 const mapStateToProps = state => ({

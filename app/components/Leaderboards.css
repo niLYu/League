@@ -1,24 +1,51 @@
-.table
-{
-width: 100%;
-}
 
-.rank
-{
-  width: 7%;
-  border: 1px solid black;
+.center {
+  text-align: center;
 }
-.td
-{
-  border: 1px solid black;
-  width : 23%;
-  overflow: hidden;
+.header{
+  font-size: 16;
+  font-weight: bold;
 }
+.centerTable{
+  margin:auto;
+  width:50%;
+}
+.greenTable {
+  margin:auto;
+  background-color: teal;
+  padding: 10px;
+  font-size:15;
+  font-weight:bold;
+  }
 
-
-.center
-{
-  margin: auto;
+.table {
+  margin:auto;
+  background-color: #D9D9D9;
   width: 50%;
+}
 
+.thLeft {
+  padding: 5px 3px;
+  text-align:center;
+  border: 1px solid #D9D9D9;
+}
+
+.rankOne {
+  padding: 5px 3px;
+  text-align:center;
+  border: 1px solid #D9D9D9;
+  background: gold;
+}
+
+.rankTwo {
+  padding: 5px 3px;
+  text-align:center;
+  border: 1px solid #D9D9D9;
+  background: silver;
+}
+.rankThree {
+  padding: 5px 3px;
+  text-align:center;
+  border: 1px solid #D9D9D9;
+  background: #C9AE5D;
 }
