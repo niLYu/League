@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const request = require('request');
 const secrets = require('../../secrets');
 const { Player } = require('../../db');
 const axios = require('axios');
@@ -15,9 +14,6 @@ router.get('/player/:name', (req, res, next) => {
     .catch(next);
 });
 
-// router.get(`/player/:name`, (req, res, next) => {
-
-// });
 // post player into database by name
 router.post('/player/:name', (req, res, next) => {
   Player.findOrCreate({
@@ -93,11 +89,4 @@ router.get('/liveGame/:summonerId', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/liveGame/:summonerId', (req, res, next) => {
-  request(`https://na1.api.riotgames.com/lol/spectator/v3/active-games/by-summoner/${req.params.summonerId}?api_key=${secrets.LEAGUE_API_KEY}`, (error, response, body) => {
-    if (error)console.log('error', error);
-    const matchInfo = JSON.parse(body);
-    res.json(matchInfo);
-  });
-});
 module.exports = router;
