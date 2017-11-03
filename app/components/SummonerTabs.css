@@ -1,0 +1,14 @@
+.summoner_tabs_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tab_button {
+  border-radius: 0;
+}
+
+
