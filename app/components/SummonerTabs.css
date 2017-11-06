@@ -5,10 +5,23 @@
   padding: 0 5px;
   flex-wrap: wrap;
   width: 100%;
+  background-color: #66B9BF;
+  box-shadow: 0 10px #07889B;
+  margin-bottom: 10px;
 }
 
 .tab_button {
-  border-radius: 0;
+  border-style: none;
+  padding: 5px 10px;
+  color: white;
+  background-color: #66B9BF;
 }
 
+.tab_button:hover {
+  background-color: #07889B
+}
 
+.tab_button:focus {
+  background-color: #07889B;
+  transform: translateY(5px);
+}

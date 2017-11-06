@@ -5,6 +5,7 @@ import Champions from './Champions';
 import Masteries from './Masteries';
 import LiveGame from './LiveGame';
 import Runes from './Runes';
+import SummonerTabsMobile from './SummonerTabsMobile';
 import styles from './SummonerTabs.css';
 
 const SummaryTab = 'Summary';
@@ -18,16 +19,24 @@ class SummonerTabs extends Component {
   constructor() {
     super();
     this.initialState = {
-      [SummaryTab]: true,
-      [ChampionsTab]: false,
-      [LeaguesTab]: false,
-      [LiveTab]: false,
-      [MasteriesTab]: false,
-      [RunesTab]: false,
+      tabs: {
+        [SummaryTab]: true,
+        [ChampionsTab]: false,
+        [LeaguesTab]: false,
+        [MasteriesTab]: false,
+        [RunesTab]: false,
+        [LiveTab]: false,
+      },
+      desktop: true,
     };
     this.state = this.initialState;
   }
 
+  componentWillMount() {
+    if (window.screen.width < 600) {
+      this.setState({ desktop: false });
+    }
+  }
 
   button = name => (
     <div>
@@ -35,30 +44,33 @@ class SummonerTabs extends Component {
     </div>
   )
 
-  handleClick = (component) => {
-    const newState = Object.assign({}, this.initialState);
-    newState[component] = true;
+  handleClick = (item) => {
+    const newState = JSON.parse(JSON.stringify(this.initialState));
+    if (window.screen.width < 600) {
+      newState.desktop = false;
+    }
+    newState.tabs[item] = true;
     this.setState(newState);
   }
 
   render() {
+    const { tabs } = this.state;
+    const allTabs = Object.keys(tabs);
     return (
       <div>
-        <div className={styles.summoner_tabs_container}>
-          {this.button(SummaryTab)}
-          {this.button(LeaguesTab)}
-          {this.button(ChampionsTab)}
-          {this.button(MasteriesTab)}
-          {this.button(RunesTab)}
-          {this.button(LiveTab)}
-        </div>
+        {this.state.desktop ?
+          <div className={styles.summoner_tabs_container}>
+            {allTabs.map(tab => <div key={tab}>{this.button(tab)}</div>)}
+          </div>
+        : <SummonerTabsMobile tabs={tabs} handleClick={this.handleClick} />
+        }
         <div>
-          {this.state.Summary && <Summary />}
-          {this.state.Leagues && <Leagues />}
-          {this.state.Champions && <Champions />}
-          {this.state.Masteries && <Masteries />}
-          {this.state.Runes && <Runes />}
-          {this.state.Live && <LiveGame />}
+          {tabs[SummaryTab] && <Summary />}
+          {tabs[LeaguesTab] && <Leagues />}
+          {tabs[ChampionsTab] && <Champions />}
+          {tabs[MasteriesTab] && <Masteries />}
+          {tabs[RunesTab] && <Runes />}
+          {tabs[LiveTab] && <LiveGame />}
         </div>
       </div>
     );

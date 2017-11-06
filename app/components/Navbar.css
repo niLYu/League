@@ -1,10 +1,10 @@
 .nav_background {
-  background-color: teal;
+  background-color: #07889B;
 }
 
 .nav_container {
   display: flex;
-  background-color: teal;
+  background-color: #07889B;
   justify-content: space-evenly;
   align-items: center;
   padding: 15px 0;
@@ -62,7 +62,12 @@
   color: white;
 }
 
-.nav_button:hover, .nav_button:visited, .nav_button:focus {
+.nav_button:hover, .nav_button:visited {
+  text-decoration: none;
+}
+
+.nav_button:focus {
+  color: white;
   text-decoration: none;
 }
 
