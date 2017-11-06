@@ -44,12 +44,12 @@ class SummonerTabs extends Component {
     </div>
   )
 
-  handleClick = (component) => {
+  handleClick = (item) => {
     const newState = JSON.parse(JSON.stringify(this.initialState));
     if (window.screen.width < 600) {
       newState.desktop = false;
     }
-    newState.tabs[component] = true;
+    newState.tabs[item] = true;
     this.setState(newState);
   }
 
@@ -65,12 +65,12 @@ class SummonerTabs extends Component {
         : <SummonerTabsMobile tabs={tabs} handleClick={this.handleClick} />
         }
         <div>
-          {tabs.Summary && <Summary />}
-          {tabs.Leagues && <Leagues />}
-          {tabs.Champions && <Champions />}
-          {tabs.Masteries && <Masteries />}
-          {tabs.Runes && <Runes />}
-          {tabs.Live && <LiveGame />}
+          {tabs[SummaryTab] && <Summary />}
+          {tabs[LeaguesTab] && <Leagues />}
+          {tabs[ChampionsTab] && <Champions />}
+          {tabs[MasteriesTab] && <Masteries />}
+          {tabs[RunesTab] && <Runes />}
+          {tabs[LiveTab] && <LiveGame />}
         </div>
       </div>
     );
