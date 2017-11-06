@@ -40,7 +40,7 @@ class SummonerTabs extends Component {
 
   button = name => (
     <div>
-      <button className={styles.tab_button} onClick={component => this.handleClick(component)}>{name}</button>
+      <button className={styles.tab_button} onClick={() => this.handleClick(name)}>{name}</button>
     </div>
   )
 
