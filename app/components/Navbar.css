@@ -1,10 +1,10 @@
 .nav_background {
-  background-color: teal;
+  background-color: #07889B;
 }
 
 .nav_container {
   display: flex;
-  background-color: teal;
+  background-color: #07889B;
   justify-content: space-evenly;
   align-items: center;
   padding: 15px 0;

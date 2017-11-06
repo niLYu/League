@@ -21,13 +21,12 @@ class SummonerTabs extends Component {
       [SummaryTab]: true,
       [ChampionsTab]: false,
       [LeaguesTab]: false,
-      [LiveTab]: false,
       [MasteriesTab]: false,
       [RunesTab]: false,
+      [LiveTab]: false,
     };
     this.state = this.initialState;
   }
-
 
   button = name => (
     <div>
@@ -42,15 +41,11 @@ class SummonerTabs extends Component {
   }
 
   render() {
+    const allTabs = Object.keys(this.initialState);
     return (
       <div>
         <div className={styles.summoner_tabs_container}>
-          {this.button(SummaryTab)}
-          {this.button(LeaguesTab)}
-          {this.button(ChampionsTab)}
-          {this.button(MasteriesTab)}
-          {this.button(RunesTab)}
-          {this.button(LiveTab)}
+          {allTabs.map(tab => <div key={tab}>{this.button(tab)}</div>)}
         </div>
         <div>
           {this.state.Summary && <Summary />}

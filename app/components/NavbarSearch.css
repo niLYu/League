@@ -40,11 +40,11 @@
   font-size: 9px;
   text-align: center;
   margin: auto;
-  color: teal;
+  color: #07889B;
 }
 
 .go_button:hover {
-  background-color: teal;
+  background-color: #07889B;
   color: white;
 }
 
@@ -55,11 +55,11 @@
     border-style: outset;
   }
   .go_button {
-    background-color: teal;
+    background-color: #07889B;
     color: white;
   }
   .go_button:hover {
     background-color: white;
-    color: teal;
+    color: #07889B;
   }
 }

@@ -8,7 +8,20 @@
 }
 
 .tab_button {
-  border-radius: 0;
+  border-style: none;
+  padding: 5px 10px;
+  color: white;
+  background-color: #66B9BF;
+  box-shadow: 0 10px #07889B;
 }
 
+.tab_button:active {
+  background-color: #07889B;
+  box-shadow: 0 5px #07889B;
+  transform: translateY(5px);
+}
+
+.tab_button:hover {
+  background-color: #07889B
+}
 
