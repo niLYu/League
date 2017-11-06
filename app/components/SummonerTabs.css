@@ -5,6 +5,9 @@
   padding: 0 5px;
   flex-wrap: wrap;
   width: 100%;
+  background-color: #66B9BF;
+  box-shadow: 0 10px #07889B;
+  margin-bottom: 10px;
 }
 
 .tab_button {
@@ -12,16 +15,13 @@
   padding: 5px 10px;
   color: white;
   background-color: #66B9BF;
-  box-shadow: 0 10px #07889B;
-}
-
-.tab_button:active {
-  background-color: #07889B;
-  box-shadow: 0 5px #07889B;
-  transform: translateY(5px);
 }
 
 .tab_button:hover {
   background-color: #07889B
 }
 
+.tab_button:focus {
+  background-color: #07889B;
+  transform: translateY(5px);
+}

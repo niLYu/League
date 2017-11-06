@@ -62,7 +62,12 @@
   color: white;
 }
 
-.nav_button:hover, .nav_button:visited, .nav_button:focus {
+.nav_button:hover, .nav_button:visited {
+  text-decoration: none;
+}
+
+.nav_button:focus {
+  color: white;
   text-decoration: none;
 }
 
