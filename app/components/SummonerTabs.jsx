@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import update from 'react-addons-update';
 import Summary from './Summary';
 import Leagues from './Leagues';
 import Champions from './Champions';
@@ -20,7 +21,7 @@ class SummonerTabs extends Component {
     super();
     this.initialState = {
       tabs: {
-        [SummaryTab]: true,
+        [SummaryTab]: false,
         [ChampionsTab]: false,
         [LeaguesTab]: false,
         [MasteriesTab]: false,
@@ -33,6 +34,10 @@ class SummonerTabs extends Component {
   }
 
   componentWillMount() {
+    const newState = update(this.initialState, {
+      tabs: { [SummaryTab]: { $set: true } },
+    });
+    this.setState(newState);
     if (window.screen.width < 600) {
       this.setState({ desktop: false });
     }
@@ -45,11 +50,12 @@ class SummonerTabs extends Component {
   )
 
   handleClick = (item) => {
-    const newState = JSON.parse(JSON.stringify(this.initialState));
+    const newState = update(this.initialState, {
+      tabs: { [item]: { $set: true } },
+    });
     if (window.screen.width < 600) {
       newState.desktop = false;
     }
-    newState.tabs[item] = true;
     this.setState(newState);
   }
 
