@@ -70,7 +70,7 @@ class SummonerTabs extends Component {
           {tabs[ChampionsTab] && <Champions />}
           {tabs[MasteriesTab] && <Masteries />}
           {tabs[RunesTab] && <Runes />}
-          {tabs[LiveTab] && <LiveGame />}
+          {tabs[LiveTab] && <LiveGame id={this.props.user.id} />}
         </div>
       </div>
     );
