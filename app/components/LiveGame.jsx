@@ -31,7 +31,7 @@ class LiveGame extends Component {
           <thead>
             <tr>
               <th className={styles.blueTeam}>Blue Team{'   '}{this.props.liveGame.bannedChampions.map((el, index) => {
-                if (index < 5) {
+                if (index < 5 && el.championId > 0) {
                   return (<img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${Heroes[el.championId].key}.png`} alt={Heroes[el.championId].key}className={styles.banSize} />);
                 }
                 return null;
@@ -71,7 +71,7 @@ class LiveGame extends Component {
           <thead>
             <tr>
               <th className={styles.redTeam}>Red Team{'   '}{this.props.liveGame.bannedChampions.map((el, index) => {
-              if (index > 4) {
+              if (index > 4 && el.championId > 0) {
                 return (<img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${Heroes[el.championId].key}.png`} alt={Heroes[el.championId].key}className={styles.banSize} />);
               }
               return null;

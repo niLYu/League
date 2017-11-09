@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Filter from './Filter';
 import BasicProfile from './BasicProfile';
-import LiveGame from './LiveGame';
 import SummonerTabs from './SummonerTabs';
 
 // possible because we're exporting from one file
@@ -24,15 +23,9 @@ class Summoner extends Component {
   render() {
     return (
       <div>
-        <SummonerTabs />
-        <BasicProfile user={this.props.user} />
+        <SummonerTabs user={this.props.user} />
+        {this.props.user.id && <BasicProfile user={this.props.user} />}
         <ChampionMasteries />
-        {
-        !this.props.user.id ?
-          <div>Loading...</div>
-        :
-          <LiveGame id={this.props.user.id} />
-        }
         Summoner
         {
           !this.props.user ?

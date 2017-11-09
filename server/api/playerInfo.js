@@ -89,4 +89,14 @@ router.get('/liveGame/:summonerId', (req, res, next) => {
     .catch(next);
 });
 
+// get basic profile
+router.get('/profile/:summonerId', (req, res, next) => {
+  axios.get(`${apiBase}/league/v3/positions/by-summoner/${req.params.summonerId}${apiVerification}`)
+    .then(response => response.data)
+    .then((playerInfo) => {
+      res.json(playerInfo);
+    })
+    .catch(next);
+});
+
 module.exports = router;
