@@ -5,7 +5,8 @@ router
   .use('/matchInfo', require('./match'))
   .use('/playerInfo', require('./playerInfo'))
   .use('/riotScraper', require('./riotScraper'))
-  .use('/champions', require('./champions'));
+  .use('/champions', require('./champions'))
+  .use('/getAssets', require('./getAssets'));
 
 router.use((req, res) => res.status(404).end());
 
