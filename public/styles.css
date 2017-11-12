@@ -5,9 +5,16 @@ html, body {
 
 #app {
   height: 100%;
+  background-color: #fafafa;
 }
 
 .flex {
   display: flex;
+}
+
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
