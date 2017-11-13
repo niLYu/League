@@ -50,6 +50,9 @@ class Carousel extends Component {
                     }
                   </div>
                 </div>
+                <div className={styles.time_container}>
+                  {article.time}
+                </div>
               </div>
             </div>
             ))}

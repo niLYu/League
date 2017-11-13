@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import styles from './SummonerTabsMobile.css';
 
 class SummonerTabsMobile extends Component {
@@ -30,7 +29,6 @@ class SummonerTabsMobile extends Component {
           onChange={input => this.handleChange(input)}
           options={this.options}
           searchable={false}
-          simpleValue
           value={this.state.active}
         />
       </div>
