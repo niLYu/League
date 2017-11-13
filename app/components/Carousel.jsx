@@ -8,12 +8,30 @@ class Carousel extends Component {
   constructor() {
     super();
     this.state = { news: [] };
+    this.myStorage = window.localStorage;
+    this.getNews = this.myStorage.getItem('news');
+    if (this.getNews) {
+      this.storage = JSON.parse(this.getNews);
+      this.currentTime = new Date().getTime();
+      // timeDifference is represented in hours
+      this.timeDifference = (this.currentTime - this.storage.time) / 1000 / 60 / 60;
+    }
   }
+
   componentDidMount() {
-    axios.get('/api/riotScraper/news').then((news) => {
-      this.setState({ news: news.data });
-    });
+    /* setState using local storage inside this lifecycle instead
+    of componentWillMount due to visual off center bug */
+    if (this.timeDifference < 3) {
+      this.setState({ news: this.storage.articles });
+    } else if (!this.getNews || this.timeDifference > 3) {
+      axios.get('/api/riotScraper/news').then((news) => {
+        const newsObj = { time: new Date().getTime(), articles: news.data };
+        this.myStorage.setItem('news', JSON.stringify(newsObj));
+        this.setState({ news: news.data });
+      });
+    }
   }
+
   render() {
     const settings = {
       autoplay: true,
