@@ -18,15 +18,16 @@
 
 .td
 {
-  border: 1px solid black;
+  border: 1px solid grey;
   width : 33%;
   text-align: center;
 }
 
 .banSize{
   width: 5%;
-  height: 10%;
+  height: 11.5%;
   /* padding: .25%; */
+  padding: 1px;
 }
 .center
 {
