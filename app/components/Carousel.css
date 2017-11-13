@@ -40,6 +40,14 @@
   height: 150px;
 }
 
+.time_container {
+  text-align: right;
+  padding: 0.33em 1em;
+  background-color: gray;
+  color: white;
+  font-size: 0.8em;
+}
+
 .news {
   margin: 0 10%;
 }
