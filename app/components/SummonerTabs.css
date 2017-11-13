@@ -1,3 +1,10 @@
+.summoner_tabs_main_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .summoner_tabs_container {
   display: flex;
   justify-content: center;
@@ -24,4 +31,17 @@
 .tab_button:focus {
   background-color: #07889B;
   transform: translateY(5px);
+}
+
+.tab_item_container {
+  display: flex;
+  max-width: 1080px;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-top: 50px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: grey;
+  background-color: white;
 }
