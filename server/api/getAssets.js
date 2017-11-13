@@ -5,7 +5,9 @@ const fs = require('fs');
 const secrets = require('../../secrets');
 const champList = require('../../seed.jsx');
 
-// This file contains routes used to get all static-data from RIOT's Data Dragon
+/* This file contains routes used to get static-data using RIOT's Data Dragon tool
+   Data Dragon is a web service tool that stores game data and assets for LoL
+   More information can be found at https://developer.riotgames.com/static-data.html */
 
 const apiRoute = 'https://na1.api.riotgames.com/lol/static-data/v3';
 
@@ -23,7 +25,8 @@ const saveChampIcon = (champion, srcUrl) => {
       const image = Buffer.from(response.data);
       fs.writeFile(`${filePath}/${champion}.png`, image, (err) => {
         if (err) {
-          console.log(err);
+          fs.appendFile(`${filePath}/errorlog.txt`, `${champion}: ${err}\n`);
+          console.log(`Error saving data for ${champion}`);
         } else {
           console.log(`The data for ${champion} has been saved`);
         }
