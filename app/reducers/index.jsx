@@ -22,7 +22,15 @@ export * from './profile';
 export * from './news';
 
 const rootReducer = combineReducers({
-  user, games, championMastery, masteryPages, runePages, soloChallengers, liveGame, profile, news,
+  user,
+  games,
+  championMastery,
+  masteryPages,
+  runePages,
+  soloChallengers,
+  liveGame,
+  profile,
+  news,
 });
 
 export default rootReducer;
