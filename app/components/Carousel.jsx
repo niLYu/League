@@ -10,20 +10,17 @@ class Carousel extends Component {
     this.state = { news: [] };
     this.myStorage = window.localStorage;
     this.getNews = this.myStorage.getItem('news');
-    if (this.getNews) {
-      this.storage = JSON.parse(this.getNews);
-      this.currentTime = new Date().getTime();
-      // timeDifference is represented in hours
-      this.timeDifference = (this.currentTime - this.storage.time) / 1000 / 60 / 60;
+    this.storage = JSON.parse(this.getNews);
+    this.currentTime = new Date().getTime();
+    // timeDifference is represented in hours
+    this.timeDifference = (this.currentTime - this.storage.time) / 1000 / 60 / 60;
+    if (this.getNews && this.timeDifference < 3) {
+      this.state = { news: this.storage.articles };
     }
   }
 
   componentDidMount() {
-    /* setState using local storage inside this lifecycle instead
-    of componentWillMount due to visual off center bug */
-    if (this.timeDifference < 3) {
-      this.setState({ news: this.storage.articles });
-    } else if (!this.getNews || this.timeDifference > 3) {
+    if (!this.getNews || this.timeDifference > 3) {
       axios.get('/api/riotScraper/news').then((news) => {
         const newsObj = { time: new Date().getTime(), articles: news.data };
         this.myStorage.setItem('news', JSON.stringify(newsObj));
@@ -56,7 +53,7 @@ class Carousel extends Component {
               <div className={styles.content}>
                 <a href={article.url}>
                   <div className={styles.image_container}>
-                    <img src={article.imageUrl} alt="Not loaded" className={styles.image} />
+                    <img src={article.imageUrl} alt="news article" className={styles.image} />
                   </div>
                 </a>
                 <div className={styles.text_container}>
