@@ -22,18 +22,11 @@ class Summoner extends Component {
   render() {
     return (
       <div>
-        <SummonerTabs user={this.props.user} />
-        {this.props.user.id && <BasicProfile user={this.props.user} />}
-        <ChampionMasteries />
+        {/* <ChampionMasteries /> */}
         {
-          !this.props.user ?
-            <div>Loading... </div>
-          :
-            <div>
-              <Filter recentGames={this.props.games} />
-            </div>
+          this.props.user.id &&
+          <BasicProfile user={this.props.user} />
         }
-        <BasicProfile user={this.props.user} />
         <SummonerTabs {...this.props} />
       </div>
     );

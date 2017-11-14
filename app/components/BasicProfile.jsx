@@ -13,21 +13,10 @@ class BasicProfile extends Component {
     return (
       <div>
         <h2>{this.props.user.name}</h2>
-        <div>
-          {
-          // this.props.user.profileIconId &&
-          //   <img
-
-          //     src={`http://ddragon.leagueoflegends.com/cdn/7.20.3/img/profileicon/${this.props.user.profileIconId}.png`}
-          //     alt="profileIcon"
-          //   />
-        }
-          {
+        {
           this.props.profile.length &&
           <ProfileSummary summary={this.props} />
         }
-        </div>
-
       </div>
     );
   }
