@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Profile.css';
 
 const ProfileSummary = (props) => {
   let soloRank;
@@ -7,15 +8,18 @@ const ProfileSummary = (props) => {
   }
   return (
     <div>
-      <h2>{props.summary.user.name}</h2>
       {soloRank &&
-      <div>
-        <img src={`/images/${soloRank[0].tier.toLowerCase()}.png`} alt="league tier" />
-        <h3>W/L: {soloRank[0].wins}W/{soloRank[0].losses}L </h3>
-        <h3>W/L Ratio: {(soloRank[0].wins / (soloRank[0].wins + soloRank[0].losses)) * 100}%</h3>
-        <h3>{soloRank[0].tier}  {soloRank[0].rank}</h3>
-        <h3>League Points: {soloRank[0].leaguePoints}</h3>
-        <h3>{soloRank[0].leagueName}</h3>
+      <div className={styles.profileContainer}>
+        <div className={styles.flexRankIcon}>
+          <img className={styles.rankImage}src={`/images/${soloRank[0].tier.toLowerCase()}.png`} alt="league tier" />
+        </div>
+        <div className={styles.flexItem}>
+          <h1>{soloRank[0].tier}  {soloRank[0].rank}</h1>
+          <h2>W/L: {soloRank[0].wins}W/{soloRank[0].losses}L </h2>
+          <h2>W/L Ratio: {(soloRank[0].wins / (soloRank[0].wins + soloRank[0].losses)) * 100}%</h2>
+          <h2>League Points: {soloRank[0].leaguePoints}</h2>
+          <h2>{soloRank[0].leagueName}</h2>
+        </div>
       </div>
           }
     </div>

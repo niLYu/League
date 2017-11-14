@@ -26,7 +26,6 @@ class Summoner extends Component {
         <SummonerTabs user={this.props.user} />
         {this.props.user.id && <BasicProfile user={this.props.user} />}
         <ChampionMasteries />
-        Summoner
         {
           !this.props.user ?
             <div>Loading... </div>
