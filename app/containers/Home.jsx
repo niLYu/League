@@ -4,11 +4,16 @@ import { connect } from 'react-redux';
 import Carousel from '../components/Carousel';
 import PlayerSearch from '../components/PlayerSearch';
 import homeSearch from '../components/PlayerSearch.css';
-import { fetchNews } from '../reducers';
+import { fetchNews, fetchNewsFromStorage } from '../reducers';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.fetchNews();
+    Promise.resolve(this.props.fetchNewsFromStorage('news', 3))
+      .then(() => {
+        if (this.props.news.length === 0) {
+          this.props.fetchNews();
+        }
+      }).catch(err => console.log(err));
   }
 
   render() {
@@ -23,6 +28,7 @@ class Home extends Component {
 
 Home.propTypes = {
   fetchNews: PropTypes.func.isRequired,
+  fetchNewsFromStorage: PropTypes.func.isRequired,
   news: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
@@ -30,8 +36,8 @@ Home.defaultProps = {
   news: [],
 };
 
-const mapStateToProps = state => ({ news: state.news });
+const mapStateToProps = ({ news }) => ({ news });
 
-const mapDispatchToProps = { fetchNews };
+const mapDispatchToProps = { fetchNews, fetchNewsFromStorage };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

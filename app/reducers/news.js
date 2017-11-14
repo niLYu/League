@@ -1,21 +1,10 @@
 import axios from 'axios';
-
-const myStorage = window.localStorage;
-const currentTime = new Date().getTime();
-const allNews = myStorage.getItem('news');
-const storage = JSON.parse(allNews);
-// timeDifference is represented in hours
-const timeDifference = storage ?
-  ((currentTime - storage.time) / 1000 / 60 / 60) : 0;
-
-const saveNews = (news) => {
-  const newsObj = { time: new Date().getTime(), articles: news.data };
-  myStorage.setItem('news', JSON.stringify(newsObj));
-};
+import { saveToStorage } from '../util/api';
 
 /* -----------------    ACTIONS    -------------------- */
 
 const GET_NEWS = 'GET_NEWS';
+// const GET_NEWS_STORAGE = 'GET_NEWS_STORAGE';
 
 /* -------------    ACTION CREATORS    ---------------- */
 
@@ -23,20 +12,23 @@ const getNews = news => ({ type: GET_NEWS, news });
 
 /* -------------    THUNK CREATORS     ---------------- */
 
-export const fetchNews = () => (dispatch) => {
-  if (!allNews || timeDifference > 3) {
-    axios.get('/api/riotScraper/news')
-      .then((news) => {
-        saveNews(news);
-        return news.data;
-      })
-      .then(news => dispatch(getNews(news)))
-      .catch(err => console.error(err));
-  } else {
-    dispatch(getNews(storage.articles));
+export const fetchNews = () => dispatch => axios.get('/api/riotScraper/news')
+  .then(res => res.data)
+  .then((news) => {
+    saveToStorage('news', news);
+    return dispatch(getNews(news));
+  })
+  .catch(err => console.error(err));
+
+export const fetchNewsFromStorage = (news, expiration) => (dispatch) => {
+  const deserialized = JSON.parse(window.localStorage.getItem(news));
+  // time difference of date stored vs current date in hours
+  const timeInStorage = (new Date().getTime() - deserialized.time) / 1000 / 60 / 60;
+  // need to check against undefined incase 0 is passed in for expiration
+  if (expiration === undefined || timeInStorage < expiration) {
+    return dispatch(getNews(deserialized.news));
   }
 };
-
 /* -----------------    REDUCER    -------------------- */
 
 export default function newsReducer(state = [], action) {
