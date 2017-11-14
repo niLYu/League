@@ -8,6 +8,7 @@ import runePages from './runePages';
 import soloChallengers from './soloChallengers';
 import liveGame from './liveGame';
 import profile from './profile';
+import news from './news';
 
 // exporting from one central file, helps keep track of thunks as well
 export * from './championMastery';
@@ -18,9 +19,10 @@ export * from './runePages';
 export * from './soloChallengers';
 export * from './user';
 export * from './profile';
+export * from './news';
 
 const rootReducer = combineReducers({
-  user, games, championMastery, masteryPages, runePages, soloChallengers, liveGame, profile,
+  user, games, championMastery, masteryPages, runePages, soloChallengers, liveGame, profile, news,
 });
 
 export default rootReducer;

@@ -1,42 +1,37 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Carousel from '../components/Carousel';
 import PlayerSearch from '../components/PlayerSearch';
 import homeSearch from '../components/PlayerSearch.css';
+import { fetchNews } from '../reducers';
 
 class Home extends Component {
-  constructor() {
-    super();
-    this.state = { news: [] };
-    this.myStorage = window.localStorage;
-    this.getNews = this.myStorage.getItem('news');
-    this.storage = JSON.parse(this.getNews);
-    this.currentTime = new Date().getTime();
-    // timeDifference is represented in hours
-    this.timeDifference = this.storage ?
-      ((this.currentTime - this.storage.time) / 1000 / 60 / 60) : 0;
-  }
-
   componentDidMount() {
-    if (!this.getNews || this.timeDifference > 3) {
-      axios.get('/api/riotScraper/news').then((news) => {
-        const newsObj = { time: new Date().getTime(), articles: news.data };
-        this.myStorage.setItem('news', JSON.stringify(newsObj));
-        this.setState({ news: news.data });
-      });
-    } else if (this.timeDifference < 3) {
-      this.setState({ news: this.storage.articles });
-    }
+    this.props.fetchNews();
   }
 
   render() {
     return (
       <div>
         <PlayerSearch styles={homeSearch} />
-        <Carousel news={this.state.news} />
+        <Carousel news={this.props.news} />
       </div>
     );
   }
 }
 
-export default Home;
+Home.propTypes = {
+  fetchNews: PropTypes.func.isRequired,
+  news: PropTypes.arrayOf(PropTypes.object.isRequired),
+};
+
+Home.defaultProps = {
+  news: [],
+};
+
+const mapStateToProps = state => ({ news: state.news });
+
+const mapDispatchToProps = { fetchNews };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
