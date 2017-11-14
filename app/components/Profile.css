@@ -26,3 +26,10 @@
   max-width: 200px */
 }
 
+
+.flexItemCentered{
+  flex: 1;
+  text-align:center;
+  margin: auto 0;
+  font-size: 0.5em;
+}
