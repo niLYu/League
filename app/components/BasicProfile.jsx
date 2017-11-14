@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../reducers/profile';
 import ProfileSummary from './ProfileSummary';
+import styles from './Profile.css';
 
 class BasicProfile extends Component {
   componentDidMount() {
@@ -11,16 +12,7 @@ class BasicProfile extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.user.profileIconId && (
-            <img
-              src={`http://ddragon.leagueoflegends.com/cdn/7.20.3/img/profileicon/${this.props.user.profileIconId}.png`}
-              alt="profileIcon"
-              height="100px"
-              width="100px"
-            />)
-
-        }
+        <h2>{this.props.user.name}</h2>
         {
           this.props.profile.length &&
           <ProfileSummary summary={this.props} />
