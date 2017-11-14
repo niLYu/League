@@ -15,7 +15,7 @@ const getNews = news => ({ type: GET_NEWS, news });
 export const fetchNews = () => dispatch => axios.get('/api/riotScraper/news')
   .then(res => res.data)
   .then((news) => {
-    saveToStorage({ news });
+    saveToStorage('news', news);
     return dispatch(getNews(news));
   })
   .catch(err => console.error(err));
