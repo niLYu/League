@@ -16,7 +16,7 @@ const ProfileSummary = (props) => {
   }
   return (
     <div className={styles.flexcontainer}>
-      {soloRank &&
+      {soloRank.length ?
         <div className={styles.flexcontainer}>
           <div className={styles.flexRankIcon}>
             <img className={styles.rankImage}src={`/images/${soloRank[0].tier.toLowerCase()}.png`} alt="league tier" />
@@ -29,34 +29,46 @@ const ProfileSummary = (props) => {
             <h4>{soloRank[0].leagueName}</h4>
           </div>
         </div>
+        :
+        <div>
+        Not ranked in solo 5v5
+        </div>
           }
-      {flexRank &&
-      <div className={styles.flexcontainer}>
-        <div className={styles.flexRankIcon}>
-          <img className={styles.rankImage}src={`/images/${flexRank[0].tier.toLowerCase()}.png`} alt="league tier" />
+      {flexRank.length ?
+        <div className={styles.flexcontainer}>
+          <div className={styles.flexRankIcon}>
+            <img className={styles.rankImage}src={`/images/${flexRank[0].tier.toLowerCase()}.png`} alt="league tier" />
+          </div>
+          <div className={styles.flexItem}>
+            <h3>{flexRank[0].tier}  {flexRank[0].rank}</h3>
+            <h4>W/L: {flexRank[0].wins}W/{flexRank[0].losses}L </h4>
+            <h4>W/L Ratio: {((flexRank[0].wins / (flexRank[0].wins + flexRank[0].losses)) * 100).toFixed(2)}%</h4>
+            <h4>League Points: {flexRank[0].leaguePoints}</h4>
+            <h4>{flexRank[0].leagueName}</h4>
+          </div>
         </div>
-        <div className={styles.flexItem}>
-          <h3>{flexRank[0].tier}  {flexRank[0].rank}</h3>
-          <h4>W/L: {flexRank[0].wins}W/{flexRank[0].losses}L </h4>
-          <h4>W/L Ratio: {((flexRank[0].wins / (flexRank[0].wins + flexRank[0].losses)) * 100).toFixed(2)}%</h4>
-          <h4>League Points: {flexRank[0].leaguePoints}</h4>
-          <h4>{flexRank[0].leagueName}</h4>
+        :
+        <div>
+        Not ranked in flex 5v5
         </div>
-      </div>
           }
-      {ttRank &&
-      <div className={styles.flexcontainer}>
-        <div className={styles.flexRankIcon}>
-          <img className={styles.rankImage}src={`/images/${ttRank[0].tier.toLowerCase()}.png`} alt="league tier" />
+      {ttRank.length ?
+        <div className={styles.flexcontainer}>
+          <div className={styles.flexRankIcon}>
+            <img className={styles.rankImage}src={`/images/${ttRank[0].tier.toLowerCase()}.png`} alt="league tier" />
+          </div>
+          <div className={styles.flexItem}>
+            <h3>{ttRank[0].tier}  {ttRank[0].rank}</h3>
+            <h4>W/L: {ttRank[0].wins}W/{ttRank[0].losses}L </h4>
+            <h4>W/L Ratio: {((ttRank[0].wins / (ttRank[0].wins + ttRank[0].losses)) * 100).toFixed(2)}%</h4>
+            <h4>League Points: {ttRank[0].leaguePoints}</h4>
+            <h4>{ttRank[0].leagueName}</h4>
+          </div>
         </div>
-        <div className={styles.flexItem}>
-          <h3>{ttRank[0].tier}  {ttRank[0].rank}</h3>
-          <h4>W/L: {ttRank[0].wins}W/{ttRank[0].losses}L </h4>
-          <h4>W/L Ratio: {((ttRank[0].wins / (ttRank[0].wins + ttRank[0].losses)) * 100).toFixed(2)}%</h4>
-          <h4>League Points: {ttRank[0].leaguePoints}</h4>
-          <h4>{ttRank[0].leagueName}</h4>
+      :
+        <div>
+      Not ranked in 3v3
         </div>
-      </div>
           }
 
 
