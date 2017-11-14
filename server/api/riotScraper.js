@@ -18,6 +18,7 @@ router.get('/news', (req, res) => {
         news.content = $('.teaser-content', data).children().text();
         news.url = `${url}${$('.lol-core-file-formatter', data)[0].attribs.href}`;
         news.imageUrl = `${url}${$('.file-image', data).children()[0].attribs.src}`;
+        news.time = $('.time-ago', data).text();
         newsInfo.push(news);
       }
       counter += 1;

@@ -15,6 +15,7 @@
   border-color: #07889B;
   width: 320px;
   margin: auto;
+  background-color: white;
 }
 
 .image_container {
@@ -37,6 +38,14 @@
   margin: auto;
   text-align: center;
   height: 150px;
+}
+
+.time_container {
+  text-align: right;
+  padding: 0.33em 1em;
+  background-color: gray;
+  color: white;
+  font-size: 0.8em;
 }
 
 .news {

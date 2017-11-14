@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import update from 'react-addons-update';
 import Summary from './Summary';
 import Leagues from './Leagues';
@@ -63,15 +64,15 @@ class SummonerTabs extends Component {
     const { tabs } = this.state;
     const allTabs = Object.keys(tabs);
     return (
-      <div>
+      <div className={styles.summoner_tabs_main_container}>
         {this.state.desktop ?
           <div className={styles.summoner_tabs_container}>
             {allTabs.map(tab => <div key={tab}>{this.button(tab)}</div>)}
           </div>
         : <SummonerTabsMobile tabs={tabs} handleClick={this.handleClick} />
         }
-        <div>
-          {tabs[SummaryTab] && <Summary />}
+        <div className={styles.tab_item_container}>
+          {tabs[SummaryTab] && <Summary games={this.props.games} />}
           {tabs[LeaguesTab] && <Leagues />}
           {tabs[ChampionsTab] && <Champions />}
           {tabs[MasteriesTab] && <Masteries />}
@@ -82,5 +83,15 @@ class SummonerTabs extends Component {
     );
   }
 }
+
+SummonerTabs.propTypes = {
+  games: PropTypes.shape({
+    matches: PropTypes.array.isRequired,
+  }),
+};
+
+SummonerTabs.defaultProps = {
+  games: {},
+};
 
 export default SummonerTabs;

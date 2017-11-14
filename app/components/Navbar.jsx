@@ -17,7 +17,7 @@ const Navbar = (props) => {
             <NavLink to="/" className={styles.nav_button}>Home</NavLink>
           </div>
           <NavLink to="/" className={styles.home_icon_container}>
-            <img id={styles.home_icon} src="/images/HomeIcon.png" alt="Could not load" />
+            <img id={styles.home_icon} src="/images/HomeIcon.png" alt="HomeIcon" />
           </NavLink>
           <div className={styles.button_container_right}>
             <NavLink to="/challengers" className={styles.nav_button}>Challenger</NavLink>

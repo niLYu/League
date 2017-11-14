@@ -1,12 +1,11 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Filter from './Filter';
 import BasicProfile from './BasicProfile';
 import SummonerTabs from './SummonerTabs';
+import ChampionMasteries from './ChampionMasteries';
 
 // possible because we're exporting from one file
-import { ChampionMasteries } from './index';
 import { fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages } from '../reducers';
 
 class Summoner extends Component {
@@ -34,6 +33,8 @@ class Summoner extends Component {
               <Filter recentGames={this.props.games} />
             </div>
         }
+        <BasicProfile user={this.props.user} />
+        <SummonerTabs {...this.props} />
       </div>
     );
   }
@@ -42,7 +43,6 @@ class Summoner extends Component {
 Summoner.defaultProps = {
   location: { search: '' },
   user: { accountId: 0, id: 0 },
-  games: {},
 };
 
 Summoner.propTypes = {
@@ -53,7 +53,6 @@ Summoner.propTypes = {
     id: PropTypes.number,
     accountId: PropTypes.number,
   }),
-  games: PropTypes.shape({}),
   getAllUserInfo: PropTypes.func.isRequired,
 };
 
