@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Footer from './components/Footer';
 import store from './store';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
+import Home from './containers/Home';
 import Summoner from './components/Summoner';
 import NotFound from './components/NotFound';
 import Leaderboards from './components/Leaderboards';
