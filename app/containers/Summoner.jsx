@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import BasicProfile from './BasicProfile';
-import SummonerTabs from './SummonerTabs';
-import ChampionMasteries from './ChampionMasteries';
+import { BasicProfile, SummonerTabs } from './index';
+import { ChampionMasteries } from '../components';
 
 // possible because we're exporting from one file
 import { fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages } from '../reducers';

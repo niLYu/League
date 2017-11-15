@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLiveGame } from '../reducers';
-import styles from './LiveGame.css';
+import styles from '../styles/LiveGame.css';
 import { Heroes } from '../../seed';
 
 class LiveGame extends Component {

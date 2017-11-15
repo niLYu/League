@@ -1,5 +1,5 @@
 import React from 'react';
-import Match from './Match';
+import { Match } from './index';
 
 const Summary = props => (
   <div>

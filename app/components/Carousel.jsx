@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import styles from './Carousel.css';
+import styles from '../styles/Carousel.css';
 
 const Carousel = (props) => {
   const settings = {

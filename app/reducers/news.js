@@ -23,6 +23,7 @@ export const fetchNews = () => dispatch => axios.get('/api/riotScraper/news')
 export const fetchNewsFromStorage = (news, expiration) => (dispatch) => {
   const deserialized = JSON.parse(window.localStorage.getItem(news));
   // time difference of date stored vs current date in hours
+  if (!deserialized ) return;
   const timeInStorage = (new Date().getTime() - deserialized.time) / 1000 / 60 / 60;
   // need to check against undefined incase 0 is passed in for expiration
   if (expiration === undefined || timeInStorage < expiration) {
