@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../reducers/profile';
 import ProfileSummary from './ProfileSummary';
-import styles from './Profile.css';
 
 class BasicProfile extends Component {
   componentDidMount() {
@@ -27,6 +26,14 @@ class BasicProfile extends Component {
     );
   }
 }
+BasicProfile.defaultProps = {
+  profile: [],
+  user: {
+    accountId: 0,
+    id: 0,
+  },
+};
+
 const mapStateToProps = ({ profile }) => ({ profile });
 
 const mapDispatchToProps = { fetchProfile };
