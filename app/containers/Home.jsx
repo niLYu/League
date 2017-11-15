@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Carousel from '../components/Carousel';
 import PlayerSearch from '../components/PlayerSearch';
-import homeSearch from '../components/PlayerSearch.css';
+import homeSearch from '../styles/PlayerSearch.css';
 import { fetchNews, fetchNewsFromStorage } from '../reducers';
 
 class Home extends Component {

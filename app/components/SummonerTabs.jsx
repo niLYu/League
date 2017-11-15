@@ -8,7 +8,7 @@ import Masteries from './Masteries';
 import LiveGame from './LiveGame';
 import Runes from './Runes';
 import SummonerTabsMobile from './SummonerTabsMobile';
-import styles from './SummonerTabs.css';
+import styles from '../styles/SummonerTabs.css';
 
 const SummaryTab = 'Summary';
 const LeaguesTab = 'Leagues';

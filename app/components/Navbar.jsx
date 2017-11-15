@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import styles from './Navbar.css';
-import NavbarSearch from './NavbarSearch.css';
+import styles from '../styles/Navbar.css';
+import NavbarSearch from '../styles/NavbarSearch.css';
 import PlayerSearch from './PlayerSearch';
 
 const Navbar = (props) => {

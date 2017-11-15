@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import styles from './SummonerTabsMobile.css';
+import styles from '../styles/SummonerTabsMobile.css';
 
 class SummonerTabsMobile extends Component {
   constructor(props) {

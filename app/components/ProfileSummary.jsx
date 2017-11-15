@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Profile.css';
+import styles from '../styles/Profile.css';
 
 const ProfileSummary = (props) => {
   console.log(props);

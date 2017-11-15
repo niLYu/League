@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchSoloChallengers } from '../reducers/soloChallengers';
-import styles from './Leaderboards.css';
+import styles from '../styles/Leaderboards.css';
 
 
 class Leaderboards extends Component {
