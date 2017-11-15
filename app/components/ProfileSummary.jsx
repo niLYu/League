@@ -2,18 +2,13 @@ import React from 'react';
 import styles from './Profile.css';
 
 const ProfileSummary = (props) => {
-  let soloRank;
-  if (props.summary.profile.length) {
-    soloRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_SOLO_5x5'));
-  }
-  let flexRank;
-  if (props.summary.profile.length) {
-    flexRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_SR'));
-  }
-  let ttRank;
-  if (props.summary.profile.length) {
-    ttRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_TT'));
-  }
+  console.log(props);
+  const soloRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_SOLO_5x5'));
+
+  const flexRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_SR'));
+
+  const ttRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_TT'));
+
   return (
     <div className={styles.flexcontainer}>
       {soloRank.length ?

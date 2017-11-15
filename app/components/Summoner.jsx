@@ -13,9 +13,9 @@ class Summoner extends Component {
     this.props.getAllUserInfo(this.props.location);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.location.search !== this.props.location.search) {
-      this.props.getAllUserInfo(this.props.location);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.search !== this.props.location.search) {
+      this.props.getAllUserInfo(nextProps.location);
     }
   }
 
