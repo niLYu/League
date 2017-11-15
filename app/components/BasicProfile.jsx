@@ -9,6 +9,12 @@ class BasicProfile extends Component {
     this.props.fetchProfile(this.props.user.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.id !== this.props.user.id) {
+      this.props.fetchProfile(nextProps.user.id);
+    }
+  }
+
   render() {
     return (
       <div>
