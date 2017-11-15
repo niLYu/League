@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Carousel from '../components/Carousel';
-import PlayerSearch from '../components/PlayerSearch';
+import { Carousel } from '../components';
+import { PlayerSearch } from './index';
 import homeSearch from '../styles/PlayerSearch.css';
 import { fetchNews, fetchNewsFromStorage } from '../reducers';
 

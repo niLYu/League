@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from '../styles/Navbar.css';
 import NavbarSearch from '../styles/NavbarSearch.css';
-import PlayerSearch from './PlayerSearch';
+import { PlayerSearch } from '../containers';
 
 const Navbar = (props) => {
   const { location } = props;

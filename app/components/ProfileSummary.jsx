@@ -2,7 +2,6 @@ import React from 'react';
 import styles from '../styles/Profile.css';
 
 const ProfileSummary = (props) => {
-  console.log(props);
   const soloRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_SOLO_5x5'));
 
   const flexRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_SR'));

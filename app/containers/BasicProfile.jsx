@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchProfile } from '../reducers/profile';
-import ProfileSummary from './ProfileSummary';
+import { fetchProfile } from '../reducers';
+import { ProfileSummary } from '../components';
 
 class BasicProfile extends Component {
   componentDidMount() {

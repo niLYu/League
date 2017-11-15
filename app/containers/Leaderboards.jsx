@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { fetchSoloChallengers } from '../reducers';
+import { fetchSoloChallengers } from '../reducers/soloChallengers';
 import styles from '../styles/Leaderboards.css';
 
 

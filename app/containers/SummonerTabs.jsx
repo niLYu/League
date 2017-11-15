@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import update from 'react-addons-update';
-import Summary from './Summary';
-import Leagues from './Leagues';
-import Champions from './Champions';
-import Masteries from './Masteries';
-import LiveGame from './LiveGame';
-import Runes from './Runes';
-import SummonerTabsMobile from './SummonerTabsMobile';
+import { Summary, Leagues, Champions, Masteries, Runes } from '../components'
+import { LiveGame, SummonerTabsMobile } from './index';
 import styles from '../styles/SummonerTabs.css';
 
 const SummaryTab = 'Summary';
