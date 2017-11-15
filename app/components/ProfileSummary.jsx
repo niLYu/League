@@ -1,94 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Profile.css';
+import { SoloFive, FlexFive, FlexThree } from './index';
 
 const ProfileSummary = (props) => {
-  const soloRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_SOLO_5x5'));
-
-  const flexRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_SR'));
-
-  const ttRank = props.summary.profile.filter((queue => queue.queueType === 'RANKED_FLEX_TT'));
-
+  const soloRank = props.queueRanks.find((queue => queue.queueType === 'RANKED_SOLO_5x5'));
+  const flexRank = props.queueRanks.find((queue => queue.queueType === 'RANKED_FLEX_SR'));
+  const ttRank = props.queueRanks.find((queue => queue.queueType === 'RANKED_FLEX_TT'));
   return (
     <div className={styles.flexcontainer}>
-      {soloRank.length ?
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src={`/images/${soloRank[0].tier.toLowerCase()}.png`} alt="league tier" />
-          </div>
-          <div className={styles.flexItem}>
-            <h4>{soloRank[0].tier}  {soloRank[0].rank}</h4>
-            <h5>Solo Queue 5v5</h5>
-            <h5>W/L: {soloRank[0].wins}W/{soloRank[0].losses}L </h5>
-            <h5>W/L Ratio: {((soloRank[0].wins / (soloRank[0].wins + soloRank[0].losses)) * 100).toFixed(2)}%</h5>
-            <h5>League Points: {soloRank[0].leaguePoints}</h5>
-            <h5>{soloRank[0].leagueName}</h5>
-          </div>
-        </div>
-        :
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src="/images/unranked.png" alt="league tier" />
-          </div>
-          <div className={styles.flexItemCentered}>
-            <h5>Unranked</h5>
-            <h5>Solo Queue</h5>
-            <h5>5v5</h5>
-          </div>
-        </div>
-          }
-      {flexRank.length ?
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src={`/images/${flexRank[0].tier.toLowerCase()}.png`} alt="league tier" />
-          </div>
-          <div className={styles.flexItem}>
-            <h4>{flexRank[0].tier}  {flexRank[0].rank}</h4>
-            <h5>Flex Queue 5v5</h5>
-            <h5>W/L: {flexRank[0].wins}W/{flexRank[0].losses}L </h5>
-            <h5>W/L Ratio: {((flexRank[0].wins / (flexRank[0].wins + flexRank[0].losses)) * 100).toFixed(2)}%</h5>
-            <h5>League Points: {flexRank[0].leaguePoints}</h5>
-            <h5>{flexRank[0].leagueName}</h5>
-          </div>
-        </div>
-        :
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src="/images/unranked.png" alt="league tier" />
-          </div>
-          <div className={styles.flexItemCentered}>
-            <h5>Unranked</h5>
-            <h5>Flex Queue</h5>
-            <h5>5v5</h5>
-          </div>
-        </div>
-          }
-      {ttRank.length ?
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src={`/images/${ttRank[0].tier.toLowerCase()}.png`} alt="league tier" />
-          </div>
-          <div className={styles.flexItem}>
-            <h4>{ttRank[0].tier}  {ttRank[0].rank}</h4>
-            <h5>Flex Queue 3v3</h5>
-            <h5>W/L: {ttRank[0].wins}W/{ttRank[0].losses}L </h5>
-            <h5>W/L Ratio: {((ttRank[0].wins / (ttRank[0].wins + ttRank[0].losses)) * 100).toFixed(2)}%</h5>
-            <h5>League Points: {ttRank[0].leaguePoints}</h5>
-            <h5>{ttRank[0].leagueName}</h5>
-          </div>
-        </div>
-      :
-        <div className={styles.flexcontainer}>
-          <div className={styles.flexRankIcon}>
-            <img className={styles.rankImage}src="/images/unranked.png" alt="league tier" />
-          </div>
-          <div className={styles.flexItemCentered}>
-            <h5>Unranked</h5>
-            <h5>Flex Queue</h5>
-            <h5>3v3</h5>
-          </div>
-        </div>
-          }
+      <SoloFive soloRank={soloRank} />
+      <FlexFive flexRank={flexRank} />
+      <FlexThree ttRank={ttRank} />
     </div>
   );
 };
+ProfileSummary.defaultProps = {
+  queueRanks: [],
+};
+ProfileSummary.propTypes = {
+  queueRanks: PropTypes.arrayOf(PropTypes.object.isRequired),
+};
+
 export default ProfileSummary;

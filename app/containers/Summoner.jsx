@@ -42,8 +42,8 @@ Summoner.propTypes = {
     search: PropTypes.string.isRequired,
   }),
   user: PropTypes.shape({
-    id: PropTypes.number,
-    accountId: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    accountId: PropTypes.number.isRequired,
   }),
   getAllUserInfo: PropTypes.func.isRequired,
 };

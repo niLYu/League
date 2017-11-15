@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchProfile } from '../reducers';
 import { ProfileSummary } from '../components';
@@ -20,7 +21,7 @@ class BasicProfile extends Component {
         <h2>{this.props.user.name}</h2>
         {
           this.props.profile.length &&
-          <ProfileSummary summary={this.props} />
+          <ProfileSummary queueRanks={this.props.profile} />
         }
       </div>
     );
@@ -31,7 +32,18 @@ BasicProfile.defaultProps = {
   user: {
     accountId: 0,
     id: 0,
+    name: '',
   },
+};
+BasicProfile.propTypes = {
+  fetchProfile: PropTypes.func.isRequired,
+  profile: PropTypes.arrayOf(PropTypes.object.isRequired),
+  user: PropTypes.shape({
+    accountId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+
 };
 
 const mapStateToProps = ({ profile }) => ({ profile });

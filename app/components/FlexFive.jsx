@@ -2,39 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Profile.css';
 
-const SoloFive = ({ soloRank }) => (
+const FlexFive = ({ flexRank }) => (
   <div>
-    {soloRank.tier ?
+    {flexRank.tier ?
       <div className={styles.flexcontainer}>
         <div className={styles.flexRankIcon}>
-          <img className={styles.rankImage}src={`/images/${soloRank.tier.toLowerCase()}.png`} alt="league tier" />
+          <img className={styles.rankImage}src={`/images/${flexRank.tier.toLowerCase()}.png`} alt="league tier" />
         </div>
         <div className={styles.flexItem}>
-          <h4>{soloRank.tier}  {soloRank.rank}</h4>
-          <h5>Solo Queue 5v5</h5>
-          <h5>W/L: {soloRank.wins}W/{soloRank.losses}L </h5>
-          <h5>W/L Ratio: {((soloRank.wins / (soloRank.wins + soloRank.losses)) * 100).toFixed(2)}%</h5>
-          <h5>League Points: {soloRank.leaguePoints}</h5>
-          <h5>{soloRank.leagueName}</h5>
+          <h4>{flexRank.tier}  {flexRank.rank}</h4>
+          <h5>Flex Queue 5v5</h5>
+          <h5>W/L: {flexRank.wins}W/{flexRank.losses}L </h5>
+          <h5>W/L Ratio: {((flexRank.wins / (flexRank.wins + flexRank.losses)) * 100).toFixed(2)}%</h5>
+          <h5>League Points: {flexRank.leaguePoints}</h5>
+          <h5>{flexRank.leagueName}</h5>
         </div>
       </div>
-      :
+        :
       <div className={styles.flexcontainer}>
         <div className={styles.flexRankIcon}>
           <img className={styles.rankImage}src="/images/unranked.png" alt="league tier" />
         </div>
         <div className={styles.flexItemCentered}>
           <h5>Unranked</h5>
-          <h5>Solo Queue</h5>
+          <h5>Flex Queue</h5>
           <h5>5v5</h5>
         </div>
       </div>
-        }
+}
   </div>
 );
-
-SoloFive.defaultProps = {
-  soloRank: {
+FlexFive.defaultProps = {
+  flexRank: {
     tier: '',
     wins: 0,
     losses: 0,
@@ -42,8 +41,8 @@ SoloFive.defaultProps = {
     leagueName: '',
   },
 };
-SoloFive.propTypes = {
-  soloRank: PropTypes.shape({
+FlexFive.propTypes = {
+  flexRank: PropTypes.shape({
     tier: PropTypes.string.isRequired,
     wins: PropTypes.number.isRequired,
     losses: PropTypes.number.isRequired,
@@ -51,5 +50,4 @@ SoloFive.propTypes = {
     leagueName: PropTypes.string.isRequired,
   }),
 };
-
-export default SoloFive;
+export default FlexFive;
