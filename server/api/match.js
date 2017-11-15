@@ -19,7 +19,7 @@ router.get('/summoner/:summonerId', (req, res, next) => {
     .then((championSeasonData) => { // grabs a matchList matching parameters
       let { matches } = championSeasonData.data;
       if (!championId && !seasonId) res.json(matches);
-      return Promise.map(matches, (match) => { //mapSeries instead of map??
+      return Promise.mapSeries(matches, (match) => { //mapSeries instead of map??
         // fetches match info for all matches in the list
         const matchRequest = `${apiRoute}/matches/${match.gameId}${apiValidation}`;
         return axios.get(matchRequest)
