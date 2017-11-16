@@ -16,4 +16,4 @@ NODE_ENV=production webpack -p
 
 git add -f public/bundle.js public/bundle.js.map
 git commit --allow-empty -m 'Deploying'
-git push --force heroku deploy:master
+git push --force heroku testDeploy:master
