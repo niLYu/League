@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# We want this entire script to exit if any single line fails.
+# So we set the `-e` flag.
+set -e
+
+function cleanup_at_exit {
+  git checkout master
+  git branch -D testDeploy
+}
+
+trap cleanup_at_exit EXIT
+git checkout -b testDeploy
+
+NODE_ENV=production webpack -p
+
+git add -f public/bundle.js public/bundle.js.map
+git commit --allow-empty -m 'Deploying'
+git push --force heroku testDeploy:master
