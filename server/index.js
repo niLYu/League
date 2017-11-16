@@ -1,9 +1,10 @@
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const app = express();
 const db = require('../db');
+
+const PORT = process.env.PORT || 3000
 
 module.exports = app
   .use(bodyParser.urlencoded({ extended: true }))
@@ -21,6 +22,6 @@ db.sync({
 
 if (module === require.main) {
   app.listen(3000, () => {
-    console.log('App is listening on port 3000!');
+    console.log(`App is listening on port ${PORT}!`);
   });
 }
