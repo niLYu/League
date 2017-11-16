@@ -2,7 +2,7 @@ const router = require('express').Router();
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
-if (process.env.NODE_ENV === 'development') require('../../secrets');
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
 const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 const champList = require('../../seed.jsx');
 

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-if (process.env.NODE_ENV === 'development') require('../../secrets');
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
 const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 
 const { Player } = require('../../db');

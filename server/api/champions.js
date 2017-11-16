@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 console.log('process, node environment', process.env.NODE_ENV);
-if (process.env.NODE_ENV === 'development') require('../../secrets');
+if (process.env.NODE_ENV !== 'development') require('../../secrets');
 const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 console.log('LEAGUE KEY BRO',LEAGUE_API_KEY)
 
