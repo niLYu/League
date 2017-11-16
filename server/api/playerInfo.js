@@ -1,13 +1,16 @@
 const router = require('express').Router();
-const secrets = require('../../secrets');
+if (process.env.NODE_ENV === 'development') require('../../secrets');
+const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
+
 const { Player } = require('../../db');
 const axios = require('axios');
 
 const apiBase = 'https://na1.api.riotgames.com/lol';
-const apiVerification = `?api_key=${secrets.LEAGUE_API_KEY}`;
+const apiVerification = `?api_key=${LEAGUE_API_KEY}`;
 
 // gets basic profile by player name
 router.get('/player/:name', (req, res, next) => {
+  console.log(LEAGUE_API_KEY, 'HELLO HI');
   axios.get(`${apiBase}/summoner/v3/summoners/by-name/${req.params.name}${apiVerification}`)
     .then(response => response.data)
     .then(playerInfo => res.json(playerInfo))
