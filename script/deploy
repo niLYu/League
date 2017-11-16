@@ -6,11 +6,11 @@ set -e
 
 function cleanup_at_exit {
   git checkout master
-  git branch -D deploy
+  git branch -D testDeploy
 }
 
 trap cleanup_at_exit EXIT
-git checkout -b deploy
+git checkout -b testDeploy
 
 NODE_ENV=production webpack -p
 
