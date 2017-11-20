@@ -7,16 +7,32 @@ const Champion = (props) => {
   const {
     championId, name, key, title, championLevel, championPointsSinceLastLevel, championPointsUntilNextLevel,
   } = props.champ;
+  const { index } = props;
+  // return (
+  //   <div>
+  //     <div>
+  //       <img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${key}.png`} alt="championIcon" height="100px" width="100px" />
+  //     </div>
+  //     <div>
+  //       {name}<br />
+  //       {title}
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div>
-      <div>
-        <img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${key}.png`} alt="championIcon" height="100px" width="100px" />
-      </div>
-      <div>
-        {name}<br />
-        {title}
-      </div>
-    </div>
+    <tr>
+      <td>{index}</td>
+      <td>
+        <img src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/champion/${key}.png`} alt="championIcon" height="50px" width="50px" />
+        {name}
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
   );
 };
 
