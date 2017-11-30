@@ -2,7 +2,8 @@ const router = require('express').Router();
 const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
-const secrets = require('../../secrets');
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
+const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 const champList = require('../../seed.jsx');
 
 /* This file contains routes used to get static-data using RIOT's Data Dragon tool
@@ -14,7 +15,7 @@ const apiRoute = 'https://na1.api.riotgames.com/lol/static-data/v3';
 // Api route to get static data - no rate limit
 const ddragonApiRoute = 'http://ddragon.leagueoflegends.com/cdn';
 
-const apiValidation = `?api_key=${secrets.LEAGUE_API_KEY}`;
+const apiValidation = `?api_key=${LEAGUE_API_KEY}`;
 let latestDDVersion = '7.22.1';
 const champListArray = Object.values(champList.Heroes);
 
