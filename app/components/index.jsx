@@ -10,7 +10,6 @@ export { default as Masteries } from './Masteries';
 export { default as Match } from './Match';
 export { default as ProfileSummary } from './ProfileSummary';
 export { default as Runes } from './Runes';
-export { default as SoloFive } from './SoloFive';
+export { default as QueueRank } from './QueueRank';
 export { default as Summary } from './Summary';
-export { default as FlexThree } from './FlexThree';
-export { default as FlexFive } from './FlexFive';
+
