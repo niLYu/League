@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BasicProfile, SummonerTabs } from './index';
-import { ChampionMasteries } from '../components';
 
 // possible because we're exporting from one file
-import { fetchUser, fetchRecent, fetchChampMastery, fetchMasteryPages, fetchRunePages } from '../reducers';
+import { fetchUser, fetchRecent, fetchChampMastery } from '../reducers';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -21,7 +20,6 @@ class Summoner extends Component {
   render() {
     return (
       <div>
-        {/* <ChampionMasteries /> */}
         {
           this.props.user.id &&
           <BasicProfile user={this.props.user} />
@@ -63,12 +61,11 @@ const mapDispatchToProps = dispatch => ({
     const username = params.get('username');
     dispatch(fetchUser(username))
       .then((action) => {
+        // eslint-disable-next-line prefer-destructuring
         user = action.user;
         dispatch(fetchRecent(+user.accountId));
       })
       .then(() => dispatch(fetchChampMastery(+user.id)))
-      // .then(() => dispatch(fetchMasteryPages(+user.id)))
-      // .then(() => dispatch(fetchRunePages(+user.id)))
       .catch(err => console.error(err));
   },
 });

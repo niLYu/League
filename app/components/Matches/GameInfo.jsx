@@ -7,7 +7,7 @@ const GameInfo = (props) => {
   const datePlayed = JSON.stringify(new Date(props.timestamp));
   return (
     <div >
-      <h3>{datePlayed}</h3>
+      <h4>{datePlayed}</h4>
       <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
     </div>
   );

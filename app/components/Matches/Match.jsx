@@ -2,9 +2,9 @@ import React from 'react';
 import styles from '../../styles/Match.css';
 import GameInfo from './GameInfo';
 
-const Match = () => (
+const Match = props => (
   <div className={styles.match_container}>
-    <GameInfo />
+    <GameInfo {...props} />
   </div>
 );
 
