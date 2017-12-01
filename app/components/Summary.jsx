@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Match } from './index';
 import styles from '../styles/Summary.css';
 
@@ -10,5 +11,15 @@ const Summary = props => (
     }
   </div>
 );
+
+Summary.propTypes = {
+  games: PropTypes.shape({
+    matches: PropTypes.array.isRequired,
+  }),
+};
+
+Summary.defaultProps = {
+  games: {},
+};
 
 export default Summary;
