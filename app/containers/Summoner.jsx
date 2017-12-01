@@ -42,8 +42,8 @@ Summoner.propTypes = {
     search: PropTypes.string.isRequired,
   }),
   user: PropTypes.shape({
-    id: PropTypes.number,
-    accountId: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    accountId: PropTypes.number.isRequired,
   }),
   getAllUserInfo: PropTypes.func.isRequired,
 };
@@ -67,8 +67,8 @@ const mapDispatchToProps = dispatch => ({
         dispatch(fetchRecent(+user.accountId));
       })
       .then(() => dispatch(fetchChampMastery(+user.id)))
-      .then(() => dispatch(fetchMasteryPages(+user.id)))
-      .then(() => dispatch(fetchRunePages(+user.id)))
+      // .then(() => dispatch(fetchMasteryPages(+user.id)))
+      // .then(() => dispatch(fetchRunePages(+user.id)))
       .catch(err => console.error(err));
   },
 });

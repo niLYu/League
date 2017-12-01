@@ -16,7 +16,7 @@ export const fetchProfile = userId => dispatch => axios.get(`api/playerInfo/prof
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function profileReducer(profile = {}, action) {
+export default function profileReducer(profile = [], action) {
   switch (action.type) {
     case GET_PROFILE:
       return action.profile;
