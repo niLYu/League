@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import { Navbar, NotFound, Leaderboards, Footer } from './components';
-import { Home, Summoner } from './containers';
+import { Navbar, NotFound, Footer } from './components';
+import { Home, Summoner, Leaderboards } from './containers';
 
 render(
   <Provider store={store}>
