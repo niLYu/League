@@ -1,7 +1,9 @@
 const router = require('express').Router();
-if (process.env.NODE_ENV !== 'production') require('../../secrets');
-const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 
+// eslint-disable-next-line global-require
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
+
+const { LEAGUE_API_KEY } = process.env;
 const { Player } = require('../../db');
 const axios = require('axios');
 
