@@ -10,7 +10,7 @@ I realize someone else should have written the description.
 * You must have a League account in order to get an API key
 * [Get key](https://developer.riotgames.com/)
 * Store your keys in your own secrets.js file
-  -> LEAGUE_API_KEY = "your league key"
+  -> process.env.LEAGUE_API_KEY = "your league key"
 
 ### Prerequisites
 
@@ -69,4 +69,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Jack for checking to make sure everyone is alive
 * Yu for his savage comments
 * Actually they're both pretty savage T-T
+* Sulamita wasn't actually a part of this project at all...
 
