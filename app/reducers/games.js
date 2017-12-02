@@ -10,11 +10,11 @@ const getRecent = games => ({ type: GET_GAMES, games });
 
 /* -------------    THUNK CREATORS     ---------------- */
 
-export const fetchRecent = accountId => (dispatch) => {
+export const fetchRecent = accountId => dispatch =>
   axios.get(`api/playerInfo/recent/${accountId}`)
     .then(games => games.data)
     .then(games => dispatch(getRecent(games)));
-};
+
 
 /* -----------------    REDUCER    -------------------- */
 

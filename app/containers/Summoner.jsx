@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { BasicProfile, SummonerTabs } from './index';
 
 // possible because we're exporting from one file
-import { fetchUser, fetchRecent, fetchChampMastery } from '../reducers';
+import { fetchUser, fetchRecent, fetchMatch, fetchChampMastery } from '../reducers';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -48,9 +48,9 @@ Summoner.propTypes = {
 
 
 const mapStateToProps = ({
-  user, games, championMastery, masteryPages, runePages,
+  user, games, championMastery, masteryPages, runePages, matchInfo,
 }) => ({
-  user, games, championMastery, masteryPages, runePages,
+  user, games, championMastery, masteryPages, runePages, matchInfo,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -63,7 +63,12 @@ const mapDispatchToProps = dispatch => ({
       .then((action) => {
         // eslint-disable-next-line prefer-destructuring
         user = action.user;
-        dispatch(fetchRecent(+user.accountId));
+        dispatch(fetchRecent(+user.accountId))
+          .then((matches) => {
+            matches.games.matches.forEach((match) => {
+              fetchMatch(dispatch(fetchMatch(match.gameId)));
+            });
+          });
       })
       .then(() => dispatch(fetchChampMastery(+user.id)))
       .catch(err => console.error(err));

@@ -9,6 +9,7 @@ import soloChallengers from './soloChallengers';
 import liveGame from './liveGame';
 import profile from './profile';
 import news from './news';
+import matchInfo from './matchInfo';
 
 // exporting from one central file, helps keep track of thunks as well
 export * from './championMastery';
@@ -20,6 +21,7 @@ export * from './soloChallengers';
 export * from './user';
 export * from './profile';
 export * from './news';
+export * from './matchInfo';
 
 const rootReducer = combineReducers({
   user,
@@ -31,6 +33,7 @@ const rootReducer = combineReducers({
   liveGame,
   profile,
   news,
+  matchInfo,
 });
 
 export default rootReducer;

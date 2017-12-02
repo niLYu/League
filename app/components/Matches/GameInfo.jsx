@@ -25,10 +25,9 @@ const GameInfo = (props) => {
   };
 
   const displayDate = getMatchDate();
-  console.log(props.queue);
   return (
     <div>
-      {/* <h4>{queueMode[props.queue].map}</h4> */}
+      <h4>{queueMode[props.queue].map}</h4>
       <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
       <h4>{displayDate}</h4>
     </div>
@@ -38,6 +37,7 @@ const GameInfo = (props) => {
 GameInfo.propTypes = {
   champion: PropTypes.number.isRequired,
   timestamp: PropTypes.number.isRequired,
+  queue: PropTypes.number.isRequired,
 };
 
 export default GameInfo;
