@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import champList from '../../../seed';
+import queueMode from '../../util/queueModes';
 
 const GameInfo = (props) => {
   const champ = champList.Heroes[props.champion].key;
@@ -24,9 +25,10 @@ const GameInfo = (props) => {
   };
 
   const displayDate = getMatchDate();
-  console.log(props);
+  console.log(props.queue);
   return (
-    <div >
+    <div>
+      {/* <h4>{queueMode[props.queue].map}</h4> */}
       <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
       <h4>{displayDate}</h4>
     </div>
