@@ -4,11 +4,31 @@ import champList from '../../../seed';
 
 const GameInfo = (props) => {
   const champ = champList.Heroes[props.champion].key;
-  const datePlayed = JSON.stringify(new Date(props.timestamp));
+  const currentDate = Date.now();
+  const timeDiff = (currentDate - props.timestamp) / 1000 / 60; // minutes ago
+  const hoursAgo = timeDiff / 60;
+
+  const getMatchDate = () => {
+    const daysAgo = Math.floor(hoursAgo / 24);
+    if (timeDiff < 60) {
+      return `${Math.floor(timeDiff)} minutes ago`;
+    } else if (hoursAgo < 24) {
+      if (hoursAgo < 2) {
+        return `${Math.floor(hoursAgo)} hour ago`;
+      }
+      return `${Math.floor(hoursAgo)} hours ago`;
+    } else if (daysAgo < 2) {
+      return `${daysAgo} day`;
+    }
+    return `${daysAgo} days ago`;
+  };
+
+  const displayDate = getMatchDate();
+  console.log(props);
   return (
     <div >
-      <h4>{datePlayed}</h4>
       <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+      <h4>{displayDate}</h4>
     </div>
   );
 };
