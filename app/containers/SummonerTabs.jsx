@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import update from 'react-addons-update';
-import { Summary, Leagues, Champions, Masteries, Runes } from '../components'
+import { Summary, Leagues, Champions, Masteries, Runes } from '../components';
 import { LiveGame, SummonerTabsMobile } from './index';
 import styles from '../styles/SummonerTabs.css';
 
