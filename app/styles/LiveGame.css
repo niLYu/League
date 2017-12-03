@@ -13,18 +13,12 @@
   justify-content: center;
 }
 
-.blueTeam_container {
-  background-color:rgb(77, 77, 250);
-  min-width: 100%;
-}
 .blueTeam{
-  /* display: flex; */
   background-color:rgb(77, 77, 250);
 }
 
 .redTeam{
   background-color: rgb(243, 81, 81);
-  /* display: flex; */
 }
 
 .td{
@@ -38,13 +32,7 @@
   padding: .5%;
 
 }
-.center{
-  margin: auto;
-  width: 50%;
-}
 
-.flexContainer{
-  display: flex;
-}
+
 
 
