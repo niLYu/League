@@ -23,7 +23,6 @@ const GameInfo = (props) => {
     }
     return `${daysAgo} days ago`;
   };
-
   const displayDate = getMatchDate();
   return (
     <div>

@@ -16,11 +16,11 @@ export const fetchMatch = matchId => dispatch => axios.get(`api/matchInfo/match/
 
 /* -----------------    REDUCER    -------------------- */
 
-export default function matchInfoReducer(initialState = [], action) {
+export default function matchInfoReducer(state = [], action) {
   switch (action.type) {
     case GET_MATCH:
-      return [...initialState, ...[action.match]];
+      return [...state, ...[action.match]];
     default:
-      return initialState;
+      return state;
   }
 }

@@ -15,7 +15,6 @@ export const fetchRecent = accountId => dispatch =>
     .then(games => games.data)
     .then(games => dispatch(getRecent(games)));
 
-
 /* -----------------    REDUCER    -------------------- */
 
 export default function gamesReducer(games = { matches: [] }, action) {

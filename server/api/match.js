@@ -71,7 +71,9 @@ router.get('/match/:matchId', (req, res, next) => {
   const url = `${apiRoute}/matches/${req.params.matchId}${apiValidation}`;
   axios.get(url)
     .then(response => response.data)
-    .then((matchInfo) => { res.json(matchInfo); })
+    .then((matchInfo) => {
+      res.json(matchInfo);
+    })
     .catch(next);
 });
 

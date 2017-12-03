@@ -4,16 +4,13 @@ import { connect } from 'react-redux';
 import { Match } from './index';
 import styles from '../styles/Summary.css';
 
-const Summary = (props) => {
-  console.log(props);
-  return (
-    <div className={styles.summary_container}>
-      <div>Summary of Recent Games</div>
-      {props.games.matches.map(match =>
+const Summary = props => (
+  <div className={styles.summary_container}>
+    <div>Summary of Recent Games</div>
+    {props.games.matches.map(match =>
       (<Match {...match} key={match.gameId} />))
     }
-    </div>);
-};
+  </div>);
 
 Summary.propTypes = {
   games: PropTypes.shape({
