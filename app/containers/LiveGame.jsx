@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchLiveGame } from '../reducers';
 import styles from '../styles/LiveGame.css';
-import LiveGameRed from '../components/LiveGameRed';
-import LiveGameBlue from '../components/LiveGameBlue';
+import LiveGameTeam from '../components/LiveGameTeam';
 
 class LiveGame extends Component {
   componentDidMount() {
@@ -12,13 +11,22 @@ class LiveGame extends Component {
   }
 
   render() {
-    console.log(this.props.liveGame);
     return (
       <div className={styles.container}>
         <h2>Live Game</h2>
         <h3 className={styles.center}>{this.props.liveGame.gameMode} Mode</h3>
-        <LiveGameBlue team={this.props.liveGame} />
-        <LiveGameRed team={this.props.liveGame} />
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th className={styles.td}>Player</th>
+              <th className={styles.td}>some column</th>
+              <th className={styles.td}>some other column</th>
+            </tr>
+          </thead>
+        </table>
+
+        <LiveGameTeam color="blue" team={this.props.liveGame} />
+        <LiveGameTeam color="red" team={this.props.liveGame} />
       </div>
     );
   }
