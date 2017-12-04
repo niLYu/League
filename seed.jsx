@@ -654,6 +654,12 @@ module.exports = {
       name: 'Kayn',
       title: 'the Shadow Reaper',
     },
+    142: {
+      id: 142,
+      key: 'Zoe',
+      name: 'Zoe',
+      title: 'The Aspect of Twilight',
+    },
     143: {
       id: 143,
       key: 'Zyra',
