@@ -5,7 +5,6 @@ import { Heroes } from '../../seed';
 
 const LiveGameTeam = props => (
   <div>
-    {/* blue team table */}
     <table className={styles.table}>
       <thead>
         <tr>
