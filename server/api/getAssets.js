@@ -3,6 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
+
 const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 const champList = require('../../seed.jsx');
 
@@ -37,18 +38,21 @@ const saveChampIcon = (champion, srcUrl) => {
 };
 
 // Gets and assigns the latest DDVersion
-router.use('/', (req, res, next) => {
-  axios.get(`${apiRoute}/versions${apiValidation}`)
-    .then((response) => {
-      [latestDDVersion] = response.data;
-    })
-    .catch(next);
-  next();
+router.use('/', async (req, res, next) => {
+  try {
+    const response = await axios.get(`${apiRoute}/versions${apiValidation}`);
+    [latestDDVersion] = response.data;
+  } catch (e) {
+    console.log('Error updating DDVersion:', e);
+  } finally {
+    next();
+  }
 });
 
 // Gets all champion icons
 router.get('/all', (req, res, next) => {
-  const url = `${ddragonApiRoute}/${latestDDVersion}/img/champion`;
+  const url = `${ddragonApiRoute}/${latestDDVersion}
+  /img/champion`;
   champListArray.forEach((champ) => {
     saveChampIcon(champ.key, `${url}/${champ.key}.png`);
   });
