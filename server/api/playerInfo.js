@@ -1,7 +1,9 @@
 const router = require('express').Router();
-if (process.env.NODE_ENV !== 'production') require('../../secrets');
-const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 
+// eslint-disable-next-line global-require
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
+
+const { LEAGUE_API_KEY } = process.env;
 const { Player } = require('../../db');
 const axios = require('axios');
 
@@ -56,9 +58,21 @@ router.get('/championMastery/:accountId', (req, res, next) => {
 
 // gets recent 20 games by account id
 router.get('/recent/:accountId', (req, res, next) => {
-  axios.get(`${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}/recent${apiVerification}`)
+  let recentGames;
+  const recentMatchURL = `${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}/recent`;
+  axios.get(`${recentMatchURL}${apiVerification}`)
     .then(response => response.data)
-    .then(recentMatchInfo => res.json(recentMatchInfo))
+    .then((recentMatchInfo) => {
+      recentGames = recentMatchInfo.matches.slice(0, 10);
+      const allGames = recentGames.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
+      return Promise.all(allGames).catch((e) => { console.log(e); });
+    }).then((games) => {
+      // adding each individual match data to every recent match
+      games.forEach((game, index) => {
+        recentGames[index].details = game.data;
+      });
+      res.json(recentGames);
+    })
     .catch(next);
 });
 

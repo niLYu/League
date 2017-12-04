@@ -4,7 +4,6 @@ import { saveToStorage } from '../util/api';
 /* -----------------    ACTIONS    -------------------- */
 
 const GET_NEWS = 'GET_NEWS';
-// const GET_NEWS_STORAGE = 'GET_NEWS_STORAGE';
 
 /* -------------    ACTION CREATORS    ---------------- */
 
@@ -16,20 +15,21 @@ export const fetchNews = () => dispatch => axios.get('/api/riotScraper/news')
   .then(res => res.data)
   .then((news) => {
     saveToStorage('news', news);
-    return dispatch(getNews(news));
+    dispatch(getNews(news));
   })
   .catch(err => console.error(err));
 
 export const fetchNewsFromStorage = (news, expiration) => (dispatch) => {
   const deserialized = JSON.parse(window.localStorage.getItem(news));
+  if (!deserialized) return;
   // time difference of date stored vs current date in hours
-  if (!deserialized ) return;
   const timeInStorage = (new Date().getTime() - deserialized.time) / 1000 / 60 / 60;
   // need to check against undefined incase 0 is passed in for expiration
   if (expiration === undefined || timeInStorage < expiration) {
-    return dispatch(getNews(deserialized.news));
+    dispatch(getNews(deserialized.news));
   }
 };
+
 /* -----------------    REDUCER    -------------------- */
 
 export default function newsReducer(state = [], action) {

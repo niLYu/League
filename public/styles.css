@@ -1,13 +1,13 @@
 html, body {
   height: 100%;
   margin: 0;
+  background-color: #fafafa;
 }
 
 #app {
   height: 100%;
   margin: auto;
   width: 100vw;
-  background-color: #fafafa;
 }
 
 .flex {

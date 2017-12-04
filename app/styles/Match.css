@@ -1,0 +1,12 @@
+.match_container {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.victory {
+  background-color: lightskyblue;
+}
+
+.defeat {
+  background-color: red;
+}
