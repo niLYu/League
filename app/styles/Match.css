@@ -1,6 +1,7 @@
 .match_container {
   width: 100%;
-  margin-bottom: 5px;
+  padding: 5px 10px;
+  margin: 8px 0;
 }
 
 .victory {

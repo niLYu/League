@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import champList from '../../../seed';
 import queueMode from '../../util/queueModes';
@@ -44,6 +43,4 @@ GameInfo.propTypes = {
   gameOutcome: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ user }) => ({ user });
-
-export default connect(mapStateToProps, null)(GameInfo);
+export default GameInfo;
