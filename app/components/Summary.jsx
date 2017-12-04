@@ -7,19 +7,17 @@ import styles from '../styles/Summary.css';
 const Summary = props => (
   <div className={styles.summary_container}>
     <div>Summary of Recent Games</div>
-    {props.games.matches.map(match =>
+    {props.games.map(match =>
       (<Match {...match} key={match.gameId} />))
     }
   </div>);
 
 Summary.propTypes = {
-  games: PropTypes.shape({
-    matches: PropTypes.array.isRequired,
-  }),
+  games: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 Summary.defaultProps = {
-  games: {},
+  games: [],
 };
 
 const mapDispatchToProps = ({ games }) => ({ games });

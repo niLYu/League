@@ -63,13 +63,13 @@ router.get('/recent/:accountId', (req, res, next) => {
   axios.get(`${recentMatchURL}${apiVerification}`)
     .then(response => response.data)
     .then((recentMatchInfo) => {
-      recentGames = recentMatchInfo;
-      const allGames = recentMatchInfo.matches.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
+      recentGames = recentMatchInfo.matches.slice(0, 10);
+      const allGames = recentGames.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
       return Promise.all(allGames).catch((e) => { console.log(e); });
     }).then((games) => {
       // adding each individual match data to every recent match
       games.forEach((game, index) => {
-        recentGames.matches[index].details = game.data;
+        recentGames[index].details = game.data;
       });
       res.json(recentGames);
     })
