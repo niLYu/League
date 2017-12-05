@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import champList from '../../../seed';
 import queueMode from '../../util/queueModes';
+import styles from '../../styles/Match.css';
 
 const GameInfo = (props) => {
   const champ = champList.Heroes[props.champion].key;
@@ -19,7 +20,7 @@ const GameInfo = (props) => {
       }
       return `${Math.floor(hoursAgo)} hours ago`;
     } else if (daysAgo < 2) {
-      return `${daysAgo} day`;
+      return `${daysAgo} day ago`;
     }
     return `${daysAgo} days ago`;
   };
@@ -27,11 +28,11 @@ const GameInfo = (props) => {
   const displayDate = getMatchDate();
 
   return (
-    <div>
-      <h4>{queueMode[props.queue].map}</h4>
+    <div className={styles.gameInfo_container}>
+      <div>{queueMode[props.queue].map}</div>
       <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-      <h4>{props.gameOutcome}</h4>
-      <h4>{displayDate}</h4>
+      <div>{props.gameOutcome}</div>
+      <div>{displayDate}</div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const Match = (props) => {
   const gameOutcome = participantData && participantData.stats.win ? 'Victory' : 'Defeat';
 
   return (
-    <div className={`${styles.match_container} ${(gameOutcome === 'Victory' ? styles.victory : styles.defeat)}`}>
+    <div className={`${styles.match_container} ${gameOutcome === 'Victory' ? styles.victory : styles.defeat}`}>
       <GameInfo {...props} gameOutcome={gameOutcome} />
     </div>
   );
