@@ -19,6 +19,7 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <img src="/images/summonerSpells/SummonerFlash.png" alt="icon" />
         <PlayerSearch styles={homeSearch} />
         <Carousel news={this.props.news} />
       </div>
