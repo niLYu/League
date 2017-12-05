@@ -4,9 +4,10 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const summonerSpells = require('../../summonerSpells.js');
+// eslint-disable-next-line global-require
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
 
-const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
+const { LEAGUE_API_KEY } = process.env;
 const champList = require('../../seed.jsx');
 
 /* This file contains routes used to get static-data using RIOT's Data Dragon tool
@@ -19,7 +20,7 @@ const apiRoute = 'https://na1.api.riotgames.com/lol/static-data/v3';
 const ddragonApiRoute = 'http://ddragon.leagueoflegends.com/cdn';
 
 const apiValidation = `?api_key=${LEAGUE_API_KEY}`;
-const latestDDVersion = '7.22.1';
+let latestDDVersion = '7.22.1';
 const champListArray = Object.values(champList.Heroes);
 
 const saveImageAssets = (filePath, name, image) => {
@@ -33,6 +34,11 @@ const saveImageAssets = (filePath, name, image) => {
   });
 };
 
+/* An example of how to use (pass in these arguments)
+  url: http://ddragon.leagueoflegends.com/cdn/7.22.1/img/spell
+  name: SummonerFlash
+  filePath: location where you want to save the assets */
+
 const fetchAndSave = (url, name, filePath) => {
   const srcUrl = `${url}/${name}.png`;
   axios.get(srcUrl, { responseType: 'arraybuffer' })
@@ -43,44 +49,36 @@ const fetchAndSave = (url, name, filePath) => {
     .catch((e) => { console.log(e); });
 };
 
-const saveChampIcon = (champion, srcUrl) => {
-  axios.get(srcUrl, { responseType: 'arraybuffer' })
-    .then((response) => {
-      const filePath = path.resolve(__dirname, '../../public/images/champions');
-      const image = Buffer.from(response.data);
-      saveImageAssets(filePath, champion, image);
-    })
-    .catch((e) => { console.log(e); });
-};
-
 // Gets and assigns the latest DDVersion
-// router.use('/', async (req, res, next) => {
-//   try {
-//     const response = await axios.get(`${apiRoute}/versions${apiValidation}`);
-//     [latestDDVersion] = response.data;
-//   } catch (e) {
-//     console.log('Error updating DDVersion:', e);
-//   } finally {
-//     next();
-//   }
-// });
+router.use('/', async (req, res, next) => {
+  try {
+    const response = await axios.get(`${apiRoute}/versions${apiValidation}`);
+    [latestDDVersion] = response.data;
+  } catch (e) {
+    console.log('Error updating DDVersion: ', e);
+  } finally {
+    next();
+  }
+});
 
 // Gets all champion icons
 router.get('/champions', (req, res, next) => {
   const url = `${ddragonApiRoute}/${latestDDVersion}/img/champion`;
+  const filePath = path.resolve(__dirname, '../../public/images/champions');
   champListArray.forEach((champ) => {
-    saveChampIcon(champ.key, `${url}/${champ.key}.png`);
+    fetchAndSave(url, champ.key, filePath);
   });
   next();
 });
 
 // Gets champion icon for one champion
 router.get('/champion/:name', (req, res, next) => {
-  // Champion first and last name needs to start capitalized with no spaces
+  // Champion's first and last name needs to start capitalized with no spaces
+  const url = `${ddragonApiRoute}/${latestDDVersion}/img/champion`;
+  const filePath = path.resolve(__dirname, '../../public/images/champions');
   const champion = req.params.name.split(' ')
     .map(name => name[0].toUpperCase() + name.slice(1).toLowerCase()).join('');
-  const url = `${ddragonApiRoute}/${latestDDVersion}/img/champion/${champion}.png`;
-  saveChampIcon(champion, url);
+  fetchAndSave(url, champion, filePath);
   next();
 });
 
