@@ -1,7 +1,7 @@
 .match_container {
-  width: 90%;
-  padding: 5px 5px;
-  margin: 8px auto;
+  display: flex;
+  padding: 5px 10px;
+  margin: 8px 0;
 }
 
 .victory {
@@ -19,5 +19,9 @@
 .gameInfo_container img {
   width: 50px;
   height: 50px;
+}
+
+.kda_container {
+  width: 20%;
 }
 
