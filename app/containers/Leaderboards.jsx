@@ -32,7 +32,7 @@ class Leaderboards extends Component {
                 this.props.soloChallengers.entries.map((el, index) => {
                   if (index === 0) {
                     return (
-                      <tr>
+                      <tr key={el.playerOrTeamName}>
                         <th className={styles.rankOne}>
                           {`${index + 1}. `}
                         </th>
@@ -55,7 +55,7 @@ class Leaderboards extends Component {
                   }
                   if (index === 1) {
                     return (
-                      <tr>
+                      <tr key={el.playerOrTeamName}>
                         <th className={styles.rankTwo}>
                           {`${index + 1}. `}
                         </th>
@@ -78,7 +78,7 @@ class Leaderboards extends Component {
                   }
                   if (index === 2) {
                     return (
-                      <tr>
+                      <tr key={el.playerOrTeamName}>
                         <th className={styles.rankThree}>
                           {`${index + 1}. `}
                         </th>
@@ -100,7 +100,7 @@ class Leaderboards extends Component {
                     );
                   }
                     return (
-                      <tr>
+                      <tr key={el.playerOrTeamName}>
                         <th className={styles.thLeft}>
                           {`${index + 1}. `}
                         </th>

@@ -4,30 +4,24 @@ const router = require('express').Router();
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
 
 const { LEAGUE_API_KEY } = process.env;
-const { Player } = require('../../db');
+const { Player } = require('../../db/models');
 const axios = require('axios');
 
 const apiBase = 'https://na1.api.riotgames.com/lol';
 const apiVerification = `?api_key=${LEAGUE_API_KEY}`;
 
-// gets basic profile by player name
+// gets basic profile by player name and
 router.get('/player/:name', (req, res, next) => {
   axios.get(`${apiBase}/summoner/v3/summoners/by-name/${req.params.name}${apiVerification}`)
     .then(response => response.data)
-    .then(playerInfo => res.json(playerInfo))
-    .catch(next);
-});
-
-// post player into database by name
-router.post('/player/:name', (req, res, next) => {
-  Player.findOrCreate({
-    where: {
-      name: req.params.name,
-    },
-    defaults: req.body,
-  })
-    .spread((user, created) => {
-      res.json(created);
+    .then((results) => {
+      Player.findOrCreate({
+        where: {
+          name: req.params.name,
+        },
+        defaults: results,
+      });
+      res.json(results);
     })
     .catch(next);
 });
