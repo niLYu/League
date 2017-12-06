@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import styles from '../../styles/Match.css';
 import GameInfo from './GameInfo';
 import KDA from './KDA';
+import summonerSpells from '../../../summonerSpellsId';
 
 const Match = (props) => {
   const participants = props.details.participantIdentities;
@@ -19,10 +20,10 @@ const Match = (props) => {
 
   const participantData = props.details.participants[participantId() - 1];
   const gameOutcome = participantData && participantData.stats.win ? 'Victory' : 'Defeat';
-
+  console.log(summonerSpells);
   return (
     <div className={`${styles.match_container} ${gameOutcome === 'Victory' ? styles.victory : styles.defeat}`}>
-      <GameInfo {...props} gameOutcome={gameOutcome} />
+      <GameInfo {...props} gameOutcome={gameOutcome} userData={participantData} />
       <KDA userData={participantData} />
     </div>
   );

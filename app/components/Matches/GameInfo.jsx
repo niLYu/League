@@ -26,7 +26,7 @@ const GameInfo = (props) => {
   };
 
   const displayDate = getMatchDate();
-
+  console.log('props', props.userData);
   return (
     <div className={styles.gameInfo_container}>
       <div>{queueMode[props.queue].map}</div>
