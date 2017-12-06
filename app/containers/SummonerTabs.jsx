@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import update from 'react-addons-update';
-import { Summary, Leagues, Champions, Masteries, Runes } from '../components';
+import { Summary, Leagues, Champions, ChampionMasteries, Runes } from '../components';
 import { LiveGame, SummonerTabsMobile } from './index';
 import styles from '../styles/SummonerTabs.css';
 
@@ -69,7 +69,7 @@ class SummonerTabs extends Component {
           {tabs[SummaryTab] && <Summary />}
           {tabs[LeaguesTab] && <Leagues />}
           {tabs[ChampionsTab] && <Champions />}
-          {tabs[MasteriesTab] && <Masteries />}
+          {tabs[MasteriesTab] && <ChampionMasteries />}
           {tabs[RunesTab] && <Runes />}
           {tabs[LiveTab] && <LiveGame id={this.props.user.id} />}
         </div>

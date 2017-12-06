@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/Profile.css';
 
 const QueueRank = ({ rank }) => (
-  <div>
+  <div className={styles.flexIconContainer}>
     {rank.tier ?
       <div className={styles.flexcontainer}>
         <div className={styles.flexRankIcon}>
