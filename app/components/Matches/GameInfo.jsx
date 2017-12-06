@@ -33,9 +33,13 @@ const GameInfo = (props) => {
   return (
     <div className={styles.gameInfo_container}>
       <div>{queueMode[props.queue].map}</div>
-      <img src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-      <img src={`/images/summonerSpells/${ss1}.png`} alt={`${ss1} icon`} />
-      <img src={`/images/summonerSpells/${ss2}.png`} alt={`${ss2} icon`} />
+      <div className={styles.icons_container}>
+        <img className={styles.champion}src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+        <div className={styles.summonerSpells}>
+          <img src={`/images/summonerSpells/${ss1}.png`} alt={`${ss1} icon`} />
+          <img src={`/images/summonerSpells/${ss2}.png`} alt={`${ss2} icon`} />
+        </div>
+      </div>
       <div>{props.gameOutcome}</div>
       <div>{displayDate}</div>
     </div>

@@ -16,9 +16,19 @@
   width: 20%;
 }
 
-.gameInfo_container img {
+.icons_container {
+  display: flex;
+}
+
+.champion {
   width: 50px;
   height: 50px;
+  margin-right: 3px;
+}
+
+.summonerSpells img {
+  width: 25px;
+  height: 25px;
 }
 
 .kda_container {
