@@ -107,5 +107,18 @@ router.get('/summonerSpellsIcons', (req, res, next) => {
   next();
 });
 
+router.get('/itemsData', (req, res, next) => {
+  const url = `${ddragonApiRoute}/${latestDDVersion}/data/en_US/item.json`;
+  axios.get(url)
+    .then(response => response.data)
+    .then((spells) => {
+      const filePath = path.resolve(__dirname, '../..');
+      const file = `module.exports = ${util.inspect(spells, { depth: null })}`;
+      fs.writeFileSync(`${filePath}/items.js`, file, 'utf-8');
+      res.json(spells);
+    })
+    .catch(next);
+});
+
 module.exports = router;
 
