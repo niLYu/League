@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -12,7 +14,9 @@ const PlayerItems = (props) => {
     <div>
       <img src={`/images/items/${ward}.png`} alt={`${ward} icon`} />
       <div>
-        {itemBuild.map(item => <img src={`/images/items/${item}.png`} alt={`${item} icon`} />)}
+        {itemBuild.map((item, index) =>
+          <img key={index} src={`/images/items/${item}.png`} alt={`${item} icon`} />)
+        }
       </div>
     </div>
   );
