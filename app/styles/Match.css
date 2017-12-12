@@ -52,10 +52,15 @@
 
 .players_container {
   display: flex;
+  align-items: center;
 }
 
 .team_container {
   width: 150px;
+}
+
+.team_container a {
+  color: black;
 }
 
 .champ_list {

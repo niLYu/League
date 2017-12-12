@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import champList from '../../../seed';
 import styles from '../../styles/Match.css';
 
@@ -17,11 +18,18 @@ const Players = (props) => {
           return (
             <div key={member.player.summonerName}>
               <div>
-                <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-                {member.player.summonerName.length > 10
+                <NavLink
+                  to={{
+                  pathname: '/summoner',
+                  search: `username=${member.player.summonerName}`,
+                }}
+                >
+                  <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                  {member.player.summonerName.length > 10
                   ? `${member.player.summonerName.slice(0, 10)}...`
                   : member.player.summonerName
                 }
+                </NavLink>
               </div>
             </div>);
           })
@@ -34,11 +42,18 @@ const Players = (props) => {
           return (
             <div key={member.player.summonerName}>
               <div>
-                <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-                {member.player.summonerName.length > 12
+                <NavLink
+                  to={{
+                  pathname: '/summoner',
+                  search: `username=${member.player.summonerName}`,
+                }}
+                >
+                  <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                  {member.player.summonerName.length > 10
                   ? `${member.player.summonerName.slice(0, 10)}...`
                   : member.player.summonerName
                 }
+                </NavLink>
               </div>
             </div>);
           })
