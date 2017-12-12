@@ -5,6 +5,7 @@ import styles from '../../styles/Match.css';
 import GameInfo from './GameInfo';
 import KDA from './KDA';
 import PlayerItems from './PlayerItems';
+import Players from './Players';
 
 const Match = (props) => {
   const participants = props.details.participantIdentities;
@@ -28,6 +29,7 @@ const Match = (props) => {
         <GameInfo {...props} gameOutcome={gameOutcome} userData={participantData} />
         <KDA userData={participantData} />
         <PlayerItems userData={participantData} />
+        <Players players={props.details} />
       </div>
       }
     </div>

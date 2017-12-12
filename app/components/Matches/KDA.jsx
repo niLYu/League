@@ -4,12 +4,16 @@ import styles from '../../styles/Match.css';
 
 const KDA = (props) => {
   const { kills, deaths, assists } = props.userData.stats;
-  const killAssistRatio = ((kills + assists) / deaths).toFixed(2);
+  const killAssistRatio = ((kills + assists) / deaths);
+  const displayKDA = killAssistRatio === Infinity
+    ? 'Perfect KDA'
+    : `${killAssistRatio.toFixed(2)} : 1`;
+
   return (
     <div className={styles.kda_container}>
       <div>KDA</div>
       <div>{kills} / {deaths} / {assists}</div>
-      <div>{killAssistRatio} : 1</div>
+      <div>{displayKDA}</div>
     </div>
   );
 };
