@@ -1,14 +1,16 @@
 const router = require('express').Router();
-if (process.env.NODE_ENV !== 'production') require('../../secrets');
-const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
 
+// eslint-disable-next-line global-require
+if (process.env.NODE_ENV !== 'production') require('../../secrets');
+
+const { LEAGUE_API_KEY } = process.env;
 const { Player } = require('../../db/models');
 const axios = require('axios');
 
 const apiBase = 'https://na1.api.riotgames.com/lol';
 const apiVerification = `?api_key=${LEAGUE_API_KEY}`;
 
-// gets basic profile by player name
+// gets basic profile by player name and
 router.get('/player/:name', (req, res, next) => {
   // console.log(req.params.name);
   const name = req.params.name.toString();
@@ -32,6 +34,14 @@ router.post('/player/:name', (req, res, next) => {
   })
     .spread((user, created) => {
       res.json(created);
+    .then((results) => {
+      Player.findOrCreate({
+        where: {
+          name: req.params.name,
+        },
+        defaults: results,
+      });
+      res.json(results);
     })
     .catch(next);
 });
@@ -62,9 +72,21 @@ router.get('/championMastery/:accountId', (req, res, next) => {
 
 // gets recent 20 games by account id
 router.get('/recent/:accountId', (req, res, next) => {
-  axios.get(`${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}/recent${apiVerification}`)
+  let recentGames;
+  const recentMatchURL = `${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}/recent`;
+  axios.get(`${recentMatchURL}${apiVerification}`)
     .then(response => response.data)
-    .then(recentMatchInfo => res.json(recentMatchInfo))
+    .then((recentMatchInfo) => {
+      recentGames = recentMatchInfo.matches.slice(0, 10);
+      const allGames = recentGames.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
+      return Promise.all(allGames).catch((e) => { console.log(e); });
+    }).then((games) => {
+      // adding each individual match data to every recent match
+      games.forEach((game, index) => {
+        recentGames[index].details = game.data;
+      });
+      res.json(recentGames);
+    })
     .catch(next);
 });
 

@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const axios = require('axios');
+
+// eslint-disable-next-line global-require
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
+
 const { LEAGUE_API_KEY } = process.env;
 const Promise = require('bluebird');
 
@@ -61,6 +64,17 @@ router.get('/summoner/:summonerId', (req, res, next) => {
       });
       const aggregateChampionInfo = { totalGames, lostGames, wonGames, ...total };
       res.json(aggregateChampionInfo);
+    })
+    .catch(next);
+});
+
+// gets single match data
+router.get('/match/:matchId', (req, res, next) => {
+  const url = `${apiRoute}/matches/${req.params.matchId}${apiValidation}`;
+  axios.get(url)
+    .then(response => response.data)
+    .then((matchInfo) => {
+      res.json(matchInfo);
     })
     .catch(next);
 });

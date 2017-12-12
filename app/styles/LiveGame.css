@@ -1,23 +1,27 @@
+.container {
+  width: 100%;
+}
+
 .table {
   margin:auto;
   background-color: white;
   width: 80%;
 }
 
-.center {
+.center{
   text-align: center;
+  justify-content: center;
 }
+
 .blueTeam{
   background-color:rgb(77, 77, 250);
-
 }
 
 .redTeam{
   background-color: rgb(243, 81, 81);
 }
 
-.td
-{
+.td{
   border: 1px solid grey;
   width : 33%;
   text-align: center;
@@ -25,13 +29,10 @@
 
 .banSize{
   width: 5%;
-  height: 11.5%;
-  /* padding: .25%; */
-  padding: 1px;
-}
-.center
-{
-  margin: auto;
-  width: 50%;
+  padding: .5%;
 
 }
+
+
+
+

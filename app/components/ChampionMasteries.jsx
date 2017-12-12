@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Champion } from './index';
+import styles from '../styles/ChampionMastery.css';
 
-const ChampionMasteries = (props) => {
-  const { champions } = props;
-  const filtered = champions.filter(el => (el.championLevel > 4));
+const ChampionMasteries = ({ champions }) => {
+  const filtered = champions.slice(0, 10);
   return (
-    <div>
+    <div className={styles.container}>
       <div> All Champion Masteries </div>
       { filtered.length &&
           filtered.map(champ => <Champion champ={champ} key={champ.championId} />)

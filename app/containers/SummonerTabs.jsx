@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import update from 'react-addons-update';
-import { Summary, Leagues, Champions, Masteries, Runes } from '../components'
+import { Summary, Leagues, Champions, ChampionMasteries, Runes } from '../components';
 import { LiveGame, SummonerTabsMobile } from './index';
 import styles from '../styles/SummonerTabs.css';
 
@@ -67,10 +66,10 @@ class SummonerTabs extends Component {
         : <SummonerTabsMobile tabs={tabs} handleClick={this.handleClick} />
         }
         <div className={styles.tab_item_container}>
-          {tabs[SummaryTab] && <Summary games={this.props.games} />}
+          {tabs[SummaryTab] && <Summary />}
           {tabs[LeaguesTab] && <Leagues />}
           {tabs[ChampionsTab] && <Champions />}
-          {tabs[MasteriesTab] && <Masteries />}
+          {tabs[MasteriesTab] && <ChampionMasteries />}
           {tabs[RunesTab] && <Runes />}
           {tabs[LiveTab] && <LiveGame id={this.props.user.id} />}
         </div>
@@ -78,15 +77,5 @@ class SummonerTabs extends Component {
     );
   }
 }
-
-SummonerTabs.propTypes = {
-  games: PropTypes.shape({
-    matches: PropTypes.array.isRequired,
-  }),
-};
-
-SummonerTabs.defaultProps = {
-  games: {},
-};
 
 export default SummonerTabs;
