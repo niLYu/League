@@ -36,3 +36,16 @@
   margin: auto 0;
 }
 
+.items_container {
+  display: flex;
+  width: 180px;
+  justify-content: center;
+  align-items: center;
+}
+
+.items_container img {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 5px;
+}

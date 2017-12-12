@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const util = require('util');
 const summonerSpells = require('../../summonerSpells.js');
+const items = require('../../items');
 // eslint-disable-next-line global-require
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
 
@@ -107,5 +108,27 @@ router.get('/summonerSpellsIcons', (req, res, next) => {
   next();
 });
 
+router.get('/itemsData', (req, res, next) => {
+  const url = `${ddragonApiRoute}/${latestDDVersion}/data/en_US/item.json`;
+  axios.get(url)
+    .then(response => response.data)
+    .then((spells) => {
+      const filePath = path.resolve(__dirname, '../..');
+      const file = `module.exports = ${util.inspect(spells, { depth: null })}`;
+      fs.writeFileSync(`${filePath}/items.js`, file, 'utf-8');
+      res.json(spells);
+    })
+    .catch(next);
+});
+
+router.get('/itemsIcons', (req, res, next) => {
+  const url = `${ddragonApiRoute}/${latestDDVersion}/img/item`;
+  const filePath = path.resolve(__dirname, '../../public/images/items');
+  const allItems = Object.keys(items.data);
+  allItems.forEach((item) => {
+    fetchAndSave(url, item, filePath);
+  });
+  next();
+});
 module.exports = router;
 
