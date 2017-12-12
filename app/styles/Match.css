@@ -49,3 +49,8 @@
   flex-shrink: 0;
   border-radius: 5px;
 }
+
+.champ_list {
+  width: 20px;
+  height: 20px;
+}
