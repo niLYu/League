@@ -7,31 +7,42 @@ const Players = (props) => {
   const champs = champList.Heroes;
   const blueTeam = props.players.participantIdentities.slice(0, 5);
   const redTeam = props.players.participantIdentities.slice(5, 10);
-  const participants = props.players.participants;
+  const { participants } = props.players;
 
   return (
-    <div>
-      <div>
+    <div className={styles.players_container}>
+      <div className={styles.team_container}>
         {blueTeam.map((member) => {
           const champ = champs[participants[member.participantId - 1].championId].key;
           return (
             <div key={member.player.summonerName}>
-              <div>{member.player.summonerName}</div>
-              <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-            </div>
-          );
-})}
+              <div>
+                <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                {member.player.summonerName.length > 10
+                  ? `${member.player.summonerName.slice(0, 10)}...`
+                  : member.player.summonerName
+                }
+              </div>
+            </div>);
+          })
+        }
       </div>
-      <div>
+
+      <div className={styles.team_container}>
         {redTeam.map((member) => {
-        const champ = champs[participants[member.participantId - 1].championId].key;
-        return (
-          <div key={member.player.summonerName}>
-            <div>{member.player.summonerName}</div>
-            <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
-          </div>
-        );
-})}
+          const champ = champs[participants[member.participantId - 1].championId].key;
+          return (
+            <div key={member.player.summonerName}>
+              <div>
+                <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                {member.player.summonerName.length > 12
+                  ? `${member.player.summonerName.slice(0, 10)}...`
+                  : member.player.summonerName
+                }
+              </div>
+            </div>);
+          })
+        }
       </div>
     </div>
   );
