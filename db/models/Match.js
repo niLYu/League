@@ -30,6 +30,9 @@ const Match = db.define('match', {
   gameDuration: {
     type: BIGINT,
   },
+  gameCreation: {
+    type: BIGINT,
+  },
 });
 
 //so a match also has another list of things...I don't really know how to include these just yet

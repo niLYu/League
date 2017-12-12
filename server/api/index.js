@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 
 router
-  .use('/matchInfo', require('./match'))
+  .use('/matchInfo', require('./matchInfo'))
   .use('/playerInfo', require('./playerInfo'))
   .use('/riotScraper', require('./riotScraper'))
   .use('/champions', require('./champions'))

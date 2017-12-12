@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const axios = require('axios');
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
-const LEAGUE_API_KEY = process.env.LEAGUE_API_KEY;
+const { LEAGUE_API_KEY } = process.env;
 const Promise = require('bluebird');
 
 const apiRoute = 'https://na1.api.riotgames.com/lol/match/v3';
@@ -11,18 +11,18 @@ const apiValidation = `?api_key=${LEAGUE_API_KEY}`;
 router.get('/summoner/:summonerId', (req, res, next) => {
   const { summonerId } = req.params;
   let requestPath = `${apiRoute}/matchlists/by-account/${summonerId}${apiValidation}`;
+  // console.log(requestPath);
   // allow for optional parameters -> season andOr champion
   const { championId, seasonId } = req.query;
-  if (championId) requestPath += `champion=${championId}&`;
-  if (seasonId) requestPath += `season=${seasonId}&`;
+  if (championId) requestPath += `&champion=${championId}`;
+  if (seasonId) requestPath += `&season=${seasonId}`;
+  // console.log(requestPath);
   // requestPath += `api_key=${LEAGUE_API_KEY}`;
   axios.get(requestPath)
     .then((championSeasonData) => { // grabs a matchList matching parameters
-      let { matches } = championSeasonData.data;
-      // matches = matches.slice(0, 4);
-      matches = matches.slice(0, 20);
+      const { matches } = championSeasonData.data;
       if (!championId && !seasonId) res.json(matches);
-      return Promise.map(matches, (match) => {
+      return Promise.mapSeries(matches, (match) => {
         // fetches match info for all matches in the list
         const matchRequest = `${apiRoute}/matches/${match.gameId}${apiValidation}`;
         return axios.get(matchRequest)
@@ -30,7 +30,6 @@ router.get('/summoner/:summonerId', (req, res, next) => {
       });
     })
     .then((populatedMatches) => {
-      // too much info....only want the bet about this particular user....
       const totalGames = populatedMatches.length;
       let [lostGames, wonGames, maxKills, maxDeaths] = [0, 0, 0, 0]; // initialize all to 0;
       const total = {
@@ -45,20 +44,23 @@ router.get('/summoner/:summonerId', (req, res, next) => {
         pentaKills: 0,
       };
       populatedMatches.map((match) => {
-        const summonerMatchId = match.participantIdentities.find(({ player }) => player.accountId === +summonerId).participantId;
-        const summonerMatchInfo = match.participants[summonerMatchId];
+        const { participantId } = match.participantIdentities.find(({ player }) => player.accountId === +summonerId);
+        const summonerMatchInfo = match.participants[participantId];
         const summonerTeam = match.teams[(summonerMatchInfo.teamId / 100) - 1];
+        // console.log(summonerMatchInfo)
         const wonGameBool = (summonerTeam.win === 'Win');
+        const { kills, deaths } = summonerMatchInfo.stats;
+
         if (wonGameBool) wonGames += 1;
         else lostGames += 1;
-        const { kills, deaths } = summonerMatchInfo.stats;
+
         if (kills > maxKills) maxKills = kills;
         if (deaths > maxDeaths) maxDeaths = deaths;
+
         Object.keys(total).map(key => total[key] += summonerMatchInfo.stats[key]);
       });
-      res.json({
-        totalGames, lostGames, wonGames, ...total,
-      });
+      const aggregateChampionInfo = { totalGames, lostGames, wonGames, ...total };
+      res.json(aggregateChampionInfo);
     })
     .catch(next);
 });
