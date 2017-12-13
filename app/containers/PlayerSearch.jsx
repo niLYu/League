@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { fetchInitialState } from '../reducers';
+
 
 class PlayerSearch extends Component {
   constructor() {
@@ -13,6 +16,7 @@ class PlayerSearch extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ playerName: '' });
+    this.props.fetchInitialState();
   }
 
   handleChange = (e) => {
@@ -69,6 +73,7 @@ PlayerSearch.propTypes = {
     button_wrapper: PropTypes.string.isRequired,
     go_button: PropTypes.string.isRequired,
   }),
+  fetchInitialState: PropTypes.func.isRequired,
 };
 
 PlayerSearch.defaultProps = {
@@ -82,4 +87,6 @@ PlayerSearch.defaultProps = {
   },
 };
 
-export default PlayerSearch;
+const mapDispatchToProps = { fetchInitialState };
+
+export default connect(null, mapDispatchToProps)(PlayerSearch);

@@ -38,7 +38,7 @@ const appReducer = combineReducers({
 
 // returns initial state when searching for a new user
 const rootReducer = (state, action) => {
-  if (action.type === 'GET_USER') {
+  if (action.type === 'CLEAR_USER') {
     // passing in undefined to a reducer returns the initial state
     state = undefined; // eslint-disable-line no-param-reassign
   }
