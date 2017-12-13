@@ -6,7 +6,7 @@ import { BasicProfile } from '../components/index';
 import styles from '../styles/LoadingSpinner.css';
 
 // possible because we're exporting from one file
-import { fetchUser, fetchRecent, fetchProfile, fetchChampMastery } from '../reducers';
+import { fetchUser, fetchRecent, fetchProfile, fetchChampMastery, fetchInitialState } from '../reducers';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -67,14 +67,15 @@ const mapDispatchToProps = dispatch => ({
     const { search } = location;
     const params = new URLSearchParams(search);
     const username = params.get('username');
-    dispatch(fetchUser(username))
-      .then((action) => {
-        // eslint-disable-next-line prefer-destructuring
-        user = action.user;
-        return Promise.all([dispatch(fetchProfile(+user.id)), dispatch(fetchRecent(+user.accountId))]);
-      })
-      .then(() => dispatch(fetchChampMastery(+user.id)))
-      .catch(err => console.error(err));
+    Promise.resolve(dispatch(fetchInitialState()))
+      .then(() => dispatch(fetchUser(username))
+        .then((action) => {
+          // eslint-disable-next-line prefer-destructuring
+          user = action.user;
+          return Promise.all([dispatch(fetchProfile(+user.id)), dispatch(fetchRecent(+user.accountId))]);
+        })
+        .then(() => dispatch(fetchChampMastery(+user.id)))
+        .catch(err => console.error(err)));
   },
 });
 
