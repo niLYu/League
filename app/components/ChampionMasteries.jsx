@@ -7,10 +7,13 @@ import styles from '../styles/ChampionMastery.css';
 const ChampionMasteries = ({ champions }) => {
   const filtered = champions.slice(0, 12);
   return (
-    <div className={styles.container}>
-      { filtered.length &&
+    <div className={styles.championContainer}>
+      <h2>Champion Masteries</h2>
+      <div className={styles.container}>
+        { filtered.length &&
           filtered.map(champ => <Champion champ={champ} key={champ.championId} />)
       }
+      </div>
     </div>
   );
 };

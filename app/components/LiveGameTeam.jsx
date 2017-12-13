@@ -10,7 +10,7 @@ const LiveGameTeam = props => (
         <tr>
           {
               props.color === 'blue' ?
-                <th colSpan="3" className={styles.blueTeam}>{props.color}
+                <th colSpan="3" className={styles.blueTeam}>{`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}
                   {props.team.bannedChampions.map((el, index) => {
                   if (index < 5 && el.championId > 0) {
                   return (
@@ -26,7 +26,7 @@ const LiveGameTeam = props => (
               })}
                 </th>
               :
-                <th colSpan="3" className={styles.redTeam}> {props.color}{props.team.bannedChampions.map((el, index) => {
+                <th colSpan="3" className={styles.redTeam}> {`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}{props.team.bannedChampions.map((el, index) => {
                 if (index > 4 && el.championId > 0) {
                   return (
                     <img
@@ -47,7 +47,7 @@ const LiveGameTeam = props => (
       {/* body for blue team table */}
       {
          props.color === 'blue' ?
-           <tbody>
+           <tbody className={styles.tbody}>
              {props.team.participants && props.team.participants.filter(elm => (elm.teamId === 100))
         .map(el => (
           <tr key={el.summonerId}>

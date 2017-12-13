@@ -15,16 +15,19 @@
 
 .blueTeam{
   background-color:rgb(77, 77, 250);
+  padding: 1%;
 }
 
 .redTeam{
   background-color: rgb(243, 81, 81);
+  padding: 1%;
 }
 
 .td{
   border: 1px solid grey;
   width : 33%;
-  text-align: center;
+  text-align: left;
+  padding: 1%;
 }
 
 .banSize{
