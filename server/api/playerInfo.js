@@ -12,7 +12,9 @@ const apiVerification = `?api_key=${LEAGUE_API_KEY}`;
 
 // gets basic profile by player name and
 router.get('/player/:name', (req, res, next) => {
-  axios.get(`${apiBase}/summoner/v3/summoners/by-name/${req.params.name}${apiVerification}`)
+  // need to encodeURI to handle different characters
+  const encodedParam = encodeURI(req.params.name);
+  axios.get(`${apiBase}/summoner/v3/summoners/by-name/${encodedParam}${apiVerification}`)
     .then(response => response.data)
     .then((results) => {
       Player.findOrCreate({
