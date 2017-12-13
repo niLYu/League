@@ -46,7 +46,12 @@ class PlayerSearch extends Component {
                 search: `username=${this.state.playerName}`,
                 }}
             >
-              <button className={this.props.styles.go_button}>GO</button>
+              <button
+                className={this.props.styles.go_button}
+                disabled={!this.state.playerName}
+              >
+                GO
+              </button>
             </Link>
           </div>
         </form>
