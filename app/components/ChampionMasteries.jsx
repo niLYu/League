@@ -5,10 +5,9 @@ import { Champion } from './index';
 import styles from '../styles/ChampionMastery.css';
 
 const ChampionMasteries = ({ champions }) => {
-  const filtered = champions.slice(0, 10);
+  const filtered = champions.slice(0, 12);
   return (
     <div className={styles.container}>
-      <div> All Champion Masteries </div>
       { filtered.length &&
           filtered.map(champ => <Champion champ={champ} key={champ.championId} />)
       }

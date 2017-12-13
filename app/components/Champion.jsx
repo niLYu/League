@@ -11,19 +11,9 @@ const Champion = (props) => {
   const fixedTitle = title.slice(4);
   return (
     <div className={styles.championBox}>
-      <div>
-        <div>
-          <img className={styles.imgSize} src={`/images/champions/${Heroes[championId].key}.png`} alt="championIcon" />
-        </div>
-        <div>
-          <img className={styles.crest} src={`images/masteryCrest/M${championLevel}Square.png`} alt="crest" />
-        </div>
-      </div>
-      <div>
-        {name}<br />
-        {fixedTitle}<br />
-        Level: {championLevel}<br />
-        Points: {championPoints}
+      <div className={styles.grow}>
+        <img className={styles.imgSize} src={`/images/champions/${Heroes[championId].key}.png`} alt="championIcon" />
+        <img className={styles.crest} src={`images/masteryCrest/M${championLevel}Square.png`} alt="crest" />
       </div>
     </div>
   );
