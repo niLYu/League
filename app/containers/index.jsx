@@ -1,4 +1,3 @@
-export { default as BasicProfile } from './BasicProfile';
 export { default as Home } from './Home';
 export { default as LiveGame } from './LiveGame';
 export { default as Leaderboards } from './Leaderboards';
