@@ -1,3 +1,4 @@
+export { default as BasicProfile } from './BasicProfile';
 export { default as Carousel } from './Carousel';
 export { default as Champion } from './Champion';
 export { default as Champions } from './Champions';

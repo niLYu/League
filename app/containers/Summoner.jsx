@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { BasicProfile, SummonerTabs } from './index';
+import { SummonerTabs } from './index';
+import { BasicProfile } from '../components/index';
 import styles from '../styles/LoadingSpinner.css';
 
 // possible because we're exporting from one file
-import { fetchUser, fetchRecent, fetchChampMastery } from '../reducers';
+import { fetchUser, fetchRecent, fetchProfile, fetchChampMastery } from '../reducers';
 
 class Summoner extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class Summoner extends Component {
           <div className={styles.loader} />
         :
           <div>
-            {this.props.user.id && <BasicProfile user={this.props.user} />}
+            <BasicProfile />
             <SummonerTabs {...this.props} />
           </div>
         }
@@ -55,9 +56,9 @@ Summoner.propTypes = {
 
 
 const mapStateToProps = ({
-  user, games, championMastery, masteryPages, runePages, matchInfo,
+  user, games, championMastery, masteryPages, runePages, matchInfo, profile,
 }) => ({
-  user, games, championMastery, masteryPages, runePages, matchInfo,
+  user, games, championMastery, masteryPages, runePages, matchInfo, profile,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -70,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
       .then((action) => {
         // eslint-disable-next-line prefer-destructuring
         user = action.user;
-        dispatch(fetchRecent(+user.accountId));
+        return Promise.all([dispatch(fetchProfile(+user.id)), dispatch(fetchRecent(+user.accountId))]);
       })
       .then(() => dispatch(fetchChampMastery(+user.id)))
       .catch(err => console.error(err));
