@@ -23,7 +23,7 @@ export * from './profile';
 export * from './news';
 export * from './matchInfo';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   user,
   games,
   championMastery,
@@ -35,5 +35,14 @@ const rootReducer = combineReducers({
   news,
   matchInfo,
 });
+
+// returns initial state when searching for a new user
+const rootReducer = (state, action) => {
+  if (action.type === 'GET_USER') {
+    // passing in undefined to a reducer returns the initial state
+    state = undefined; // eslint-disable-line no-param-reassign
+  }
+  return appReducer(state, action);
+};
 
 export default rootReducer;
