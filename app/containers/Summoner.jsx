@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { BasicProfile, SummonerTabs } from './index';
+import styles from '../styles/LoadingSpinner.css';
 
 // possible because we're exporting from one file
 import { fetchUser, fetchRecent, fetchChampMastery } from '../reducers';
@@ -20,11 +21,15 @@ class Summoner extends Component {
   render() {
     return (
       <div>
-        {
-          this.props.user.id &&
-          <BasicProfile user={this.props.user} />
+        {this.props.games.length === 0
+        ?
+          <div className={styles.loader} />
+        :
+          <div>
+            {this.props.user.id && <BasicProfile user={this.props.user} />}
+            <SummonerTabs {...this.props} />
+          </div>
         }
-        <SummonerTabs {...this.props} />
       </div>
     );
   }
@@ -33,6 +38,7 @@ class Summoner extends Component {
 Summoner.defaultProps = {
   location: { search: '' },
   user: { accountId: 0, id: 0 },
+  games: [],
 };
 
 Summoner.propTypes = {
@@ -43,6 +49,7 @@ Summoner.propTypes = {
     id: PropTypes.number.isRequired,
     accountId: PropTypes.number.isRequired,
   }),
+  games: PropTypes.arrayOf(PropTypes.object.isRequired),
   getAllUserInfo: PropTypes.func.isRequired,
 };
 
