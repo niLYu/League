@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import styles from '../../styles/Match.css';
 import GameInfo from './GameInfo';
+import PlayerStats from './PlayerStats';
 import KDA from './KDA';
 import PlayerItems from './PlayerItems';
 import Players from './Players';
@@ -27,6 +28,7 @@ const Match = (props) => {
       {participantData &&
       <div className={`${styles.match_container} ${gameOutcome === 'Victory' ? styles.victory : styles.defeat}`}>
         <GameInfo {...props} gameOutcome={gameOutcome} userData={participantData} />
+        <PlayerStats userData={participantData} />
         <KDA userData={participantData} />
         <PlayerItems userData={participantData} />
         <Players players={props.details} />
