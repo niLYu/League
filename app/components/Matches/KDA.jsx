@@ -5,7 +5,7 @@ import styles from '../../styles/Match.css';
 const KDA = (props) => {
   const { kills, deaths, assists } = props.userData.stats;
   const killAssistRatio = ((kills + assists) / deaths);
-  const displayKDA = killAssistRatio === Infinity
+  const displayKDA = deaths === 0
     ? 'Perfect KDA'
     : `${killAssistRatio.toFixed(2)} : 1`;
 
