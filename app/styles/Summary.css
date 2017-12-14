@@ -1,3 +1,14 @@
 .summary_container {
-  width: 100%;
+  width: 95%;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 550px) {
+  .title {
+    font-size: 0.75em;
+  }
 }

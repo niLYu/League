@@ -6,7 +6,7 @@ import styles from '../styles/Summary.css';
 
 const Summary = props => (
   <div className={styles.summary_container}>
-    <div>Summary of Recent Games</div>
+    <h2 className={styles.title}>Match History</h2>
     {props.games.map(match =>
       (<Match {...match} key={match.gameId} />))
     }
