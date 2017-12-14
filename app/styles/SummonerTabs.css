@@ -44,8 +44,15 @@
   background-color: white;
 }
 
+.mobile_tabs {
+  display: none;
+}
+
 @media (max-width: 550px) {
   .tab_item_container {
     margin-top: 0px;
+  }
+  .summoner_tabs_container {
+    display: none;
   }
 }

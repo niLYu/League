@@ -5,4 +5,11 @@
   margin: auto;
   text-align: center;
   width: 100%;
+  display: none;
+}
+
+@media (max-width: 550px) {
+  .container {
+    display: block;
+  }
 }

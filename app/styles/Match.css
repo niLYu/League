@@ -82,9 +82,12 @@
 }
 
 @media (max-width: 550px) {
+  .match_container {
+    font-size: 0.65em;
+  }
   .gameInfo_container {
-    width: 60px;
-    font-size: 0.55em;
+    width: 65px;
+    font-size: 0.80em;
   }
   .champion {
     width: 25px;
@@ -92,16 +95,14 @@
     margin-right: 1.5px;
   }
   .summonerSpells img {
-    width: 15px;
-    height: 15px;
+    width: 12.5px;
+    height: 12.5px;
   }
   .player_stats_container {
-    width: 40px;
-    font-size: 0.55em;
+    width: 50px;
   }
   .kda_container {
     width: 50px;
-    font-size: 0.55em;
   }
   .items_container {
     display: flex;
