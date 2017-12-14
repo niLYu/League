@@ -14,9 +14,9 @@ class SummonerTabsMobile extends Component {
     this.state = { active: 'Summary' };
   }
 
-  handleChange = (val) => {
-    this.setState({ active: val });
-    this.props.handleClick(val);
+  handleChange = (state) => {
+    this.setState({ active: state.value });
+    this.props.handleClick(state.value);
   }
 
   render() {
@@ -43,7 +43,6 @@ SummonerTabsMobile.propTypes = {
     Champions: PropTypes.bool.isRequired,
     Leagues: PropTypes.bool.isRequired,
     Masteries: PropTypes.bool.isRequired,
-    Runes: PropTypes.bool.isRequired,
     Live: PropTypes.bool.isRequired,
   }),
 };
@@ -54,7 +53,6 @@ SummonerTabsMobile.defaultProps = {
     Champions: false,
     Leagues: false,
     Masteries: false,
-    Runes: false,
     Live: false,
   },
 };
