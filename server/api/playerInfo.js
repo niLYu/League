@@ -95,11 +95,23 @@ router.get('/soloChallengers', (req, res, next) => {
 router.get('/liveGame/:summonerId', (req, res, next) => {
   axios.get(`${apiBase}/spectator/v3/active-games/by-summoner/${req.params.summonerId}${apiVerification}`)
     .then(response => response.data)
-    .then(matchInfo => res.json(matchInfo))
+    .then((matchInfo) => {
+      const allPlayers = matchInfo.participants.map(player =>
+        axios.get(`${apiBase}/league/v3/positions/by-summoner/${player.summonerId}${apiVerification}`));
+      return Promise.all(allPlayers).catch(err => console.error(err))
+        .then((totalPlayers) => {
+          matchInfo.playerData = [];
+          totalPlayers.forEach((game) => {
+            matchInfo.playerData.push(game.data);
+          });
+          res.json(matchInfo);
+        })
+        .catch(next);
+    })
     .catch(next);
 });
 
-// get basic profile
+// get queue ranks with summonerId
 router.get('/profile/:summonerId', (req, res, next) => {
   axios.get(`${apiBase}/league/v3/positions/by-summoner/${req.params.summonerId}${apiVerification}`)
     .then(response => response.data)

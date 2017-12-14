@@ -19,7 +19,7 @@ class LiveGame extends Component {
           <thead>
             <tr>
               <th className={styles.td}>Player</th>
-              <th className={styles.td}>Season 7</th>
+              <th className={styles.td}>Season 7 Rank</th>
               <th className={styles.td}>Ranked Win Ratio</th>
             </tr>
           </thead>
