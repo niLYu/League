@@ -35,11 +35,17 @@
 
 .tab_item_container {
   display: flex;
-  max-width: 1080px;
+  max-width: 900px;
   justify-content: center;
   align-items: center;
   flex: 1;
   margin-top: 50px;
   border-style: none;
   background-color: white;
+}
+
+@media (max-width: 550px) {
+  .tab_item_container {
+    margin-top: 0px;
+  }
 }
