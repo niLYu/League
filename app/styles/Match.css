@@ -37,27 +37,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100px;
+  width: 90px;
 }
 
 .kda_container {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 90px;
   justify-content: center;
   align-items: center;
 }
 
 .items_container {
   display: flex;
-  width: 180px;
+  width: 160px;
   justify-content: center;
   align-items: center;
 }
 
 .items_container img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   flex-shrink: 0;
   border-radius: 5px;
 }
@@ -68,7 +68,7 @@
 }
 
 .team_container {
-  width: 150px;
+  width: 130px;
 }
 
 .team_container a {
@@ -79,4 +79,48 @@
   width: 20px;
   height: 20px;
   margin-right: 1px;
+}
+
+@media (max-width: 550px) {
+  .gameInfo_container {
+    width: 60px;
+    font-size: 0.55em;
+  }
+  .champion {
+    width: 25px;
+    height: 25px;
+    margin-right: 1.5px;
+  }
+  .summonerSpells img {
+    width: 15px;
+    height: 15px;
+  }
+  .player_stats_container {
+    width: 40px;
+    font-size: 0.55em;
+  }
+  .kda_container {
+    width: 50px;
+    font-size: 0.55em;
+  }
+  .items_container {
+    display: flex;
+    width: 85px;
+    justify-content: center;
+    align-items: center;
+  }
+  .items_container img {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+  .build {
+    display: flex;
+    width: 63px;
+    flex-wrap: wrap;
+  }
+  .players_container {
+    display: none;
+  }
 }

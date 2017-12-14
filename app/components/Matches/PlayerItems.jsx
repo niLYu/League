@@ -14,7 +14,7 @@ const PlayerItems = (props) => {
   return (
     <div className={styles.items_container}>
       <img src={`/images/items/${ward}.png`} alt={`${ward} icon`} />
-      <div>
+      <div className={styles.build}>
         {itemBuild.map((item, index) =>
           <img key={index} src={`/images/items/${item}.png`} alt={`${item} icon`} />)
         }
