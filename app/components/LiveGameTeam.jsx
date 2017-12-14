@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import styles from '../styles/LiveGame.css';
 import { Heroes } from '../../seed';
 
-const LiveGameTeam = props => (
-  <div>
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          {
+const LiveGameTeam = (props) => {
+  console.log('props', props);
+  return (
+    <div>
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {
               props.color === 'blue' ?
                 <th colSpan="3" className={styles.blueTeam}>{`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}
                   {props.team.bannedChampions.map((el, index) => {
@@ -41,27 +43,30 @@ const LiveGameTeam = props => (
               })}
                 </th>
             }
-        </tr>
-      </thead>
+          </tr>
+        </thead>
 
-      {/* body for blue team table */}
-      {
+        {/* body for blue team table */}
+        {
          props.color === 'blue' ?
            <tbody className={styles.tbody}>
              {props.team.participants && props.team.participants.filter(elm => (elm.teamId === 100))
-        .map(el => (
-          <tr key={el.summonerId}>
-            <th className={styles.td}>
-              {el.summonerName}
-            </th>
-            <th className={styles.td}>
-              some data
-            </th>
-            <th className={styles.td}>
+        .map((el, index) => {
+          const playerStats = props.team.playerData[index].find(el => el.queueType === 'RANKED_SOLO_5x5');
+          return (
+            <tr key={el.summonerId}>
+              <th className={styles.td}>
+                {el.summonerName}
+              </th>
+              <th className={styles.td}>
+                {`${playerStats.tier} ${playerStats.rank} (${playerStats.leaguePoints} LP)`}
+              </th>
+              <th className={styles.td}>
               something else
-            </th>
-          </tr>
-          ))}
+              </th>
+            </tr>
+          );
+})}
            </tbody>
         :
            <tbody>
@@ -81,9 +86,10 @@ const LiveGameTeam = props => (
             ))}
            </tbody>
         }
-    </table>
-  </div>
-);
+      </table>
+    </div>
+  );
+};
 LiveGameTeam.defaultProps = {
   team: {
     bannedChampions: [],
