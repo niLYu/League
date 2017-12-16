@@ -90,6 +90,9 @@
 
 .team_container a {
   color: black;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1px;
 }
 
 .champ_list {
