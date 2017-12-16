@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { fetchSoloChallengers } from '../reducers/soloChallengers';
 import styles from '../styles/Leaderboards.css';
+import spinner from '../styles/LoadingSpinner.css';
 
 
 class Leaderboards extends Component {
@@ -14,7 +15,9 @@ class Leaderboards extends Component {
   render() {
     return (
       <div className={styles.center}>
-        {
+        {this.props.soloChallengers.entries.length === 0 ?
+          <div className={spinner.loader} />
+          :
           <div>
             <h2 className={styles.header}>Challengers</h2>
             <table className={styles.centerTable}>

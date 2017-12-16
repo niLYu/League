@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.flexcontainer h5 {
+  margin: 0 0 1px 0
+}
+
 .profileContainer{
   display: flex;
   width: 100%;
@@ -16,14 +20,14 @@
   flex: 1;
   text-align:left;
   margin: auto 0;
-  font-size: 0.5em;
+  font-size: 1em;
 }
 
 .flexItemCentered{
   flex: 1;
   text-align:center;
   margin: auto 0;
-  font-size: 0.5em;
+  font-size: 1em;
 }
 
 @media (max-width: 768px){
