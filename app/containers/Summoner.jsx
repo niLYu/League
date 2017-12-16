@@ -10,12 +10,12 @@ import { fetchUser, fetchRecent, fetchProfile, fetchChampMastery, fetchInitialSt
 
 class Summoner extends Component {
   componentDidMount() {
-    this.props.getAllUserInfo(this.props.location);
+    this.props.getAllUserInfo(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.search !== this.props.location.search) {
-      this.props.getAllUserInfo(nextProps.location);
+      this.props.getAllUserInfo(nextProps);
     }
   }
 
@@ -62,9 +62,9 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllUserInfo: (location) => {
+  getAllUserInfo: (props) => {
     let user;
-    const { search } = location;
+    const { search } = props.location;
     const params = new URLSearchParams(search);
     const username = params.get('username');
     Promise.resolve(dispatch(fetchInitialState()))
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => ({
           return Promise.all([dispatch(fetchProfile(+user.id)), dispatch(fetchRecent(+user.accountId))]);
         })
         .then(() => dispatch(fetchChampMastery(+user.id)))
-        .catch(err => console.error(err)));
+        .catch(() => props.history.push('/notfound')));
   },
 });
 
