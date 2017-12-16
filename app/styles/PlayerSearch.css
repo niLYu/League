@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  height: 100%;
   align-items: center;
   justify-content: center;
   margin-top: 5vh;
@@ -12,10 +11,11 @@
   color: black;
   border-radius: 5%;
   border-style: outset;
-  border-width: 1em;
+  border-width: 0.70em;
   border-color: #07889B;
   align-items: center;
   justify-content: space-between;
+  height: 45px;
 }
 
 .label {
@@ -29,6 +29,7 @@
   border-style: none;
   margin-left: 10px;
   width: 100%;
+  background-color: #fafafa;
 }
 
 .input:focus {
@@ -39,14 +40,15 @@
   background-color: #07889B;
   border-radius: 50%;
   text-align: center;
+  margin-right: 5px;
 }
 
 .go_button {
   background-color: #07889B;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  font-size: 13px;
+  height: 35px;
+  width: 35px;
+  font-size: 10px;
   text-align: center;
   color: white;
   margin: auto;
@@ -55,35 +57,31 @@
 .go_button:hover {
   background-color: white;
   color: #07889B;
+  cursor: pointer;
 }
 
 @media (max-width: 1100px) {
   .form {
-    flex: 0.55;
+    flex: 0.50;
     border-width: .70em;
   }
 }
 
 @media (max-width: 700px) {
   .form {
-    flex: 0.65;
+    flex: 0.60;
     border-width: .60em;
-  }
-  .go_button {
-    height: 40px;
-    width: 40px;
-    font-size: 10px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .form {
-    flex: 0.75;
-    border-width: .5em;
+    flex: 0.80;
+    border-width: .6em;
   }
   .go_button {
-    height: 33px;
-    width: 33px;
-    font-size: 9px;
+    height: 35px;
+    width: 35px;
+    font-size: 10px;
   }
 }
