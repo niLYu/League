@@ -6,7 +6,7 @@ const KDA = (props) => {
   const { kills, deaths, assists } = props.userData.stats;
   const killAssistRatio = ((kills + assists) / deaths);
   const displayKDA = deaths === 0
-    ? 'Perfect KDA'
+    ? 'Perfect'
     : `${killAssistRatio.toFixed(2)} : 1`;
 
   return (

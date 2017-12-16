@@ -3,14 +3,25 @@
   padding: 5px 10px;
   margin: 8px 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 .victory {
   background-color: lightskyblue;
 }
 
+.victory_text {
+  color: blue;
+  font-weight: 700;
+}
+
 .defeat {
-  background-color: rgb(255, 133, 133);
+  background-color: rgb(255, 162, 162);
+}
+
+.defeat_text {
+  color: red;
+  font-weight: 700;
 }
 
 .gameInfo_container {
@@ -53,6 +64,12 @@
   width: 160px;
   justify-content: center;
   align-items: center;
+}
+
+.build {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
 .items_container img {
