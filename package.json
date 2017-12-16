@@ -1,7 +1,7 @@
 {
-  "name": "react-boilerplate",
+  "name": "league",
   "version": "1.0.0",
-  "description": "react-boilerplate",
+  "description": "League of legends web application",
   "main": "app/main.jsx",
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack -w",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niLYu/simple-react-boilerplate.git"
+    "url": "git+https://github.com/niLYu/League.git"
   },
-  "author": "Yu Lin",
+  "authors": ["Yu Lin", "Jack Jiang", "Sulamita Morales"],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/niLYu/simple-react-boilerplate/issues"
+    "url": "https://github.com/niLYu/League/issues"
   },
-  "homepage": "https://github.com/niLYu/simple-react-boilerplate#readme",
+  "homepage": "https://github.com/niLYu/League#readme",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -58,7 +58,6 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "request": "^2.83.0",
     "sequelize": "^4.13.8"
   }
 }
