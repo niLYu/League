@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   background-color: #fafafa;
+  overflow-x: hidden;
 }
 
 #app {
@@ -20,3 +21,6 @@ html, body {
   align-items: center;
 }
 
+a {
+  text-decoration: none;
+}

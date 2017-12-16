@@ -3,18 +3,21 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  height: 50px;
+  margin-top: 20px;
 }
 
 .summoner_tabs_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 5px;
+  padding: 0 10px;
   flex-wrap: wrap;
   width: 100%;
   background-color: #66B9BF;
   box-shadow: 0 10px #07889B;
   margin-bottom: 10px;
+  height: 100%;
 }
 
 .tab_button {
@@ -22,10 +25,12 @@
   padding: 5px 10px;
   color: white;
   background-color: #66B9BF;
+  font-size: 1em;
 }
 
 .tab_button:hover {
-  background-color: #07889B
+  background-color: #07889B;
+  cursor: pointer;
 }
 
 .tab_button:focus {
@@ -39,20 +44,20 @@
   justify-content: center;
   align-items: center;
   flex: 1;
-  margin-top: 50px;
+  margin-top: 20px;
   border-style: none;
   background-color: white;
 }
 
-.mobile_tabs {
-  display: none;
-}
-
 @media (max-width: 550px) {
+  .summoner_tabs_main_container {
+    height: 35px;
+  }
   .tab_item_container {
     margin-top: 0px;
   }
-  .summoner_tabs_container {
-    display: none;
+  .tab_button {
+    padding: 0 5px;
+    font-size: 0.7em;
   }
 }

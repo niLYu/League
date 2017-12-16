@@ -28,7 +28,7 @@ const Players = (props) => {
                   {member.player.summonerName.length > 10
                   ? `${member.player.summonerName.slice(0, 10)}...`
                   : member.player.summonerName
-                }
+                  }
                 </NavLink>
               </div>
             </div>);

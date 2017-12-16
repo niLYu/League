@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import update from 'react-addons-update';
 import { Summary, Leagues, Champions, ChampionMasteries } from '../components';
-import { LiveGame, SummonerTabsMobile } from './index';
+import { LiveGame } from './index';
 import styles from '../styles/SummonerTabs.css';
 
 const SummaryTab = 'Summary';
@@ -55,7 +55,6 @@ class SummonerTabs extends Component {
         <div className={styles.summoner_tabs_container}>
           {allTabs.map(tab => <div key={tab}>{this.button(tab)}</div>)}
         </div>
-        <SummonerTabsMobile tabs={tabs} handleClick={this.handleClick} />
         <div className={styles.tab_item_container}>
           {tabs[SummaryTab] && <Summary />}
           {tabs[LeaguesTab] && <Leagues />}
