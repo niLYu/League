@@ -11,7 +11,7 @@ const getNews = news => ({ type: GET_NEWS, news });
 
 /* -------------    THUNK CREATORS     ---------------- */
 
-export const fetchNews = () => dispatch => axios.get('/api/riotScraper/news')
+export const fetchNews = () => dispatch => axios.get('/api/news')
   .then(res => res.data)
   .then((news) => {
     saveToStorage('news', news);

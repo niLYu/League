@@ -14,7 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/niLYu/League.git"
   },
-  "authors": ["Yu Lin", "Jack Jiang", "Sulamita Morales"],
+  "authors": [
+    "Yu Lin",
+    "Jack Jiang",
+    "Sulamita Morales"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/niLYu/League/issues"
@@ -43,6 +47,7 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.1",
     "cheerio": "^1.0.0-rc.2",
+    "cron": "^1.3.0",
     "express": "^4.15.4",
     "fixed-data-table": "^0.6.4",
     "path": "^0.12.7",

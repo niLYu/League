@@ -8,7 +8,7 @@ import { fetchNews, fetchNewsFromStorage } from '../reducers';
 
 class Home extends Component {
   componentDidMount() {
-    Promise.resolve(this.props.fetchNewsFromStorage('news', 3))
+    Promise.resolve(this.props.fetchNewsFromStorage('news', 0))
       .then(() => {
         if (this.props.news.length === 0) {
           this.props.fetchNews();

@@ -1,11 +1,13 @@
-const router = require('express').Router();
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { News } = require('../../db/models/index');
+const CronJob = require('cron').CronJob;
 
-router.get('/news', (req, res) => {
-  const url = 'https://na.leagueoflegends.com';
+const url = 'https://na.leagueoflegends.com';
 
+// eslint-disable-next-line no-new
+module.exports = new CronJob('00 */5 * * * *', (() => {
+  console.log('Scraping news from riot games every five minutes');
   axios.get(`${url}/en/news`).then((response) => {
     const $ = cheerio.load(response.data);
     const newsInfo = [];
@@ -25,9 +27,12 @@ router.get('/news', (req, res) => {
       }
       counter += 1;
     });
-    News.bulkCreate(newsInfo);
-    res.json(newsInfo);
+    newsInfo.forEach((article, index) => {
+      const articleObj = {
+        title: article.title, content: article.content, url: article.url, imageUrl: article.imageUrl, time: article.time,
+      };
+      News.update(articleObj, { where: { id: index + 1 } }).catch(e => console.log(e));
+    });
   });
-});
+}), null, true, 'America/New_York');
 
-module.exports = router;
