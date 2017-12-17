@@ -6,8 +6,8 @@ const CronJob = require('cron').CronJob;
 const url = 'https://na.leagueoflegends.com';
 
 // eslint-disable-next-line no-new
-module.exports = new CronJob('00 */5 * * * *', (() => {
-  console.log('Scraping news from riot games every five minutes');
+module.exports = new CronJob('00 00 */1 * * *', (() => {
+  console.log('Scraping news from riot games every hour');
   axios.get(`${url}/en/news`).then((response) => {
     const $ = cheerio.load(response.data);
     const newsInfo = [];
@@ -27,11 +27,10 @@ module.exports = new CronJob('00 */5 * * * *', (() => {
       }
       counter += 1;
     });
-    newsInfo.forEach((article, index) => {
-      const articleObj = {
-        title: article.title, content: article.content, url: article.url, imageUrl: article.imageUrl, time: article.time,
-      };
-      News.update(articleObj, { where: { id: index + 1 } }).catch(e => console.log(e));
+    News.destroy({
+      truncate: true,
+    }).then(() => {
+      News.bulkCreate(newsInfo);
     });
   });
 }), null, true, 'America/New_York');

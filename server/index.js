@@ -21,7 +21,7 @@ module.exports = app
 
 db.sync({
   logging: false,
-  force: false,
+  force: true,
 });
 
 if (module === require.main) {
