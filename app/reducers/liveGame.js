@@ -31,7 +31,7 @@ export default function gamesReducer(
     mapId: 0,
     observers: {},
     participants: [],
-    players: [],
+    playerData: [],
   },
   action,
 ) {

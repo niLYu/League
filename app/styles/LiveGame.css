@@ -25,7 +25,7 @@
 
 .td{
   border: 1px solid grey;
-  width : 33%;
+  width : 25%;
   text-align: left;
   padding: 1%;
 }
@@ -33,7 +33,11 @@
 .banSize{
   width: 5%;
   padding: .5%;
+}
 
+.rankSize{
+  width: 15%;
+  padding: .5%;
 }
 
 

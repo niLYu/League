@@ -12,7 +12,7 @@ const LiveGameTeam = (props) => {
           <tr>
             {
               props.color === 'blue' ?
-                <th colSpan="3" className={styles.blueTeam}>{`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}
+                <th colSpan="4" className={styles.blueTeam}>{`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}
                   {props.team.bannedChampions.map((el, index) => {
                   if (index < 5 && el.championId > 0) {
                   return (
@@ -28,7 +28,7 @@ const LiveGameTeam = (props) => {
               })}
                 </th>
               :
-                <th colSpan="3" className={styles.redTeam}> {`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}{props.team.bannedChampions.map((el, index) => {
+                <th colSpan="4" className={styles.redTeam}> {`${props.color[0].toUpperCase()}${props.color.slice(1)} Bans`}{props.team.bannedChampions.map((el, index) => {
                 if (index > 4 && el.championId > 0) {
                   return (
                     <img
@@ -52,17 +52,45 @@ const LiveGameTeam = (props) => {
            <tbody className={styles.tbody}>
              {props.team.participants && props.team.participants.filter(elm => (elm.teamId === 100))
         .map((el, index) => {
-          const playerStats = props.team.playerData[index].find(el => el.queueType === 'RANKED_SOLO_5x5');
+          const soloQ = props.team.playerData[index].find(el => el.queueType === 'RANKED_SOLO_5x5') || null;
+          const flexQ = props.team.playerData[index].find(el => el.queueType === 'RANKED_FLEX_SR') || null;
+          let soloRank = 'Unranked';
+          let flexRank = 'Unranked';
+          if (soloQ) soloRank = `${soloQ.tier[0]}${soloQ.tier.slice(1).toLowerCase()} ${soloQ.tier === 'MASTER' || soloQ.tier === 'CHALLENGER' ? '' : soloQ.rank} (${soloQ.leaguePoints}LP)`;
+          if (flexQ) flexRank = `${flexQ.tier[0]}${flexQ.tier.slice(1).toLowerCase()} ${flexQ.tier === 'MASTER' || flexQ.tier === 'CHALLENGER' ? '' : flexQ.rank} (${flexQ.leaguePoints}LP)` || 'Unranked';
           return (
             <tr key={el.summonerId}>
               <th className={styles.td}>
                 {el.summonerName}
               </th>
               <th className={styles.td}>
-                {`${playerStats.tier} ${playerStats.rank} (${playerStats.leaguePoints} LP)`}
+                <img
+                  src={`images/${soloQ.tier.toLowerCase()}.png`}
+                  alt="solo rank icon"
+                  className={styles.rankSize}
+                />
+                {soloRank}
               </th>
               <th className={styles.td}>
-              something else
+
+                {
+                  flexQ ?
+                    <img
+                      src={`images/${flexQ.tier.toLowerCase()}.png`}
+                      alt="flex rank icon"
+                      className={styles.rankSize}
+                    />
+              :
+                    <img
+                      src="images/unranked.png"
+                      alt="flex rank icon"
+                      className={styles.rankSize}
+                    />
+              }
+                {flexRank}
+              </th>
+              <th className={styles.td}>
+                {`${((soloQ.wins / (soloQ.wins + soloQ.losses)) * 100).toFixed(0)}%`}
               </th>
             </tr>
           );
@@ -82,6 +110,9 @@ const LiveGameTeam = (props) => {
                  <th className={styles.td}>
                  something else
                  </th>
+                 <th className={styles.td}>
+              something else
+                 </th>
                </tr>
             ))}
            </tbody>
@@ -94,6 +125,8 @@ LiveGameTeam.defaultProps = {
   team: {
     bannedChampions: [],
     gameMode: '',
+    participants: [],
+    playerData: [],
   },
 };
 
@@ -103,6 +136,7 @@ LiveGameTeam.propTypes = {
     bannedChampions: PropTypes.arrayOf(PropTypes.object.isRequired),
     gameMode: PropTypes.string.isRequired,
     participants: PropTypes.arrayOf(PropTypes.object.isRequired),
+    playerData: PropTypes.arrayOf(PropTypes.array.isRequired),
   }),
 
 };
