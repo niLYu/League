@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/LiveGame.css';
 import { Heroes } from '../../seed';
+import assets from '../../public/settings';
 
 const LiveGameTeam = (props) => {
   console.log('props', props);
@@ -18,7 +19,7 @@ const LiveGameTeam = (props) => {
                   return (
                     <img
                       key={el.championId}
-                      src={`/images/champions/${Heroes[el.championId].key}.png`}
+                      src={`${assets.champion}/${Heroes[el.championId].key}.png`}
                       alt={Heroes[el.championId].key}
                       className={styles.banSize}
                     />
@@ -33,7 +34,7 @@ const LiveGameTeam = (props) => {
                   return (
                     <img
                       key={el.championId}
-                      src={`/images/champions/${Heroes[el.championId].key}.png`}
+                      src={`${assets.champion}/${Heroes[el.championId].key}.png`}
                       alt={Heroes[el.championId].key}
                       className={styles.banSize}
                     />
@@ -62,7 +63,7 @@ const LiveGameTeam = (props) => {
             <tr key={el.summonerId}>
               <th className={styles.td}>
                 <img
-                  src={`/images/champions/${Heroes[el.championId].key}.png`}
+                  src={`${assets.champion}/${Heroes[el.championId].key}.png`}
                   alt="champion icon icon"
                   className={styles.rankSize}
                 />
@@ -115,7 +116,7 @@ const LiveGameTeam = (props) => {
             <tr key={el.summonerId}>
               <th className={styles.td}>
                 <img
-                  src={`/images/champions/${Heroes[el.championId].key}.png`}
+                  src={`${assets.champion}/${Heroes[el.championId].key}.png`}
                   alt="champion icon icon"
                   className={styles.rankSize}
                 />
