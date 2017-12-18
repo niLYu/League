@@ -8,6 +8,8 @@ const { CronJob } = require('cron');
 
 const newsScraper = require('./cronJobs/newsScraper');
 
+newsScraper();
+
 const jobs = new CronJob({
   cronTime: '00 00 */1 * * *',
   onTick() {
