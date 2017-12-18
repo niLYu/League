@@ -1,14 +1,11 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const { News } = require('../../db/models/index');
-const CronJob = require('cron').CronJob;
 
 const url = 'https://na.leagueoflegends.com';
 
-// eslint-disable-next-line no-new
-module.exports = new CronJob('00 00 */1 * * *', (() => {
-  console.log('Scraping news from riot games every hour');
-  axios.get(`${url}/en/news`).then((response) => {
+const newsScraper = () => axios.get(`${url}/en/news`)
+  .then((response) => {
     const $ = cheerio.load(response.data);
     const newsInfo = [];
     let counter = 0;
@@ -32,6 +29,8 @@ module.exports = new CronJob('00 00 */1 * * *', (() => {
     }).then(() => {
       News.bulkCreate(newsInfo);
     });
-  });
-}), null, true, 'America/New_York');
+  })
+  .catch(e => console.log(e));
+
+module.exports = newsScraper;
 

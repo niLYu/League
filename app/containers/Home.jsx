@@ -6,6 +6,8 @@ import { PlayerSearch } from './index';
 import homeSearch from '../styles/PlayerSearch.css';
 import { fetchNews, fetchNewsFromStorage } from '../reducers';
 
+// const staticImagesUrl = require('../../server/settings');
+
 class Home extends Component {
   componentDidMount() {
     Promise.resolve(this.props.fetchNewsFromStorage('news', 1))

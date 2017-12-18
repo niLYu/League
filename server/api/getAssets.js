@@ -131,5 +131,5 @@ router.get('/itemsIcons', (req, res, next) => {
   });
   next();
 });
-module.exports = { router, latestDDVersion };
+module.exports = router;
 

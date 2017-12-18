@@ -4,6 +4,7 @@ import champList from '../../../seed';
 import queueMode from '../../util/queueModes';
 import summonerSpells from '../../../summonerSpellsId';
 import styles from '../../styles/Match.css';
+import assets from '../../../public/settings';
 
 const GameInfo = (props) => {
   const champ = champList.Heroes[props.champion].key;
@@ -34,10 +35,11 @@ const GameInfo = (props) => {
     <div className={styles.gameInfo_container}>
       <div>{queueMode[props.queue].map}</div>
       <div className={styles.icons_container}>
-        <img className={styles.champion} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+        {/* eslint-disable-next-line */}
+        <img className={styles.champion} src={`${assets.champion}/${champ}.png`} alt={`${champ} icon`} />
         <div className={styles.summonerSpells}>
-          <img src={`/images/summonerSpells/${ss1}.png`} alt={`${ss1} icon`} />
-          <img src={`/images/summonerSpells/${ss2}.png`} alt={`${ss2} icon`} />
+          <img src={`${assets.summonerSpell}/${ss1}.png`} alt={`${ss1} icon`} />
+          <img src={`${assets.summonerSpell}/${ss2}.png`} alt={`${ss2} icon`} />
         </div>
       </div>
       <div className={props.gameOutcome === 'Victory' ? styles.victory_text : styles.defeat_text}>

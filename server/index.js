@@ -6,27 +6,18 @@ const app = express();
 const db = require('../db');
 const { CronJob } = require('cron');
 
-// Starts the cron job for news scraping
-const riotScraper = require('./api/riotScraper');
+const newsScraper = require('./cronJobs/newsScraper');
 
-const checkDDVersion = require('./api/staticUrl');
-
-let latestDDVersion = '7.24.1';
-
-const getDDVers = new CronJob({
+const jobs = new CronJob({
   cronTime: '00 00 */1 * * *',
   onTick() {
-    checkDDVersion()
-      .then((version) => {
-        console.log('Setting latestDDVersion: ', version);
-        latestDDVersion = version;
-      });
+    newsScraper();
   },
   start: false,
   timeZone: 'America/New_York',
 });
 
-getDDVers.start();
+jobs.start();
 
 const PORT = process.env.PORT || 3000;
 
