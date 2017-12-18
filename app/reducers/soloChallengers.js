@@ -13,7 +13,8 @@ const getRecent = challengers => ({ type: GET_SOLO_CHALLENGER, challengers });
 export const fetchSoloChallengers = () => (dispatch) => {
   axios.get('api/playerInfo/solochallengers')
     .then(players => players.data)
-    .then(players => dispatch(getRecent(players)));
+    .then(players => dispatch(getRecent(players)))
+    .catch(err => console.error(err));
 };
 
 /* -----------------    REDUCER    -------------------- */

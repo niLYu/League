@@ -1,3 +1,8 @@
+.championContainer {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
 .container {
   width: 100%;
   padding: 2.5%;
@@ -17,12 +22,17 @@
   position: absolute;
   width: 70%;
   margin: 14px 0px 0px 4px;
-
 }
 
 .crest {
   position: absolute;
   width: 75%;
+
+}
+.text {
+  /* display: flex; */
+  flex: 1;
+  position: relative;
 }
 
 @media (max-width: 768px){

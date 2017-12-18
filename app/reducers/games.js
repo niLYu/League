@@ -13,7 +13,8 @@ const getRecent = games => ({ type: GET_GAMES, games });
 export const fetchRecent = accountId => dispatch =>
   axios.get(`api/playerInfo/recent/${accountId}`)
     .then(games => games.data)
-    .then(games => dispatch(getRecent(games)));
+    .then(games => dispatch(getRecent(games)))
+    .catch(err => console.error(err));
 
 /* -----------------    REDUCER    -------------------- */
 
