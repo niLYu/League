@@ -61,6 +61,11 @@ const LiveGameTeam = (props) => {
           return (
             <tr key={el.summonerId}>
               <th className={styles.td}>
+                <img
+                  src={`/images/champions/${Heroes[el.championId].key}.png`}
+                  alt="champion icon icon"
+                  className={styles.rankSize}
+                />
                 {el.summonerName}
               </th>
               <th className={styles.td}>
@@ -99,22 +104,55 @@ const LiveGameTeam = (props) => {
         :
            <tbody>
              {props.team.participants && props.team.participants.filter(elm => (elm.teamId === 200))
-             .map(el => (
-               <tr key={el.summonerId}>
-                 <th className={styles.td}>
-                   {el.summonerName}
-                 </th>
-                 <th className={styles.td}>
-                 some data
-                 </th>
-                 <th className={styles.td}>
-                 something else
-                 </th>
-                 <th className={styles.td}>
-              something else
-                 </th>
-               </tr>
-            ))}
+              .map((el, index) => {
+          const soloQ = props.team.playerData[index].find(el => el.queueType === 'RANKED_SOLO_5x5') || null;
+          const flexQ = props.team.playerData[index].find(el => el.queueType === 'RANKED_FLEX_SR') || null;
+          let soloRank = 'Unranked';
+          let flexRank = 'Unranked';
+          if (soloQ) soloRank = `${soloQ.tier[0]}${soloQ.tier.slice(1).toLowerCase()} ${soloQ.tier === 'MASTER' || soloQ.tier === 'CHALLENGER' ? '' : soloQ.rank} (${soloQ.leaguePoints}LP)`;
+          if (flexQ) flexRank = `${flexQ.tier[0]}${flexQ.tier.slice(1).toLowerCase()} ${flexQ.tier === 'MASTER' || flexQ.tier === 'CHALLENGER' ? '' : flexQ.rank} (${flexQ.leaguePoints}LP)` || 'Unranked';
+          return (
+            <tr key={el.summonerId}>
+              <th className={styles.td}>
+                <img
+                  src={`/images/champions/${Heroes[el.championId].key}.png`}
+                  alt="champion icon icon"
+                  className={styles.rankSize}
+                />
+                {el.summonerName}
+              </th>
+              <th className={styles.td}>
+                <img
+                  src={`images/${soloQ.tier.toLowerCase()}.png`}
+                  alt="solo rank icon"
+                  className={styles.rankSize}
+                />
+                {soloRank}
+              </th>
+              <th className={styles.td}>
+
+                {
+                  flexQ ?
+                    <img
+                      src={`images/${flexQ.tier.toLowerCase()}.png`}
+                      alt="flex rank icon"
+                      className={styles.rankSize}
+                    />
+              :
+                    <img
+                      src="images/unranked.png"
+                      alt="flex rank icon"
+                      className={styles.rankSize}
+                    />
+              }
+                {flexRank}
+              </th>
+              <th className={styles.td}>
+                {`${((soloQ.wins / (soloQ.wins + soloQ.losses)) * 100).toFixed(0)}%`}
+              </th>
+            </tr>
+          );
+})}
            </tbody>
         }
       </table>
