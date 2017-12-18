@@ -4,9 +4,20 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const db = require('../db');
+const { CronJob } = require('cron');
 
-// Starts the cron job for news scraping
-const riotScraper = require('./api/riotScraper');
+const newsScraper = require('./cronJobs/newsScraper');
+
+const jobs = new CronJob({
+  cronTime: '00 00 */1 * * *',
+  onTick() {
+    newsScraper();
+  },
+  start: false,
+  timeZone: 'America/New_York',
+});
+
+jobs.start();
 
 const PORT = process.env.PORT || 3000;
 
@@ -21,7 +32,7 @@ module.exports = app
 
 db.sync({
   logging: false,
-  force: true,
+  force: false,
 });
 
 if (module === require.main) {

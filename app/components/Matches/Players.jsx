@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import champList from '../../../seed';
 import styles from '../../styles/Match.css';
+import assets from '../../../public/settings';
 
 const Players = (props) => {
   const champs = champList.Heroes;
@@ -24,7 +25,7 @@ const Players = (props) => {
                   search: `username=${member.player.summonerName}`,
                 }}
                 >
-                  <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                  <img className={styles.champ_list} src={`${assets.champion}/${champ}.png`} alt={`${champ} icon`} />
                   {member.player.summonerName.length > 10
                   ? `${member.player.summonerName.slice(0, 10)}...`
                   : member.player.summonerName
@@ -48,7 +49,7 @@ const Players = (props) => {
                   search: `username=${member.player.summonerName}`,
                 }}
                 >
-                  <img className={styles.champ_list} src={`/images/champions/${champ}.png`} alt={`${champ} icon`} />
+                  <img className={styles.champ_list} src={`${assets.champion}/${champ}.png`} alt={`${champ} icon`} />
                   {member.player.summonerName.length > 10
                   ? `${member.player.summonerName.slice(0, 10)}...`
                   : member.player.summonerName

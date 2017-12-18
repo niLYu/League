@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-
 router
   .use('/matchInfo', require('./match'))
   .use('/playerInfo', require('./playerInfo'))

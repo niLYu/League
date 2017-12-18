@@ -21,7 +21,7 @@ const apiRoute = 'https://na1.api.riotgames.com/lol/static-data/v3';
 const ddragonApiRoute = 'http://ddragon.leagueoflegends.com/cdn';
 
 const apiValidation = `?api_key=${LEAGUE_API_KEY}`;
-let latestDDVersion = '7.22.1';
+let latestDDVersion = '7.24.2';
 const champListArray = Object.values(champList.Heroes);
 
 const saveImageAssets = (filePath, name, image) => {
@@ -55,6 +55,7 @@ router.use('/', async (req, res, next) => {
   try {
     const response = await axios.get(`${apiRoute}/versions${apiValidation}`);
     [latestDDVersion] = response.data;
+    console.log('Setting latest DDversion to: ', response.data[0]);
   } catch (e) {
     console.log('Error updating DDVersion: ', e);
   } finally {

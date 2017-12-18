@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import assets from '../../../public/settings';
 import styles from '../../styles/Match.css';
 
 const PlayerItems = (props) => {
@@ -13,10 +14,10 @@ const PlayerItems = (props) => {
   const ward = item6;
   return (
     <div className={styles.items_container}>
-      <img src={`/images/items/${ward}.png`} alt={`${ward} icon`} />
+      <img src={`${assets.item}/${ward}.png`} alt={`${ward} icon`} />
       <div className={styles.build}>
         {itemBuild.map((item, index) =>
-          <img key={index} src={`/images/items/${item}.png`} alt={`${item} icon`} />)
+          <img key={index} src={`${assets.item}/${item}.png`} alt={`${item} icon`} />)
         }
       </div>
     </div>
