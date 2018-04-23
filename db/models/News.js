@@ -1,21 +1,21 @@
 const db = require('../db');
-const { STRING } = require('sequelize');
+const { TEXT } = require('sequelize');
 
 const News = db.define('news', {
   title: {
-    type: STRING,
+    type: TEXT,
   },
   content: {
-    type: STRING,
+    type: TEXT,
   },
   url: {
-    type: STRING,
+    type: TEXT,
   },
   imageUrl: {
-    type: STRING,
+    type: TEXT,
   },
   time: {
-    type: STRING,
+    type: TEXT,
   },
 });
 
