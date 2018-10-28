@@ -5,22 +5,19 @@ const fs = require('fs');
 const util = require('util');
 const summonerSpells = require('../../summonerSpells.js');
 const items = require('../../items');
+const generateChampList = require('./utils/generateChampList');
 // eslint-disable-next-line global-require
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
 
-const { LEAGUE_API_KEY } = process.env;
 const champList = require('../../seed.jsx');
 
 /* This file contains routes used to get static-data using RIOT's Data Dragon tool
    Data Dragon is a web service tool that stores game data and assets for LoL
    More information can be found at https://developer.riotgames.com/static-data.html */
 
-const apiRoute = 'https://na1.api.riotgames.com/lol/static-data/v3';
-
 // Api route to get static data - no rate limit
 const ddragonApiRoute = 'http://ddragon.leagueoflegends.com/cdn';
 
-const apiValidation = `?api_key=${LEAGUE_API_KEY}`;
 let latestDDVersion = '7.24.2';
 const champListArray = Object.values(champList.Heroes);
 
@@ -53,7 +50,7 @@ const fetchAndSave = (url, name, filePath) => {
 // Gets and assigns the latest DDVersion
 router.use('/', async (req, res, next) => {
   try {
-    const response = await axios.get(`${apiRoute}/versions${apiValidation}`);
+    const response = await axios.get('https://ddragon.leagueoflegends.com/api/versions.json');
     [latestDDVersion] = response.data;
     console.log('Setting latest DDversion to: ', response.data[0]);
   } catch (e) {
@@ -63,8 +60,22 @@ router.use('/', async (req, res, next) => {
   }
 });
 
+// Gets a JSON of all champions
+router.get('/championList', (req, res, next) => {
+  const url = `${ddragonApiRoute}/${latestDDVersion}/data/en_US/champion.json`;
+  axios.get(url)
+    .then(response => response.data)
+    .then((champions) => {
+      const filePath = path.resolve(__dirname, '../..');
+      const file = `module.exports = ${util.inspect(generateChampList(champions.data), { depth: null })}`;
+      fs.writeFileSync(`${filePath}/champions.js`, file, 'utf-8');
+      res.json(champions.data);
+    })
+    .catch(next);
+});
+
 // Gets all champion icons
-router.get('/champions', (req, res, next) => {
+router.get('/championIcons', (req, res, next) => {
   const url = `${ddragonApiRoute}/${latestDDVersion}/img/champion`;
   const filePath = path.resolve(__dirname, '../../public/images/champions');
   champListArray.forEach((champ) => {

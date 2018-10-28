@@ -1,21 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import champList from '../../../seed';
+import champList from '../../../champions';
 import styles from '../../styles/Match.css';
 import assets from '../../../public/settings';
 
 const Players = (props) => {
-  const champs = champList.Heroes;
   const blueTeam = props.players.participantIdentities.slice(0, 5);
   const redTeam = props.players.participantIdentities.slice(5, 10);
   const { participants } = props.players;
-
   return (
     <div className={styles.players_container}>
       <div className={styles.team_container}>
         {blueTeam.map((member) => {
-          const champ = champs[participants[member.participantId - 1].championId].key;
+          const champ = champList[participants[member.participantId - 1].championId].id;
           return (
             <div key={member.player.summonerName}>
               <div>
@@ -39,7 +37,7 @@ const Players = (props) => {
 
       <div className={styles.team_container}>
         {redTeam.map((member) => {
-          const champ = champs[participants[member.participantId - 1].championId].key;
+          const champ = champList[participants[member.participantId - 1].championId].id;
           return (
             <div key={member.player.summonerName}>
               <div>

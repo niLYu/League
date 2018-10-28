@@ -52,15 +52,17 @@ router.get('/championMastery/:accountId', (req, res, next) => {
     .catch(next);
 });
 
-// gets recent 20 games by account id
+// gets recent 10 games by account id
 router.get('/recent/:accountId', (req, res, next) => {
+  const beginIndex = 0;
+  const endIndex = 10;
+  const recentMatchURL = `${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}?beginIndex=${beginIndex}&endIndex=${endIndex}&api_key=${LEAGUE_API_KEY}`;
   let recentGames;
-  const recentMatchURL = `${apiBase}/match/v3/matchlists/by-account/${req.params.accountId}/recent`;
-  axios.get(`${recentMatchURL}${apiVerification}`)
+  axios.get(`${recentMatchURL}`)
     .then(response => response.data)
     .then((recentMatchInfo) => {
-      recentGames = recentMatchInfo.matches.slice(0, 10);
-      const allGames = recentGames.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
+      recentGames = recentMatchInfo.matches;
+      const allGames = recentMatchInfo.matches.map(game => axios.get(`${apiBase}/match/v3/matches/${game.gameId}${apiVerification}`));
       return Promise.all(allGames).catch((e) => { console.log(e); });
     }).then((games) => {
       // adding each individual match data to every recent match
