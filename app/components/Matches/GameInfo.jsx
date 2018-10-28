@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import champList from '../../../seed';
+import champList from '../../../champions';
 import queueMode from '../../util/queueModes';
 import summonerSpells from '../../../summonerSpellsId';
 import styles from '../../styles/Match.css';
 import assets from '../../../public/settings';
 
 const GameInfo = (props) => {
-  const champ = champList.Heroes[props.champion].key;
+  const champ = champList[props.champion].id;
   const currentDate = Date.now();
   const timeDiff = (currentDate - props.timestamp) / 1000 / 60; // minutes ago
   const hoursAgo = timeDiff / 60;

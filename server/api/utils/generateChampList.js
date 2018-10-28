@@ -1,5 +1,6 @@
 const generateChampion = (rawChampion) => {
   const parsedChampion = {
+    id: rawChampion.id,
     name: rawChampion.name,
     title: rawChampion.title,
   };
