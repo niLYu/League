@@ -5,6 +5,7 @@ const fs = require('fs');
 const util = require('util');
 const summonerSpells = require('../../summonerSpells.js');
 const items = require('../../items');
+const generateChampList = require('./utils/generateChampList');
 // eslint-disable-next-line global-require
 if (process.env.NODE_ENV !== 'production') require('../../secrets');
 
@@ -62,14 +63,13 @@ router.use('/', async (req, res, next) => {
 // Gets a JSON of all champions
 router.get('/championList', (req, res, next) => {
   const url = `${ddragonApiRoute}/${latestDDVersion}/data/en_US/champion.json`;
-  console.log('url', url)
   axios.get(url)
     .then(response => response.data)
     .then((champions) => {
       const filePath = path.resolve(__dirname, '../..');
-      const file = `module.exports = ${util.inspect(champions, { depth: null })}`;
+      const file = `module.exports = ${util.inspect(generateChampList(champions.data), { depth: null })}`;
       fs.writeFileSync(`${filePath}/champions.js`, file, 'utf-8');
-      res.json(champions);
+      res.json(champions.data);
     })
     .catch(next);
 });
